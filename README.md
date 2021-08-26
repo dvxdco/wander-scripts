@@ -1,2 +1,2 @@
 # wander-scripts
-Decouple scripts for Wander The Resort site
+Decoupled scripts for Wander The Resort site
