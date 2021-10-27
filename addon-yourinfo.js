@@ -4,7 +4,7 @@ window.addEventListener('load', function () {
   if (!wanderAddons) {
     wanderAddons = {};
   } else {
-      wanderAddons = JSON.parse(wanderAddons);
+    wanderAddons = JSON.parse(wanderAddons);
   }
   let lineItemsContainer = document.querySelector('#wf-form-Addons-Form .item-summary .items');
   let detailsTextarea = document.querySelector('#wf-form-Addons-Form .item-summary #details');
