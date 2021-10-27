@@ -1,3 +1,4 @@
+// wait until window loads before making our changes
 window.addEventListener('load', function () {
 
   let wanderAddons = localStorage.getItem('wanderAddons');

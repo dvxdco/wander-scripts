@@ -1,4 +1,6 @@
+// wait until window loads before making our changes
 window.addEventListener('load', function () {
+	// establish namespace and shortcut
 	if (!window.WanderTheResort) {
 		window.WanderTheResort = {};
 	}
@@ -8,11 +10,13 @@ window.addEventListener('load', function () {
 	wtr.currentPage = location.href.split('/')[location.href.split('/').length-1];
 	wtr.totalCount = 0;
 	wtr.hasErrors = false;
+	// cross page "cart" persistence
 	wtr.wanderAddons = localStorage.getItem('wanderAddons');
 	wtr.confirmationBar = document.querySelector('.confirmation-bar');
 	wtr.confirmationText = wtr.confirmationBar.querySelector('.confirmation');
 	wtr.confirmationButton = wtr.confirmationBar.querySelector('.cta');
 
+	// parse or reset localstorage
 	if (!wtr.wanderAddons) {
 		wtr.wanderAddons = {};
 	} else {
@@ -22,6 +26,7 @@ window.addEventListener('load', function () {
 		wtr.wanderAddons[wtr.currentPage] = [];
 	}
 
+	// count number of distinct items, ignores quantity
 	wtr.updateTotalCount = () => {
 		let tempCount = 0;
 		Object.entries(wtr.wanderAddons).forEach(([key, value], idx) => {
@@ -31,6 +36,8 @@ window.addEventListener('load', function () {
 		});
 		wtr.totalCount = tempCount;
 	}
+
+	// check for errors
 	wtr.updateErrors = () => {
 		let tempErrors = false;
 		Object.entries(wtr.wanderAddons).forEach(([key, value], idx) => {
@@ -42,6 +49,8 @@ window.addEventListener('load', function () {
 		});
 		wtr.hasErrors = tempErrors;
 	}
+
+	// update confirmation bar with newest information
 	wtr.updateDisplayCount = () => {
 		wtr.updateErrors();
 		wtr.updateTotalCount();
@@ -61,6 +70,7 @@ window.addEventListener('load', function () {
 		}
 	}
 
+	// remove unwanted option tags from select, ignores first item because empty value/decorative
 	wtr.trimSelectOptions = (select, length = 4) => {
 		let selectOptions = select.querySelectorAll('option');
 		let optionsLength = selectOptions.length;

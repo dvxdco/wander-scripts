@@ -1,9 +1,11 @@
 window.addEventListener('load', function () {
+	// establish namespace and shortcut
 	if (!window.WanderTheResort) {
 		window.WanderTheResort = {};
 	}
 	let wtr = window.WanderTheResort;
 
+	// iterate through rows
 	wtr.addonRows?.forEach((row, index) => {
 		let checkbox = row.querySelector('input[type="checkbox"]');
 		let dateDropdown = row.querySelector('#Item-Date-Select');
@@ -22,6 +24,7 @@ window.addEventListener('load', function () {
 				error: false
 			};
 		}
+
 		const clearValue = () => {
 			wtr.wanderAddons[wtr.currentPage][index] = null;
 		}
@@ -36,6 +39,7 @@ window.addEventListener('load', function () {
 			updateDisplayCount();
 		}
 
+		// trim select dropdowns to particular lengths for specific cases, all others to default
 		if (itemName.innerText == "Cabana Rental") {
 			trimSelectOptions(quantityDropdown, 2);
 		} else if (itemName.innerText == "Hygge Hut Rental") {
@@ -47,8 +51,11 @@ window.addEventListener('load', function () {
 		} else {
 			trimSelectOptions(quantityDropdown);
 		}
+
+		// prevent choosing days before today
 		dateDropdown.min = today.getFullYear() + '-' + (today.getMonth()<10?'0':'') + today.getMonth() + '-' + (today.getDate()<10?'0':'') + today.getDate();
 
+		// update element to reflect localstorage
 		if (wtr.wanderAddons[wtr.currentPage][index]) {
 			if (checkbox.checked) {
 				checkbox.checked = false;
@@ -59,6 +66,7 @@ window.addEventListener('load', function () {
 			wtr.updateDisplayCount();
 		}
 
+		// listen for changes and update localstorage accordingly
 		checkbox.addEventListener('change', e => {
 			refreshStorage(e.srcElement.checked);
 		});

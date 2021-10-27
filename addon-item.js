@@ -1,14 +1,17 @@
+// wait until window loads before making our changes
 window.addEventListener('load', function () {
+	// establish namespace and shortcut
 	if (!window.WanderTheResort) {
 		window.WanderTheResort = {};
 	}
 	let wtr = window.WanderTheResort;
 
+	// iterate through rows
 	wtr.addonRows?.forEach((row, index) => {
 		let checkbox = row.querySelector('input[type="checkbox"]');
 		let dateDropdown = row.querySelector('#Item-Date-Select');
-		let customizationsTextareaPlaceholder = row.querySelector('.textarea-placeholder');
 		let customizationsTextarea = row.querySelector('.option-textarea');
+		let customizationsTextareaPlaceholder = row.querySelector('.textarea-placeholder');
 		let customizationsTextareaActive = !customizationsTextarea.parentElement.classList.contains('w-condition-invisible')
 		let itemName = row.querySelectorAll('.option-pricing .p2')[0];
 		let itemPrice = row.querySelectorAll('.option-pricing .p2')[2];
@@ -21,14 +24,15 @@ window.addEventListener('load', function () {
 
 		const updateValue = () => {
 			wtr.wanderAddons[wtr.currentPage][index] = {
-				quantity: quantityDropdown.value,//#Item-Qty-Select
-				date: dateDropdown.value,//#Item-Date-Select
+				quantity: quantityDropdown.value,
+				date: dateDropdown.value,
 				name: itemName.innerText,
 				price: itemPrice.innerText,
 				customizations: customizationsTextarea.value,
 				error: customizationsTextareaActive && customizationsTextarea.value === ''
 			};
 		}
+
 		const clearValue = () => {
 			wtr.wanderAddons[wtr.currentPage][index] = null;
 		}
@@ -43,6 +47,7 @@ window.addEventListener('load', function () {
 			wtr.updateDisplayCount();
 		}
 
+		// trim select dropdowns to particular lengths for specific cases, all others to default
 		if (itemName.innerText == "Cabana Rental") {
 			wtr.trimSelectOptions(quantityDropdown, 2);
 		} else if (itemName.innerText == "Hygge Hut Rental") {
@@ -54,8 +59,11 @@ window.addEventListener('load', function () {
 		} else {
 			wtr.trimSelectOptions(quantityDropdown);
 		}
+
+		// prevent choosing days before today
 		dateDropdown.min = today.getFullYear() + '-' + (today.getMonth()<10?'0':'') + today.getMonth() + '-' + (today.getDate()<10?'0':'') + today.getDate();
 		
+		// update element to reflect localstorage
 		if (wtr.wanderAddons[wtr.currentPage][index]) {
 			if (checkbox.checked) {
 				checkbox.checked = false;
@@ -67,6 +75,7 @@ window.addEventListener('load', function () {
 			wtr.updateDisplayCount();
 		}
 
+		// listen for changes and update localstorage accordingly
 		checkbox.addEventListener('change', e => {
 			refreshStorage(e.srcElement.checked);
 		});
