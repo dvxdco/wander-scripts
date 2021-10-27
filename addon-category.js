@@ -1,7 +1,19 @@
 window.addEventListener('load', function () {
-	addonRows.forEach((row, index) => {
+	if (!window.WanderTheResort) {
+		window.WanderTheResort = {};
+	}
+	let wtr = window.WanderTheResort;
+
+	wtr.addonRows.forEach((row, index) => {
+		let checkbox = row.querySelector('input[type="checkbox"]');
+		let dateDropdown = row.querySelector('#Item-Date-Select');
+		let itemName = row.querySelectorAll('.item-pricing .p2')[0];
+		let itemPrice = row.querySelectorAll('.item-pricing .p2')[2];
+		let quantityDropdown = row.querySelector('#Item-Qty-Select');
+		let today = new Date();
+
 		const updateValue = () => {
-			wanderAddons[currentPage][index] = {
+			wtr.wanderAddons[currentPage][index] = {
 				quantity: quantityDropdown.value,//#Item-Qty-Select
 				date: dateDropdown.value,//#Item-Date-Select
 				name: itemName.innerText,
@@ -11,7 +23,7 @@ window.addEventListener('load', function () {
 			};
 		}
 		const clearValue = () => {
-			wanderAddons[currentPage][index] = null;
+			wtr.wanderAddons[wtr.currentPage][index] = null;
 		}
 
 		const refreshStorage = (decider) => {
@@ -20,38 +32,31 @@ window.addEventListener('load', function () {
 			} else {
 				clearValue();
 			}
-			localStorage.setItem('wanderAddons', JSON.stringify(wanderAddons));
+			localStorage.setItem('wanderAddons', JSON.stringify(wtr.wanderAddons));
 			updateDisplayCount();
 		}
 
-		let checkbox = row.querySelector('input[type="checkbox"]');
-		let dateDropdown = row.querySelector('#Item-Date-Select');
-		let itemName = row.querySelectorAll('.item-pricing .p2')[0];
-		let itemPrice = row.querySelectorAll('.item-pricing .p2')[2];
-		let quantityDropdown = row.querySelector('#Item-Qty-Select');
 		if (itemName.innerText == "Cabana Rental") {
 			trimSelectOptions(quantityDropdown, 2);
 		} else if (itemName.innerText == "Hygge Hut Rental") {
 			trimSelectOptions(quantityDropdown, 3);
-		} else if (currentPage == "breakfast-boxes") {
+		} else if (wtr.currentPage == "breakfast-boxes") {
 			trimSelectOptions(quantityDropdown, 6);
 		} else if (itemName.innerText == "Freshly Baked Croissant") {
 			trimSelectOptions(quantityDropdown, 10);
 		} else {
 			trimSelectOptions(quantityDropdown);
 		}
-
-		let today = new Date();
 		dateDropdown.min = today.getFullYear() + '-' + (today.getMonth()<10?'0':'') + today.getMonth() + '-' + (today.getDate()<10?'0':'') + today.getDate();
 
-		if (wanderAddons[currentPage][index]) {
+		if (wtr.wanderAddons[wtr.currentPage][index]) {
 			if (checkbox.checked) {
 				checkbox.checked = false;
 			}
 			checkbox.click();
-			quantityDropdown.value = wanderAddons[currentPage][index].quantity;
-			dateDropdown.value = wanderAddons[currentPage][index].date;
-			updateDisplayCount();
+			quantityDropdown.value = wtr.wanderAddons[wtr.currentPage][index].quantity;
+			dateDropdown.value = wtr.wanderAddons[wtr.currentPage][index].date;
+			wtr.updateDisplayCount();
 		}
 
 		checkbox.addEventListener('change', e => {
