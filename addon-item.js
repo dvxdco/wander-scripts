@@ -39,7 +39,7 @@ window.addEventListener('load', function () {
 			} else {
 				clearValue();
 			}
-			localStorage.setItem('wanderAddons', JSON.stringify(wanderAddons));
+			localStorage.setItem('wanderAddons', JSON.stringify(wtr.wanderAddons));
 			wtr.updateDisplayCount();
 		}
 
