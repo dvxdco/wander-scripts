@@ -4,7 +4,7 @@ window.addEventListener('load', function () {
 	}
 	let wtr = window.WanderTheResort;
 
-	wtr.addonRows.forEach((row, index) => {
+	wtr.addonRows?.forEach((row, index) => {
 		let checkbox = row.querySelector('input[type="checkbox"]');
 		let dateDropdown = row.querySelector('#Item-Date-Select');
 		let itemName = row.querySelectorAll('.item-pricing .p2')[0];
