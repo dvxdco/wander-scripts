@@ -17,7 +17,7 @@ window.addEventListener('load', function () {
 		let today = new Date();
 
 		const updateValue = () => {
-			wtr.wanderAddons[currentPage][index] = {
+			wtr.wanderAddons[wtr.currentPage][index] = {
 				quantity: quantityDropdown.value,
 				date: dateDropdown.value,
 				name: itemName.innerText,
