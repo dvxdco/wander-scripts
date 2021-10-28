@@ -5,6 +5,8 @@ window.addEventListener('load', function () {
 	}
 	let wtr = window.WanderTheResort;
 
+	wtr.addonRows = document.querySelectorAll('#email-form .items .w-dyn-item');
+
 	// iterate through rows
 	wtr.addonRows?.forEach((row, index) => {
 		let checkbox = row.querySelector('input[type="checkbox"]');
@@ -16,8 +18,8 @@ window.addEventListener('load', function () {
 
 		const updateValue = () => {
 			wtr.wanderAddons[currentPage][index] = {
-				quantity: quantityDropdown.value,//#Item-Qty-Select
-				date: dateDropdown.value,//#Item-Date-Select
+				quantity: quantityDropdown.value,
+				date: dateDropdown.value,
 				name: itemName.innerText,
 				price: itemPrice.innerText,
 				customizations: '',
