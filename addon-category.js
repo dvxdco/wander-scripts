@@ -38,7 +38,7 @@ window.addEventListener('load', function () {
 				clearValue();
 			}
 			localStorage.setItem('wanderAddons', JSON.stringify(wtr.wanderAddons));
-			updateDisplayCount();
+			wtr.updateDisplayCount();
 		}
 
 		// trim select dropdowns to particular lengths for specific cases, all others to default
