@@ -43,15 +43,15 @@ window.addEventListener('load', function () {
 
 		// trim select dropdowns to particular lengths for specific cases, all others to default
 		if (itemName.innerText == "Cabana Rental") {
-			trimSelectOptions(quantityDropdown, 2);
+			wtr.trimSelectOptions(quantityDropdown, 2);
 		} else if (itemName.innerText == "Hygge Hut Rental") {
-			trimSelectOptions(quantityDropdown, 3);
+			wtr.trimSelectOptions(quantityDropdown, 3);
 		} else if (wtr.currentPage == "breakfast-boxes") {
-			trimSelectOptions(quantityDropdown, 6);
+			wtr.trimSelectOptions(quantityDropdown, 6);
 		} else if (itemName.innerText == "Freshly Baked Croissant") {
-			trimSelectOptions(quantityDropdown, 10);
+			wtr.trimSelectOptions(quantityDropdown, 10);
 		} else {
-			trimSelectOptions(quantityDropdown);
+			wtr.trimSelectOptions(quantityDropdown);
 		}
 
 		// prevent choosing days before today
