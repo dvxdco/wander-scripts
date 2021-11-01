@@ -1,0 +1,81 @@
+/* CAROUSEL STYLES */
+
+.carousel-container .c2.active {
+  animation-name: animation-fade;
+  animation-duration: 0.6s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in-out;
+}
+
+.carousel-container .dot {
+  position: relative;
+  opacity: 0.5;
+}
+.carousel-container .dot:after {
+  content: '•';
+  font-size: 32px;
+  color: #333;
+  
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.carousel-container .dot.active {
+  opacity: 1;
+  transition: all 0.32s ease;
+}
+
+.carousel-container:not(.new-slider) .anim-forward {
+  z-index: 0 !important;
+}
+.new-slider .anim-forward {
+  z-index: 0 !important;
+  transform: translate(-100%, 0);
+  animation-name: animation-preslide-back;
+  animation-duration: 0.6s;
+  animation-fill-mode: backwards;
+  animation-timing-function: ease-in-out;
+  transform-origin: 50% 50%;
+}
+.new-slider .anim-forward.forward {
+  animation-name: animation-preslide;
+}
+
+.carousel-container:not(.new-slider) .anim-forward.active {
+  z-index: 1 !important;
+  animation-name: animation-sort;
+  animation-duration: 0.6s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in-out;
+  transform-origin: 50% 50%;
+}
+.new-slider .anim-forward.active {
+  z-index: 1 !important;
+  animation-name: animation-slide-back;
+  animation-duration: 0.6s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in-out;
+  transform-origin: 50% 50%;
+}
+.new-slider .anim-forward.forward.active {
+  animation-name: animation-slide;
+}
+.new-slider .anim-forward.last {
+  z-index: 1 !important;
+  animation-name: animation-keepslidin-back;
+  animation-duration: 0.6s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in-out;
+  transform-origin: 50% 50%;
+}
+.new-slider .anim-forward.forward.last {
+  animation-name: animation-keepslidin;
+}
+.new-slider .anim-forward.fade, .new-slider .anim-forward.forward.fade {
+  animation-name: animation-fade-out;
+  animation-duration: 0.3s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in-out;
+}
