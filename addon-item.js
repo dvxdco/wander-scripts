@@ -10,7 +10,7 @@ window.addEventListener('load', function () {
 	wtr.addonRows?.forEach((row, index) => {
 		let checkbox = row.querySelector('input[type="checkbox"]');
 		let dateDropdown = row.querySelector('#Item-Date-Select');
-		let dateLimit = row.querySelector('.addon-date-limit').innerText;
+		let dateLimit = row.querySelector('.addon-date-limit')?.innerText;
 		let customizationsTextarea = row.querySelector('.option-textarea');
 		let customizationsTextareaPlaceholder = row.querySelector('.textarea-placeholder');
 		let customizationsTextareaActive = !customizationsTextarea.parentElement.classList.contains('w-condition-invisible')

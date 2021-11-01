@@ -11,7 +11,7 @@ window.addEventListener('load', function () {
 	wtr.addonRows?.forEach((row, index) => {
 		let checkbox = row.querySelector('input[type="checkbox"]');
 		let dateDropdown = row.querySelector('#Item-Date-Select');
-		let dateLimit = row.querySelector('.addon-date-limit').innerText;
+		let dateLimit = row.querySelector('.addon-date-limit')?.innerText;
 		let itemName = row.querySelectorAll('.item-pricing .p2')[0];
 		let itemPrice = row.querySelectorAll('.item-pricing .p2')[2];
 		let quantityDropdown = row.querySelector('#Item-Qty-Select');
