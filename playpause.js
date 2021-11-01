@@ -45,7 +45,7 @@ window.addEventListener('load', function () {
 
 	if (wtr.videoPlayer) {
 		wtr.videoPlayer.loop = true;
-		wtr.button.addEventListener('click', e => buttonClick(e))
+		wtr.button.addEventListener('click', e => wtr.buttonClick(e))
 		// show button
 		wtr.button.classList.remove('hidden');
 		wtr.updatePlayingStatus();
