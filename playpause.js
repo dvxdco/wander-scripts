@@ -1,50 +1,57 @@
+// wait until window loads before making our changes
 window.addEventListener('load', function () {
-	let videoPlayer = document.querySelector('#hero-video video');
-	let button = document.querySelector('.play-pause-button');
-	let playImage = document.querySelector('.play-pause-button .play');
-	let pauseImage = document.querySelector('.play-pause-button .pause');
-	let videoPlaying = true;
+	// establish namespace and shortcut
+	if (!window.WanderTheResort) {
+		window.WanderTheResort = {};
+	}
+	let wtr = window.WanderTheResort;
 
-	const updatePlayingStatus = () => {
-		videoPlaying = videoPlayer.currentTime > 0 && !videoPlayer.paused && !videoPlayer.ended && videoPlayer.readyState > 2;
+	wtr.videoPlayer = document.querySelector('#hero-video video');
+	wtr.button = document.querySelector('.play-pause-button');
+	wtr.playImage = document.querySelector('.play-pause-button .play');
+	wtr.pauseImage = document.querySelector('.play-pause-button .pause');
+	wtr.videoPlaying = true;
+
+	wtr.updatePlayingStatus = () => {
+		wtr.videoPlaying = wtr.videoPlayer.currentTime > 0 && !wtr.videoPlayer.paused && !wtr.videoPlayer.ended && wtr.videoPlayer.readyState > 2;
 	}
 
-	const togglePlayingStatus = () => {
-		if (videoPlaying) {
-			videoPlayer.pause();
+	wtr.togglePlayingStatus = () => {
+		if (wtr.videoPlaying) {
+			wtr.videoPlayer.pause();
 		} else {
-			videoPlayer.play();
+			wtr.videoPlayer.play();
 		}
-		updatePlayingStatus();
+		wtr.updatePlayingStatus();
 	}
 
-	const updateButton = () => {
-		if (videoPlaying) {
+	wtr.updateButton = () => {
+		if (wtr.videoPlaying) {
 			// show pause
-			pauseImage.classList.remove('hidden');
-			playImage.classList.add('hidden');
+			wtr.pauseImage.classList.remove('hidden');
+			wtr.playImage.classList.add('hidden');
 		} else {
 			// show play
-			playImage.classList.remove('hidden');
-			pauseImage.classList.add('hidden');
+			wtr.playImage.classList.remove('hidden');
+			wtr.pauseImage.classList.add('hidden');
 		}
 	}
 
-	const buttonClick = (e) => {
-		updatePlayingStatus();
-		togglePlayingStatus();
-		updateButton();
+	wtr.buttonClick = (e) => {
+		wtr.updatePlayingStatus();
+		wtr.togglePlayingStatus();
+		wtr.updateButton();
 	}
 
-	if (videoPlayer) {
-		videoPlayer.loop = true;
-		button.addEventListener('click', e => buttonClick(e))
+	if (wtr.videoPlayer) {
+		wtr.videoPlayer.loop = true;
+		wtr.button.addEventListener('click', e => buttonClick(e))
 		// show button
-		button.classList.remove('hidden');
-		updatePlayingStatus();
-		updateButton();
+		wtr.button.classList.remove('hidden');
+		wtr.updatePlayingStatus();
+		wtr.updateButton();
 	} else {
 		// remove button
-		button.remove();
+		wtr.button.remove();
 	}
 }, false);
