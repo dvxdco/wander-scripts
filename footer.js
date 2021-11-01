@@ -1,5 +1,13 @@
+// wait until window loads before making our changes
 window.addEventListener('load', function () {
-  var initHero = function() {  
+  // establish namespace and shortcut
+  if (!window.WanderTheResort) {
+    window.WanderTheResort = {};
+  }
+  let wtr = window.WanderTheResort;
+
+  // initialize hero
+  wtr.initHero = function() {  
       var hero = document.querySelectorAll('.anim-hero')[0];
       var heroVideo = document.querySelectorAll('.hero-video')[0];
       var heroTitle = document.querySelectorAll('.hero-title')[0];
@@ -10,22 +18,15 @@ window.addEventListener('load', function () {
               hero.classList.remove('anim-hero');
           }, 2000);
       }
-
-      /*
-      setTimeout(function() {
-        heroVideo.classList.add('no-transition');
-        heroTitle.classList.add('no-transition');
-        heroPaths.classList.add('no-transition');
-      }, 6000);
-      */
   };
-  var initCarousels = function() {
+
+  // initialize all carousels on page
+  wtr.initCarousels = function() {
       
       $(".carousel-container:not(.new-slider), .events-carousel, .stay-carousel").each(function() {
 
           var carouselItemClass = '.anim-forward';
           var carousel = $(this);
-          // var hitArea = carousel.find('.carousel-hit-area');
           var items = carousel.find(carouselItemClass);
           var captions = carousel.find('.c2');
           var dots = carousel.find('.dot');
@@ -73,21 +74,17 @@ window.addEventListener('load', function () {
               caption.css({'diplay': 'none'});
           });
 
-          // hitArea.on('click', function(e) {
-          //      currentIndex = (currentIndex >= items.length-1) ? 0 : currentIndex += 1;
-          //  onSelectCarouselItem(currentIndex);
-          // });
-
           onSelectCarouselItem(currentIndex);
       });
   }
-  var initCarousels2 = function() {
+
+  // initialize all variant carousels on page
+  wtr.initCarousels2 = function() {
       
       $(".carousel-container.new-slider").each(function() {
 
           var carouselItemClass = '.anim-forward';
           var carousel = $(this);
-          // var hitArea = carousel.find('.carousel-hit-area');
           var items = carousel.find(carouselItemClass);
           var captions = carousel.find('.c2');
           var dots = carousel.find('.dot');
@@ -185,76 +182,66 @@ window.addEventListener('load', function () {
           });
           ctas.eq(0).css({'display': 'inline-block'});
 
-
-          // hitArea.on('click', function(e) {
-          //      currentIndex = (currentIndex >= items.length-1) ? 0 : currentIndex += 1;
-          //  onSelectCarouselItem(currentIndex);
-          // });
-
           onSelectCarouselItem(currentIndex, false);
       });
   }
-  var initAddons = function() {
-    console.log('init addons');
-    $('.cta.addons.w-button').on('click', (e) => {
-      e.preventDefault();
-      console.log('addonscta');
-    });
-  }
 
+  // run initializers
   $(document).ready(function() {
-      initCarousels();
-      initCarousels2();
-      initHero();
-      //initAddons();
+      wtr.initCarousels();
+      wtr.initCarousels2();
+      wtr.initHero();
   });
 
-    $(document).ready(function() {
-      $('#earlyaccess').on('click', function(e) {
-        gtag('event', 'Signup', {
-          'event_category': 'Newsletter',
-          'event_label': 'Early access',
-          'value': 50
-        });
+  $(document).ready(function() {
+    $('#earlyaccess').on('click', function(e) {
+      gtag('event', 'Signup', {
+        'event_category': 'Newsletter',
+        'event_label': 'Early access',
+        'value': 50
       });
     });
+  });
 
-    // toast
-    let oldToast = localStorage.getItem('wanderToast');
-    if (oldToast) {
-      localStorage.removeItem('wanderToast');
-    }
+  // purge old toast status cookie if still present
+  wtr.oldToast = localStorage.getItem('wanderToast');
+  if (wtr.oldToast) {
+    localStorage.removeItem('wanderToast');
+  }
 
-    let wanderToast = localStorage.getItem('wanderToast_0821');
-    
-    let toastEl = document.getElementsByClassName('toast-wrapper')[0];
-    if (toastEl && !wanderToast) {
-        toastEl.style.display = "block";
+  // update visibility of toast based on status cookie
+  wtr.wanderToast = localStorage.getItem('wanderToast_0821');
+  wtr.toastEl = document.getElementsByClassName('toast-wrapper')[0];
+  if (wtr.toastEl && !wtr.wanderToast) {
+      wtr.toastEl.style.display = "block";
+  }
+  
+  // listener on "close toast" button to set toast status cookie
+  wtr.toastCloseEl = document.getElementsByClassName('toast-close')[0];
+  if (wtr.toastCloseEl) {
+    wtr.toastCloseEl.onclick = function setWanderToast() {
+        localStorage.setItem('wanderToast_0821', true);
     }
-    
-    let toastCloseEl = document.getElementsByClassName('toast-close')[0];
-    if (toastCloseEl) {
-      toastCloseEl.onclick = function setWanderToast() {
-          localStorage.setItem('wanderToast_0821', true);
-      }
-    }
+  }
 
-    let wanderCookies = localStorage.getItem('wanderCookies');
-    let cookiesEl = document.querySelector('.privacy-message');
-    if (cookiesEl && !wanderCookies) {
-      cookiesEl.style.display = "block";
-    }
+  // update visibility of privacy message based on status cookie
+  wtr.wanderCookies = localStorage.getItem('wanderCookies');
+  wtr.cookiesEl = document.querySelector('.privacy-message');
+  if (wtr.cookiesEl && !wtr.wanderCookies) {
+    wtr.cookiesEl.style.display = "block";
+  }
 
-    let cookieCloseEl = document.querySelector('.privacy .link-block');
-    if (cookieCloseEl) {
-      cookieCloseEl.onclick = function setWanderCookies() {
-          localStorage.setItem('wanderCookies', true);
-      }
+  // listener on privacy message to set status cookie
+  wtr.cookieCloseEl = document.querySelector('.privacy .link-block');
+  if (wtr.cookieCloseEl) {
+    wtr.cookieCloseEl.onclick = function setWanderCookies() {
+        localStorage.setItem('wanderCookies', true);
     }
+  }
 
-    // 
-    let newAtWander = document.querySelector('.new-at-wander');
-    if (newAtWander && window.location.host == 'wander-the-resort-dev.webflow.io') {
-      newAtWander.classList.remove('hidden');
-    }
+  // show new at wander on dev even when hidden
+  wtr.newAtWander = document.querySelector('.new-at-wander');
+  if (wtr.newAtWander && window.location.host == 'wander-the-resort-dev.webflow.io') {
+    wtr.newAtWander.classList.remove('hidden');
+  }
 }, false);
