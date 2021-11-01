@@ -227,7 +227,7 @@ window.addEventListener('load', function () {
   // update visibility of privacy message based on status cookie
   wtr.wanderCookies = localStorage.getItem('wanderCookies');
   wtr.cookiesEl = document.querySelector('.privacy-message');
-  if (wtr.cookiesEl && !wtr.wanderCookies) {
+  if ((wtr.cookiesEl && !wtr.wanderCookies) || (window.location.pathname.indexOf('/cms') == 0)){
     wtr.cookiesEl.style.display = "block";
   }
 
