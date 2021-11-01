@@ -11,6 +11,7 @@ window.addEventListener('load', function () {
   let detailsTextarea = document.querySelector('#wf-form-Addons-Form .item-summary #details');
   let lineItems = document.querySelectorAll('#wf-form-Addons-Form .item-summary .items .line-item');
   let clonedItem = lineItems[0].cloneNode(true);
+  // remove placeholders
   lineItems.forEach(lineItem => {
     lineItem.remove();
   })

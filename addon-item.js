@@ -10,6 +10,7 @@ window.addEventListener('load', function () {
 	wtr.addonRows?.forEach((row, index) => {
 		let checkbox = row.querySelector('input[type="checkbox"]');
 		let dateDropdown = row.querySelector('#Item-Date-Select');
+		let dateLimit = row.querySelector('.addon-date-limit').innerText;
 		let customizationsTextarea = row.querySelector('.option-textarea');
 		let customizationsTextareaPlaceholder = row.querySelector('.textarea-placeholder');
 		let customizationsTextareaActive = !customizationsTextarea.parentElement.classList.contains('w-condition-invisible')
@@ -62,7 +63,9 @@ window.addEventListener('load', function () {
 
 		// prevent choosing days before today
 		dateDropdown.min = today.getFullYear() + '-' + (today.getMonth()<10?'0':'') + today.getMonth() + '-' + (today.getDate()<10?'0':'') + today.getDate();
-		
+		if (dateLimit) {
+			dateDropdown.max = dateLimit
+		}
 		// update element to reflect localstorage
 		if (wtr.wanderAddons[wtr.currentPage][index]) {
 			if (checkbox.checked) {
