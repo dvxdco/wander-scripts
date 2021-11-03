@@ -29,6 +29,9 @@ window.addEventListener('load', function () {
           var carousel = $(this);
           var items = carousel.find(carouselItemClass);
           var captions = carousel.find('.c2');
+          if (window.location.host == 'wander-the-resort-dev.webflow.io') {
+            captions = carousel.find('.c2-2021');
+          }
           var dots = carousel.find('.dot');
           var currentIndex = 0;
 
@@ -37,6 +40,10 @@ window.addEventListener('load', function () {
 
               var item = carousel.find(carouselItemClass+'[data-index="'+currentIndex+'"]');  
               var caption = carousel.find('.c2[data-index="'+currentIndex+'"]');
+              if (window.location.host == 'wander-the-resort-dev.webflow.io') {
+                caption = carousel.find('.c2-2021[data-index="'+currentIndex+'"]');
+              }
+
               var dot = carousel.find('.dot[data-index="'+currentIndex+'"]');
 
               items.removeClass('active');
@@ -87,6 +94,10 @@ window.addEventListener('load', function () {
           var carousel = $(this);
           var items = carousel.find(carouselItemClass);
           var captions = carousel.find('.c2');
+          if (window.location.host == 'wander-the-resort-dev.webflow.io') {
+            captions = carousel.find('.c2-2021');
+          }
+
           var dots = carousel.find('.dot');
           var ctas = carousel.find('.cta:not(.w-condition-invisible)');
           var currentIndex = 0;
@@ -114,6 +125,9 @@ window.addEventListener('load', function () {
               var previousItem = carousel.find(carouselItemClass+'[data-index="'+previousIndex+'"]');  
               var finalItem = carousel.find(carouselItemClass+'[data-index="'+finalIndex+'"]');  
               var caption = carousel.find('.c2[data-index="'+currentIndex+'"]');
+              if (window.location.host == 'wander-the-resort-dev.webflow.io') {
+                caption = carousel.find('.c2-2021[data-index="'+currentIndex+'"]');
+              }
               var dot = carousel.find('.dot[data-index="'+currentIndex+'"]');
               var cta = carousel.find('.cta[data-index="'+currentIndex+'"]');
 
