@@ -1,17 +1,20 @@
 /* CAROUSEL STYLES */
 
-.carousel-container .c2.active {
+.carousel-container .c2.active,
+.carousel-container-2021 .c2-2021.active {
   animation-name: animation-fade;
   animation-duration: 0.6s;
   animation-fill-mode: forwards;
   animation-timing-function: ease-in-out;
 }
 
-.carousel-container .dot {
+.carousel-container .dot,
+.carousel-container-2021 .dot {
   position: relative;
   opacity: 0.5;
 }
-.carousel-container .dot:after {
+.carousel-container .dot:after,
+.carousel-container-2021 .dot:after {
   content: '•';
   font-size: 32px;
   color: #333;
@@ -22,12 +25,14 @@
   transform: translate(-50%, -50%);
 }
 
-.carousel-container .dot.active {
+.carousel-container .dot.active,
+.carousel-container-2021 .dot.active {
   opacity: 1;
   transition: all 0.32s ease;
 }
 
-.carousel-container:not(.new-slider) .anim-forward {
+.carousel-container:not(.new-slider) .anim-forward,
+.carousel-container-2021:not(.new-slider) .anim-forward {
   z-index: 0 !important;
 }
 .new-slider .anim-forward {
@@ -43,7 +48,8 @@
   animation-name: animation-preslide;
 }
 
-.carousel-container:not(.new-slider) .anim-forward.active {
+.carousel-container:not(.new-slider) .anim-forward.active,
+.carousel-container-2021:not(.new-slider) .anim-forward.active {
   z-index: 1 !important;
   animation-name: animation-sort;
   animation-duration: 0.6s;
