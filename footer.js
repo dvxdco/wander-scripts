@@ -23,7 +23,7 @@ window.addEventListener('load', function () {
   // initialize all carousels on page
   wtr.initCarousels = function() {
       
-      $(".carousel-container:not(.new-slider), .events-carousel, .stay-carousel").each(function() {
+      $(".carousel-container:not(.new-slider), .carousel-container-2021, .events-carousel, .stay-carousel").each(function() {
 
           var carouselItemClass = '.anim-forward';
           var carousel = $(this);
