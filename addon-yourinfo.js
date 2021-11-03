@@ -45,6 +45,16 @@ window.addEventListener('load', function () {
       });
     }
   });
+
+  if (window.location.host == 'wander-the-resort-dev.webflow.io') {
+    let adminFee = runningPrice * 0.18;
+    let adminFeeClonedItem = clonedItem.cloneNode(true);
+    adminFeeClonedItem.querySelectorAll('.p2')[0].innerText = "Admin Fee";
+    adminFeeClonedItem.querySelectorAll('.p2')[1].innerText = "$" + adminFee.toFixed(2);
+    adminFeeClonedItem.classList.toggle('admin');
+    lineItemsContainer.append(adminFeeClonedItem);
+  }
+
   let taxAmount = runningPrice * 0.13;
   let subTotalClonedItem = clonedItem.cloneNode(true);
   subTotalClonedItem.querySelectorAll('.p2')[0].innerText = "Sub-Total";
@@ -64,7 +74,11 @@ window.addEventListener('load', function () {
   totalClonedItem.classList.toggle('total');
   lineItemsContainer.append(totalClonedItem);
 
-  runningDetails += `—<br />Sub-Total: \$${runningPrice}<br />HST: \$${taxAmount.toFixed(2)}<br />—<br /><strong>Total: \$${(runningPrice + taxAmount).toFixed(2)}</strong>`;
+  if (window.location.host == 'wander-the-resort-dev.webflow.io') {
+    runningDetails += `—<br />Sub-Total: \$${runningPrice}<br />Admin Fee: \$${adminFee.toFixed(2)}<br />HST: \$${taxAmount.toFixed(2)}<br />—<br /><strong>Total: \$${(runningPrice + adminFee + taxAmount).toFixed(2)}</strong>`;
+  } else {
+    runningDetails += `—<br />Sub-Total: \$${runningPrice}<br />HST: \$${taxAmount.toFixed(2)}<br />—<br /><strong>Total: \$${(runningPrice + taxAmount).toFixed(2)}</strong>`;
+  }
   detailsTextarea.value = runningDetails;
 
   // clear localstorage
