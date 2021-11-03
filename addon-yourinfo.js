@@ -68,16 +68,21 @@ window.addEventListener('load', function () {
   taxClonedItem.classList.toggle('hst');
   lineItemsContainer.append(taxClonedItem);
 
+  let totalAmount = runningPrice + taxAmount;
+  if (window.location.host == 'wander-the-resort-dev.webflow.io') {
+    totalAmount = runningPrice + adminFee + taxAmount;
+  }
+
   let totalClonedItem = clonedItem.cloneNode(true);
   totalClonedItem.querySelectorAll('.p2')[0].innerText = "Total";
-  totalClonedItem.querySelectorAll('.p2')[1].innerText = "$" + (runningPrice + taxAmount).toFixed(2);
+  totalClonedItem.querySelectorAll('.p2')[1].innerText = "$" + (totalAmount).toFixed(2);
   totalClonedItem.classList.toggle('total');
   lineItemsContainer.append(totalClonedItem);
 
   if (window.location.host == 'wander-the-resort-dev.webflow.io') {
-    runningDetails += `—<br />Sub-Total: \$${runningPrice}<br />Admin Fee: \$${adminFee.toFixed(2)}<br />HST: \$${taxAmount.toFixed(2)}<br />—<br /><strong>Total: \$${(runningPrice + adminFee + taxAmount).toFixed(2)}</strong>`;
+    runningDetails += `—<br />Sub-Total: \$${runningPrice}<br />Admin Fee: \$${adminFee.toFixed(2)}<br />HST: \$${taxAmount.toFixed(2)}<br />—<br /><strong>Total: \$${(totalAmount).toFixed(2)}</strong>`;
   } else {
-    runningDetails += `—<br />Sub-Total: \$${runningPrice}<br />HST: \$${taxAmount.toFixed(2)}<br />—<br /><strong>Total: \$${(runningPrice + taxAmount).toFixed(2)}</strong>`;
+    runningDetails += `—<br />Sub-Total: \$${runningPrice}<br />HST: \$${taxAmount.toFixed(2)}<br />—<br /><strong>Total: \$${(totalAmount).toFixed(2)}</strong>`;
   }
   detailsTextarea.value = runningDetails;
 
