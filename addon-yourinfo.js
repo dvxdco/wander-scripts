@@ -46,6 +46,13 @@ window.addEventListener('load', function () {
     }
   });
 
+  let taxAmount = runningPrice * 0.13;
+  let subTotalClonedItem = clonedItem.cloneNode(true);
+  subTotalClonedItem.querySelectorAll('.p2')[0].innerText = "Sub-Total";
+  subTotalClonedItem.querySelectorAll('.p2')[1].innerText = "$" + runningPrice;
+  subTotalClonedItem.classList.toggle('subtotal');
+  lineItemsContainer.append(subTotalClonedItem);
+
   if (window.location.host == 'wander-the-resort-dev.webflow.io') {
     let adminFee = runningPrice * 0.18;
     let adminFeeClonedItem = clonedItem.cloneNode(true);
@@ -54,13 +61,6 @@ window.addEventListener('load', function () {
     adminFeeClonedItem.classList.toggle('admin');
     lineItemsContainer.append(adminFeeClonedItem);
   }
-
-  let taxAmount = runningPrice * 0.13;
-  let subTotalClonedItem = clonedItem.cloneNode(true);
-  subTotalClonedItem.querySelectorAll('.p2')[0].innerText = "Sub-Total";
-  subTotalClonedItem.querySelectorAll('.p2')[1].innerText = "$" + runningPrice;
-  subTotalClonedItem.classList.toggle('subtotal');
-  lineItemsContainer.append(subTotalClonedItem);
 
   let taxClonedItem = clonedItem.cloneNode(true);
   taxClonedItem.querySelectorAll('.p2')[0].innerText = "HST";
