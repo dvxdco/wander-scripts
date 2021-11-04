@@ -133,6 +133,9 @@ window.addEventListener('load', function () {
               }
               var dot = carousel.find('.dot[data-index="'+currentIndex+'"]');
               var cta = carousel.find('.cta[data-index="'+currentIndex+'"]');
+              if (window.location.host == 'wander-the-resort-dev.webflow.io') {
+                cta = carousel.find('.cta-button-2021[data-index="'+currentIndex+'"]');
+              }
 
               if (notFirst && goingForward(previousIndex, currentIndex)) {
                 let lastItem = carousel.find(carouselItemClass+'.last'); 
