@@ -1,3 +1,13 @@
 .w-tab-link.w--current {
 	background: transparent;
 }
+.content-grid-2021 {
+  grid-auto-columns: unset;
+  grid-auto-rows: unset;
+  grid-row-gap: unset;
+  grid-template-columns: unset;
+  -ms-grid-rows: unset;
+  grid-template-rows: unset;
+  grid-auto-flow: unset;
+  /*grid-column-gap: unset;*/
+}
