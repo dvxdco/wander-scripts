@@ -100,6 +100,9 @@ window.addEventListener('load', function () {
 
           var dots = carousel.find('.dot');
           var ctas = carousel.find('.cta:not(.w-condition-invisible)');
+          if (window.location.host == 'wander-the-resort-dev.webflow.io') {
+            ctas = carousel.find('.cta-button-2021:not(.w-condition-invisible)');
+          }
           var currentIndex = 0;
           var finalIndex = items.length - 1;
           var previousIndex = finalIndex;
