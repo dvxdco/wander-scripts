@@ -11,3 +11,6 @@
   grid-auto-flow: unset;
   /*grid-column-gap: unset;*/
 }
+.b3-2021 p {
+	margin: 0;
+}
