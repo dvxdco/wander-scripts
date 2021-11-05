@@ -29,7 +29,7 @@ window.addEventListener('load', function () {
           var carousel = $(this);
           var items = carousel.find(carouselItemClass);
           var captions = carousel.find('.c2');
-          if (window.location.host == 'wander-the-resort-dev.webflow.io') {
+          if (captions.length == 0) {
             captions = carousel.find('.c2-2021');
           }
           var dots = carousel.find('.dot');
@@ -40,7 +40,7 @@ window.addEventListener('load', function () {
 
               var item = carousel.find(carouselItemClass+'[data-index="'+currentIndex+'"]');  
               var caption = carousel.find('.c2[data-index="'+currentIndex+'"]');
-              if (window.location.host == 'wander-the-resort-dev.webflow.io') {
+              if (caption.length == 0) {
                 caption = carousel.find('.c2-2021[data-index="'+currentIndex+'"]');
               }
 
@@ -94,13 +94,13 @@ window.addEventListener('load', function () {
           var carousel = $(this);
           var items = carousel.find(carouselItemClass);
           var captions = carousel.find('.c2');
-          if (window.location.host == 'wander-the-resort-dev.webflow.io') {
+          if (captions.length == 0) {
             captions = carousel.find('.c2-2021');
           }
 
           var dots = carousel.find('.dot');
           var ctas = carousel.find('.cta:not(.w-condition-invisible)');
-          if (window.location.host == 'wander-the-resort-dev.webflow.io') {
+          if (ctas.length == 0) {
             ctas = carousel.find('.cta-button-2021:not(.w-condition-invisible)');
           }
           var currentIndex = 0;
@@ -128,12 +128,12 @@ window.addEventListener('load', function () {
               var previousItem = carousel.find(carouselItemClass+'[data-index="'+previousIndex+'"]');  
               var finalItem = carousel.find(carouselItemClass+'[data-index="'+finalIndex+'"]');  
               var caption = carousel.find('.c2[data-index="'+currentIndex+'"]');
-              if (window.location.host == 'wander-the-resort-dev.webflow.io') {
+              if (caption.length == 0) {
                 caption = carousel.find('.c2-2021[data-index="'+currentIndex+'"]');
               }
               var dot = carousel.find('.dot[data-index="'+currentIndex+'"]');
               var cta = carousel.find('.cta[data-index="'+currentIndex+'"]');
-              if (window.location.host == 'wander-the-resort-dev.webflow.io') {
+              if (cta.length == 0) {
                 cta = carousel.find('.cta-button-2021[data-index="'+currentIndex+'"]');
               }
 
