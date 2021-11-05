@@ -14,3 +14,9 @@
 .b3-2021.w-richtext p {
 	margin: 0;
 }
+
+@media screen and (min-width: 1280px) {
+	.carousel-container-2021 img {
+	    width: 100%;
+	}
+}
