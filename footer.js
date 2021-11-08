@@ -78,7 +78,7 @@ window.addEventListener('load', function () {
           captions.each(function(i) {
               var caption = $(this);
               caption.attr('data-index', i);
-              caption.css({'diplay': 'none'});
+              caption.css({'display': 'none'});
           });
 
           onSelectCarouselItem(currentIndex);
