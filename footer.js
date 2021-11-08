@@ -204,6 +204,62 @@ window.addEventListener('load', function () {
 
           onSelectCarouselItem(currentIndex, false);
       });
+
+      $(".neocarousel-container-2021").each(function() {
+
+          var carouselItemClass = '.anim-forward';
+          var carousel = $(this);
+          var items = carousel.find(carouselItemClass);
+          var captions = carousel.find('.c2-2021');
+          var dots = carousel.find('.dot');
+          var currentIndex = 0;
+
+          var onSelectCarouselItem = function(index) {
+              currentIndex = index;
+
+              var item = carousel.find(carouselItemClass+'[data-index="'+currentIndex+'"]');  
+              var caption = carousel.find('.c2-2021[data-index="'+currentIndex+'"]');
+
+              var dot = carousel.find('.dot[data-index="'+currentIndex+'"]');
+
+              items.removeClass('active');
+              item.addClass('active');
+
+              captions.removeClass('active');
+              captions.css({'display': 'none'});
+              caption.addClass('active');
+              caption.css({'display': 'inline-block'});
+
+              dots.removeClass('active');
+              dot.addClass('active');
+          }
+
+          $(items.get().reverse()).each(function(i) {
+              var item = $(this);
+              item.attr('data-index', i);
+              item.on('click', function(e) {
+                  onSelectCarouselItem(i);
+              });
+          });
+
+          dots.each(function(i) {
+              var dot = $(this);
+              var target = $(carouselItemClass+'[data-index="'+i+'"]');
+              dot.attr('data-index', i);
+              dot.on('click', function(e) {
+                  onSelectCarouselItem(i);
+              });
+          });
+
+          captions.each(function(i) {
+              var caption = $(this);
+              caption.attr('data-index', i);
+              caption.css({'display': 'none'});
+          });
+
+          onSelectCarouselItem(currentIndex);
+      });
+
   }
 
   // run initializers
