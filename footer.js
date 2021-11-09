@@ -222,16 +222,16 @@ window.addEventListener('load', function () {
 
               var dot = carousel.find('.dot[data-index="'+currentIndex+'"]');
 
-              items.removeClass('active');
-              item.addClass('active');
+              items.removeClass('active-2021');
+              item.addClass('active-2021');
 
-              captions.removeClass('active');
+              captions.removeClass('active-2021');
               captions.css({'display': 'none'});
-              caption.addClass('active');
+              caption.addClass('active-2021');
               caption.css({'display': 'inline-block'});
 
-              dots.removeClass('active');
-              dot.addClass('active');
+              dots.removeClass('active-2021');
+              dot.addClass('active-2021');
           }
 
           $(items.get().reverse()).each(function(i) {
