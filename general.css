@@ -20,3 +20,7 @@
 	    width: 100%;
 	}
 }
+
+a[href="/contact-thanksgiving"] {
+  display: none;
+}
