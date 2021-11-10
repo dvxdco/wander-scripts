@@ -27,7 +27,11 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
-
+.neocarousel-container-2021 .dot:after,
+.new-slider .dot:after {
+  font-size: 16px
+  line-height: 7px;
+}
 .carousel-container .dot.active,
 .carousel-container-2021 .dot.active,
 .neocarousel-container-2021 .dot.active-2021 {
