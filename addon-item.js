@@ -10,6 +10,7 @@ window.addEventListener('load', function () {
 	wtr.addonRows?.forEach((row, index) => {
 		let checkbox = row.querySelector('input[type="checkbox"]');
 		let dateDropdown = row.querySelector('#Item-Date-Select');
+		let dateStart = row.querySelector('.addon-date-start')?.innerText;
 		let dateLimit = row.querySelector('.addon-date-limit')?.innerText;
 		let customizationsTextarea = row.querySelector('.option-textarea');
 		let customizationsTextareaPlaceholder = row.querySelector('.textarea-placeholder');
@@ -61,11 +62,19 @@ window.addEventListener('load', function () {
 			wtr.trimSelectOptions(quantityDropdown);
 		}
 
-		// prevent choosing days before today
-		dateDropdown.min = today.getFullYear() + '-' + (today.getMonth()<10?'0':'') + today.getMonth() + '-' + (today.getDate()<10?'0':'') + today.getDate();
-		if (dateLimit) {
-			dateDropdown.max = dateLimit
+		// set minimum date, if available, or default to today
+		if (dateStart) {
+			dateDropdown.min = dateStart;
+		} else {
+			let month = today.getMonth() + 1;
+			dateDropdown.min = today.getFullYear() + '-' + (month<10?'0':'') + month + '-' + (today.getDate()<10?'0':'') + today.getDate();
 		}
+
+		// set maximum date, if available
+		if (dateLimit) {
+			dateDropdown.max = dateLimit;
+		}
+
 		// update element to reflect localstorage
 		if (wtr.wanderAddons[wtr.currentPage][index]) {
 			if (checkbox.checked) {
