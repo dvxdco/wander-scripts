@@ -288,7 +288,7 @@ window.addEventListener('load', function () {
   // update visibility of toast based on status cookie
   wtr.wanderToast = localStorage.getItem('wanderToast_0821');
   wtr.toastEl = document.getElementsByClassName('toast-wrapper')[0];
-  if (wtr.toastEl && !wtr.wanderToast) {
+  if ((wtr.toastEl && !wtr.wanderToast) || (window.location.pathname.indexOf('/cms') == 0)) {
       wtr.toastEl.style.display = "block";
   }
   
@@ -303,7 +303,7 @@ window.addEventListener('load', function () {
   // update visibility of privacy message based on status cookie
   wtr.wanderCookies = localStorage.getItem('wanderCookies');
   wtr.cookiesEl = document.querySelector('.privacy-message');
-  if ((wtr.cookiesEl && !wtr.wanderCookies) || (window.location.pathname.indexOf('/cms') == 0)){
+  if (wtr.cookiesEl && !wtr.wanderCookies){
     wtr.cookiesEl.style.display = "block";
   }
 
