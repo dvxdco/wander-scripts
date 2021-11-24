@@ -27,13 +27,13 @@ window.addEventListener('load', function () {
         if (addon) {
           let newClonedItem = clonedItem.cloneNode(true);
           let actualQuantity = (addon.quantity === ""?1:addon.quantity)
-          newClonedItem.querySelectorAll('.p2')[0].innerText = actualQuantity + ' x ' + addon.name;
+          newClonedItem.querySelectorAll('.b3-2021')[0].innerText = actualQuantity + ' x ' + addon.name;
           let price = actualQuantity * addon.price;
           runningPrice += price;
           runningDetails += `${addon.quantity === ""?1:addon.quantity} x ${addon.name} - \$${price}<br />`;
           runningDetails += `${addon.date?'Date: '+addon.date+'<br />':''}`;
           runningDetails += `${addon.customizations?'Customizations:<br />'+addon.customizations:''}<br />`;
-          newClonedItem.querySelectorAll('.p2')[1].innerText = "$" + price;
+          newClonedItem.querySelectorAll('.b3-2021')[1].innerText = "$" + price;
           if (index == 0) {
             newClonedItem.classList.toggle('first');
           }
@@ -48,29 +48,29 @@ window.addEventListener('load', function () {
 
   let taxAmount = runningPrice * 0.13;
   let subTotalClonedItem = clonedItem.cloneNode(true);
-  subTotalClonedItem.querySelectorAll('.p2')[0].innerText = "Sub-Total";
-  subTotalClonedItem.querySelectorAll('.p2')[1].innerText = "$" + runningPrice;
+  subTotalClonedItem.querySelectorAll('.b3-2021')[0].innerText = "Sub-Total";
+  subTotalClonedItem.querySelectorAll('.b3-2021')[1].innerText = "$" + runningPrice;
   subTotalClonedItem.classList.toggle('subtotal');
   lineItemsContainer.append(subTotalClonedItem);
 
   let adminFee = runningPrice * 0.18;
   let adminFeeClonedItem = clonedItem.cloneNode(true);
-  adminFeeClonedItem.querySelectorAll('.p2')[0].innerText = "Admin Fee (18%)";
-  adminFeeClonedItem.querySelectorAll('.p2')[1].innerText = "$" + adminFee.toFixed(2);
+  adminFeeClonedItem.querySelectorAll('.b3-2021')[0].innerText = "Admin Fee (18%)";
+  adminFeeClonedItem.querySelectorAll('.b3-2021')[1].innerText = "$" + adminFee.toFixed(2);
   adminFeeClonedItem.classList.toggle('admin');
   lineItemsContainer.append(adminFeeClonedItem);
 
   let taxClonedItem = clonedItem.cloneNode(true);
-  taxClonedItem.querySelectorAll('.p2')[0].innerText = "HST (13%)";
-  taxClonedItem.querySelectorAll('.p2')[1].innerText = "$" + taxAmount.toFixed(2);
+  taxClonedItem.querySelectorAll('.b3-2021')[0].innerText = "HST (13%)";
+  taxClonedItem.querySelectorAll('.b3-2021')[1].innerText = "$" + taxAmount.toFixed(2);
   taxClonedItem.classList.toggle('hst');
   lineItemsContainer.append(taxClonedItem);
 
   let totalAmount = runningPrice + adminFee + taxAmount;
 
   let totalClonedItem = clonedItem.cloneNode(true);
-  totalClonedItem.querySelectorAll('.p2')[0].innerText = "Total";
-  totalClonedItem.querySelectorAll('.p2')[1].innerText = "$" + (totalAmount).toFixed(2);
+  totalClonedItem.querySelectorAll('.b3-2021')[0].innerText = "Total";
+  totalClonedItem.querySelectorAll('.b3-2021')[1].innerText = "$" + (totalAmount).toFixed(2);
   totalClonedItem.classList.toggle('total');
   lineItemsContainer.append(totalClonedItem);
 
