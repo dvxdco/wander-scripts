@@ -423,7 +423,7 @@ window.addEventListener('load', function () {
   $(document).ready(function() {
       wtr.initCarousels();
       wtr.initNewCarousels();
-      wtr.initNewCarousel2021();
+      wtr.initNewCarousels2021();
       wtr.initNeoCarousels();
       wtr.initHero();
   });
