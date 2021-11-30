@@ -214,11 +214,26 @@ window.addEventListener('load', function () {
   // initialize all first variant carousels on page
   wtr.initNewCarouselsDev = function() {
 
-      $(".carousel-container.new-slider").each(function() {
+      $(".carousel-container.new-slider-prototype").each(function() {
 
           var carouselItemClass = '.anim-forward';
           var carousel = $(this);
           var items = carousel.find(carouselItemClass);
+
+          var captionsContainer = carousel.find('.new-slider-captions');
+          var dotsContainer = carousel.find('.new-slider-dots');
+          var ctasContainer = carousel.find('.new-slider-ctas');
+
+          items.each(function(i) {
+              var item = $(this);
+              let dot = item.find('.dot');
+              dotsContainer.append(dot);
+              let caption = item.find('.c2-2021');
+              captionsContainer.append(caption);
+              let ctas = item.find('.cta-button-2021');
+              ctasContainer.append(ctas);
+          });
+
           var captions = carousel.find('.c2');
           if (captions.length == 0) {
             captions = carousel.find('.c2-2021');
@@ -335,7 +350,7 @@ window.addEventListener('load', function () {
 
           ctas.each(function(i) {
               var cta = $(this);
-              //cta.attr('data-index', i);
+              cta.attr('data-index', i);
               cta.css({'display': 'none'});
           });
           ctas.eq(0).css({'display': 'inline-block'});
