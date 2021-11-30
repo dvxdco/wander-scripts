@@ -276,6 +276,7 @@ window.addEventListener('load', function () {
               }
               setTimeout(() => {
                 items.removeClass('last');
+                items.removeClass('next');
                 items.removeClass('active');
                 items.removeClass('fade');
                 if (goingForward(previousIndex, currentIndex)) {
