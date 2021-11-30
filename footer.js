@@ -88,7 +88,7 @@ window.addEventListener('load', function () {
   // initialize all first variant carousels on page
   wtr.initNewCarousels = function() {
 
-      $(".carousel-container.new-slider").each(function() {
+      $(".carousel-container.new-slider:not(.new-slider-2021)").each(function() {
 
           var carouselItemClass = '.anim-forward';
           var carousel = $(this);
@@ -211,10 +211,10 @@ window.addEventListener('load', function () {
       });
   }
 
-  // initialize all first variant carousels on page
-  wtr.initNewCarouselsDev = function() {
+  // initialize all updated first variant carousels on page
+  wtr.initNewCarousels2021 = function() {
 
-      $(".carousel-container.new-slider-prototype").each(function() {
+      $(".carousel-container.new-slider-2021").each(function() {
 
           var carouselItemClass = '.anim-forward';
           var carousel = $(this);
@@ -422,11 +422,8 @@ window.addEventListener('load', function () {
   // run initializers
   $(document).ready(function() {
       wtr.initCarousels();
-      if (window.location.hostname == 'wander-the-resort-dev.webflow.io') {
-        wtr.initNewCarouselsDev();
-      } else {
-        wtr.initNewCarousels();
-      }
+      wtr.initNewCarousels();
+      wtr.initNewCarousel2021();
       wtr.initNeoCarousels();
       wtr.initHero();
   });
