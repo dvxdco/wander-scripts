@@ -85,9 +85,9 @@ window.addEventListener('load', function () {
       });
   }
 
-  // initialize all variant carousels on page
-  wtr.initCarousels2 = function() {
-      
+  // initialize all first variant carousels on page
+  wtr.initNewCarousels = function() {
+
       $(".carousel-container.new-slider").each(function() {
 
           var carouselItemClass = '.anim-forward';
@@ -104,6 +104,7 @@ window.addEventListener('load', function () {
             ctas = carousel.find('.cta-button-2021:not(.w-condition-invisible)');
           }
           var currentIndex = 0;
+          var nextIndex = 1;
           var finalIndex = items.length - 1;
           var previousIndex = finalIndex;
           const goingForward = function(previousIndex, currentIndex) {
@@ -123,9 +124,12 @@ window.addEventListener('load', function () {
               }
               previousIndex = currentIndex;
               currentIndex = index;
+              nextIndex = index + 1;
+              nextIndex = (currentIndex + 1) > items.length - 1 ? 0 : (currentIndex + 1);
               finalIndex = (currentIndex - 1) < 0 ? (items.length - 1):(currentIndex - 1);
               var item = carousel.find(carouselItemClass+'[data-index="'+currentIndex+'"]');  
-              var previousItem = carousel.find(carouselItemClass+'[data-index="'+previousIndex+'"]');  
+              var previousItem = carousel.find(carouselItemClass+'[data-index="'+previousIndex+'"]');
+              var nextItem = carousel.find(carouselItemClass+'[data-index="'+nextIndex+'"]');
               var finalItem = carousel.find(carouselItemClass+'[data-index="'+finalIndex+'"]');  
               var caption = carousel.find('.c2[data-index="'+currentIndex+'"]');
               if (caption.length == 0) {
@@ -138,11 +142,11 @@ window.addEventListener('load', function () {
               }
 
               if (notFirst && goingForward(previousIndex, currentIndex)) {
-                let lastItem = carousel.find(carouselItemClass+'.last'); 
-                lastItem.addClass('fade');
+                let itemToFade = carousel.find(carouselItemClass+'.last'); 
+                itemToFade.addClass('fade');
               } else if (notFirst) {
-                let nextItem = carousel.find(carouselItemClass+':not(.last):not(.active)'); 
-                nextItem.addClass('fade');
+                let itemToFade = carousel.find(carouselItemClass+':not(.last):not(.active)'); 
+                itemToFade.addClass('fade');
               }
               setTimeout(() => {
                 items.removeClass('last');
@@ -155,6 +159,7 @@ window.addEventListener('load', function () {
                 }
                 item.addClass('active');
                 finalItem.addClass('last');
+                // nextItem.addClass('last');
 
                 captions.removeClass('active');
                 captions.css({'display': 'none'});
@@ -205,67 +210,72 @@ window.addEventListener('load', function () {
           onSelectCarouselItem(currentIndex, false);
       });
 
-      $(".neocarousel-container-2021").each(function() {
+  }
 
-          var carouselItemClass = '.anim-forward';
-          var carousel = $(this);
-          var items = carousel.find(carouselItemClass);
-          var captions = carousel.find('.c2-2021');
-          var dots = carousel.find('.dot');
-          var currentIndex = 0;
+  // initialize all second variant carousels on page
+  wtr.initNeoCarousels = function() {
 
-          var onSelectCarouselItem = function(index) {
-              currentIndex = index;
+    $(".neocarousel-container-2021").each(function() {
 
-              var item = carousel.find(carouselItemClass+'[data-index="'+currentIndex+'"]');  
-              var caption = carousel.find('.c2-2021[data-index="'+currentIndex+'"]');
+        var carouselItemClass = '.anim-forward';
+        var carousel = $(this);
+        var items = carousel.find(carouselItemClass);
+        var captions = carousel.find('.c2-2021');
+        var dots = carousel.find('.dot');
+        var currentIndex = 0;
 
-              var dot = carousel.find('.dot[data-index="'+currentIndex+'"]');
+        var onSelectCarouselItem = function(index) {
+            currentIndex = index;
 
-              items.removeClass('active-2021');
-              item.addClass('active-2021');
+            var item = carousel.find(carouselItemClass+'[data-index="'+currentIndex+'"]');  
+            var caption = carousel.find('.c2-2021[data-index="'+currentIndex+'"]');
 
-              captions.removeClass('active-2021');
-              captions.css({'display': 'none'});
-              caption.addClass('active-2021');
-              caption.css({'display': 'inline-block'});
+            var dot = carousel.find('.dot[data-index="'+currentIndex+'"]');
 
-              dots.removeClass('active-2021');
-              dot.addClass('active-2021');
-          }
+            items.removeClass('active-2021');
+            item.addClass('active-2021');
 
-          $(items.get().reverse()).each(function(i) {
-              var item = $(this);
-              item.attr('data-index', i);
-              item.on('click', function(e) {
-                  onSelectCarouselItem(i);
-              });
-          });
+            captions.removeClass('active-2021');
+            captions.css({'display': 'none'});
+            caption.addClass('active-2021');
+            caption.css({'display': 'inline-block'});
 
-          dots.each(function(i) {
-              var dot = $(this);
-              var target = $(carouselItemClass+'[data-index="'+i+'"]');
-              dot.attr('data-index', i);
-              dot.on('click', function(e) {
-                  onSelectCarouselItem(i);
-              });
-          });
+            dots.removeClass('active-2021');
+            dot.addClass('active-2021');
+        }
 
-          captions.each(function(i) {
-              var caption = $(this);
-              caption.attr('data-index', i);
-              caption.css({'display': 'none'});
-          });
+        $(items.get().reverse()).each(function(i) {
+            var item = $(this);
+            item.attr('data-index', i);
+            item.on('click', function(e) {
+                onSelectCarouselItem(i);
+            });
+        });
 
-          onSelectCarouselItem(currentIndex);
-      });
+        dots.each(function(i) {
+            var dot = $(this);
+            var target = $(carouselItemClass+'[data-index="'+i+'"]');
+            dot.attr('data-index', i);
+            dot.on('click', function(e) {
+                onSelectCarouselItem(i);
+            });
+        });
 
+        captions.each(function(i) {
+            var caption = $(this);
+            caption.attr('data-index', i);
+            caption.css({'display': 'none'});
+        });
+
+        onSelectCarouselItem(currentIndex);
+    });
   }
 
   // run initializers
   $(document).ready(function() {
       wtr.initCarousels();
-      wtr.initCarousels2();
+      wtr.initNewCarousels();
+      wtr.initNeoCarousels();
       wtr.initHero();
   });
 
