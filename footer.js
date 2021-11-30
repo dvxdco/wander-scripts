@@ -209,9 +209,133 @@ window.addEventListener('load', function () {
 
           onSelectCarouselItem(currentIndex, false);
       });
-
   }
 
+  // initialize all first variant carousels on page
+  wtr.initNewCarouselsDev = function() {
+
+      $(".carousel-container.new-slider").each(function() {
+
+          var carouselItemClass = '.anim-forward';
+          var carousel = $(this);
+          var items = carousel.find(carouselItemClass);
+          var captions = carousel.find('.c2');
+          if (captions.length == 0) {
+            captions = carousel.find('.c2-2021');
+          }
+
+          var dots = carousel.find('.dot');
+          var ctas = carousel.find('.cta:not(.w-condition-invisible)');
+          if (ctas.length == 0) {
+            ctas = carousel.find('.cta-button-2021:not(.w-condition-invisible)');
+          }
+          var currentIndex = 0;
+          var nextIndex = 1;
+          var finalIndex = items.length - 1;
+          var previousIndex = finalIndex;
+          const goingForward = function(previousIndex, currentIndex) {
+            if (currentIndex == 0 && previousIndex == (items.length - 1)) {
+              return true;
+            } else if (currentIndex == 1 && previousIndex == 0) {
+              return true;
+            } else if (currentIndex == (items.length - 1) && previousIndex == (items.length - 2)) {
+              return true;
+            } else if (previousIndex > currentIndex) {
+              return false;
+            }
+          };
+          var onSelectCarouselItem = function(index, notFirst = true) {
+              if (currentIndex == index && notFirst) {
+                return;
+              }
+              previousIndex = currentIndex;
+              currentIndex = index;
+              nextIndex = index + 1;
+              nextIndex = (currentIndex + 1) > items.length - 1 ? 0 : (currentIndex + 1);
+              finalIndex = (currentIndex - 1) < 0 ? (items.length - 1):(currentIndex - 1);
+              var item = carousel.find(carouselItemClass+'[data-index="'+currentIndex+'"]');  
+              var previousItem = carousel.find(carouselItemClass+'[data-index="'+previousIndex+'"]');
+              var nextItem = carousel.find(carouselItemClass+'[data-index="'+nextIndex+'"]');
+              var finalItem = carousel.find(carouselItemClass+'[data-index="'+finalIndex+'"]');  
+              var caption = carousel.find('.c2[data-index="'+currentIndex+'"]');
+              if (caption.length == 0) {
+                caption = carousel.find('.c2-2021[data-index="'+currentIndex+'"]');
+              }
+              var dot = carousel.find('.dot[data-index="'+currentIndex+'"]');
+              var cta = carousel.find('.cta[data-index="'+currentIndex+'"]');
+              if (cta.length == 0) {
+                cta = carousel.find('.cta-button-2021[data-index="'+currentIndex+'"]');
+              }
+
+              if (notFirst && goingForward(previousIndex, currentIndex)) {
+                let itemToFade = carousel.find(carouselItemClass+'.last'); 
+                itemToFade.addClass('fade');
+              } else if (notFirst) {
+                let itemToFade = carousel.find(carouselItemClass+':not(.last):not(.active)'); 
+                itemToFade.addClass('fade');
+              }
+              setTimeout(() => {
+                items.removeClass('last');
+                items.removeClass('active');
+                items.removeClass('fade');
+                if (goingForward(previousIndex, currentIndex)) {
+                  items.addClass('forward');
+                } else {
+                  items.removeClass('forward');
+                }
+                item.addClass('active');
+                finalItem.addClass('last');
+                // nextItem.addClass('last');
+
+                captions.removeClass('active');
+                captions.css({'display': 'none'});
+                caption.addClass('active');
+                caption.css({'display': 'inline-block'});
+
+                dots.removeClass('active');
+                dot.addClass('active');
+                ctas.removeClass('active');
+                ctas.css({'display': 'none'});
+                cta.addClass('active');
+                cta.css({'display': 'inline-block'});
+              }, 300);
+
+          };
+
+          items.each(function(i) {
+              var item = $(this);
+              item.attr('data-index', i);
+              item.on('click', function(e) {
+                  onSelectCarouselItem(i);
+              });
+          });
+
+          dots.each(function(i) {
+              var dot = $(this);
+              var target = $(carouselItemClass+'[data-index="'+i+'"]');
+              dot.attr('data-index', i);
+              dot.on('click', function(e) {
+                  onSelectCarouselItem(i);
+              });
+          });
+
+          captions.each(function(i) {
+              var caption = $(this);
+              caption.attr('data-index', i);
+              caption.css({'display': 'none'});
+          });
+          captions.eq(0).css({'display': 'inline-block'});
+
+          ctas.each(function(i) {
+              var cta = $(this);
+              //cta.attr('data-index', i);
+              cta.css({'display': 'none'});
+          });
+          ctas.eq(0).css({'display': 'inline-block'});
+
+          onSelectCarouselItem(currentIndex, false);
+      });
+  }
   // initialize all second variant carousels on page
   wtr.initNeoCarousels = function() {
 
@@ -274,7 +398,11 @@ window.addEventListener('load', function () {
   // run initializers
   $(document).ready(function() {
       wtr.initCarousels();
-      wtr.initNewCarousels();
+      if (window.location.hostname == 'wander-the-resort-dev.webflow.io') {
+        wtr.initNewCarouselsDev();
+      } else {
+        wtr.initNewCarousels();
+      }
       wtr.initNeoCarousels();
       wtr.initHero();
   });
