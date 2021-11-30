@@ -250,12 +250,16 @@ window.addEventListener('load', function () {
               }
               previousIndex = currentIndex;
               currentIndex = index;
-              nextIndex = index + 1;
               nextIndex = (currentIndex + 1) > items.length - 1 ? 0 : (currentIndex + 1);
+              nextIndex2 = (currentIndex + 2) > items.length - 1 ? (currentIndex + 2) - (items.length) : (currentIndex + 2);
+              nextIndex3 = (currentIndex + 3) > items.length - 1 ? (currentIndex + 3) - (items.length) : (currentIndex + 3);
               finalIndex = (currentIndex - 1) < 0 ? (items.length - 1):(currentIndex - 1);
               var item = carousel.find(carouselItemClass+'[data-index="'+currentIndex+'"]');  
               var previousItem = carousel.find(carouselItemClass+'[data-index="'+previousIndex+'"]');
-              var nextItem = carousel.find(carouselItemClass+'[data-index="'+nextIndex+'"]');
+              var nextItems = [
+                carousel.find(carouselItemClass+'[data-index="'+nextIndex+'"]'),
+                carousel.find(carouselItemClass+'[data-index="'+nextIndex2+'"]'),
+              ];
               var finalItem = carousel.find(carouselItemClass+'[data-index="'+finalIndex+'"]');  
               var caption = carousel.find('.c2[data-index="'+currentIndex+'"]');
               if (caption.length == 0) {
@@ -284,9 +288,11 @@ window.addEventListener('load', function () {
                 } else {
                   items.removeClass('forward');
                 }
-                item.addClass('active');
+                item.addClass('active next');
                 finalItem.addClass('last');
-                nextItem.addClass('next');
+                nextItems.forEach((e) => {
+                  e.addClass('next');
+                });
 
                 captions.removeClass('active');
                 captions.css({'display': 'none'});
