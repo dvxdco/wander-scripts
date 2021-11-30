@@ -284,8 +284,8 @@ window.addEventListener('load', function () {
                   items.removeClass('forward');
                 }
                 item.addClass('active');
-                finalItem.addClass('last');
-                // nextItem.addClass('last');
+                // finalItem.addClass('last');
+                nextItem.addClass('last');
 
                 captions.removeClass('active');
                 captions.css({'display': 'none'});
