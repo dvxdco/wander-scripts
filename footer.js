@@ -275,6 +275,7 @@ window.addEventListener('load', function () {
                 carousel.find(carouselItemClass+'[data-index="'+nextIndex+'"]'),
                 carousel.find(carouselItemClass+'[data-index="'+nextIndex2+'"]'),
               ];
+              var nextItem = carousel.find(carouselItemClass+'[data-index="'+nextIndex+'"]');
               var finalItem = carousel.find(carouselItemClass+'[data-index="'+finalIndex+'"]');  
               var caption = carousel.find('.c2[data-index="'+currentIndex+'"]');
               if (caption.length == 0) {
@@ -305,9 +306,10 @@ window.addEventListener('load', function () {
                 }
                 item.addClass('active next');
                 finalItem.addClass('last');
-                nextItems.forEach((e) => {
-                  e.addClass('next');
-                });
+                // nextItems.forEach((e) => {
+                //   e.addClass('next');
+                // });
+                nextItem.addClass('next');
 
                 captions.removeClass('active');
                 captions.css({'display': 'none'});

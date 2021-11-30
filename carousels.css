@@ -90,6 +90,12 @@
   animation-name: animation-keepslidin;
 }
 
+.new-slider-prototype .anim-forward {
+  -webkit-box-ordinal-group: 4;
+  -webkit-order: 3;
+  -ms-flex-order: 3;
+  order: 3;
+}
 .new-slider .anim-forward.active {
   -webkit-box-ordinal-group: 2 !important;
   -webkit-order: 1 !important;
