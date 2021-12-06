@@ -13,6 +13,9 @@ window.addEventListener('load', function () {
 		let dateStart = row.querySelector('.addon-date-start')?.innerText;
 		let dateLimit = row.querySelector('.addon-date-limit')?.innerText;
 		let customizationsTextarea = row.querySelector('.option-textarea');
+		if (!customizationsTextarea) {
+			customizationsTextarea = row.querySelector('.option-selections textarea');
+		}
 		let customizationsTextareaPlaceholder = row.querySelector('.textarea-placeholder');
 		let customizationsTextareaActive = !customizationsTextarea.parentElement.classList.contains('w-condition-invisible')
 		let itemName = row.querySelectorAll('.option-pricing .p2')[0];
