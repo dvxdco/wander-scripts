@@ -19,7 +19,14 @@ window.addEventListener('load', function () {
 		let customizationsTextareaPlaceholder = row.querySelector('.textarea-placeholder');
 		let customizationsTextareaActive = !customizationsTextarea.parentElement.classList.contains('w-condition-invisible')
 		let itemName = row.querySelectorAll('.option-pricing .p2')[0];
+		if (!itemName) {
+			itemName = row.querySelectorAll('.option-pricing .b2-2021')[0];
+		}
 		let itemPrice = row.querySelectorAll('.option-pricing .p2')[2];
+		if (!itemPrice) {
+			itemPrice = row.querySelectorAll('.option-pricing .b2-2021')[2];
+		}
+
 		let quantityDropdown = row.querySelector('#Item-Qty-Select');
 		let today = new Date();
 
