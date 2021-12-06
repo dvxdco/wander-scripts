@@ -14,7 +14,13 @@ window.addEventListener('load', function () {
 		let dateStart = row.querySelector('.addon-date-start')?.innerText;
 		let dateLimit = row.querySelector('.addon-date-limit')?.innerText;
 		let itemName = row.querySelectorAll('.item-pricing .p2')[0];
+		if (!itemName) {
+			itemName = row.querySelectorAll('.item-pricing .b2-2021')[0];
+		}
 		let itemPrice = row.querySelectorAll('.item-pricing .p2')[2];
+		if (!itemPrice) {
+			itemPrice = row.querySelectorAll('.item-pricing .b2-2021')[2];
+		}
 		let quantityDropdown = row.querySelector('#Item-Qty-Select');
 		let today = new Date();
 
