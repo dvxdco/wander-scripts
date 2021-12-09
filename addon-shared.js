@@ -56,7 +56,7 @@ window.addEventListener('load', function () {
 		wtr.updateTotalCount();
 		wtr.confirmationText.innerText = wtr.totalCount + ' selected';
 		if (wtr.hasErrors) {
-			wtr.confirmationText.innerText += ' - Please ensure details are filled out for selected items';
+			wtr.confirmationText.innerText += ' - Complete all details on your selection to proceed';
 			wtr.confirmationButton.classList.add('hidden');
 		} else if (wtr.totalCount > 0) {
 			wtr.confirmationButton.classList.remove('hidden');
