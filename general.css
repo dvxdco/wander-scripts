@@ -30,3 +30,7 @@ a[href="/contact-thanksgiving"] {
 		overflow-x: scroll;
 	}
 }
+
+.product-image-carousel .mask .slide {
+	background-repeat: no-repeat;
+}
