@@ -24,3 +24,9 @@
 a[href="/contact-thanksgiving"] {
   display: none;
 }
+
+@media screen and (max-width: 479px) {
+  .breadcrumb-category-list-wrapper {
+    overflow-x: scroll;
+  }
+}
