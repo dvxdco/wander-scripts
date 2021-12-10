@@ -2,14 +2,14 @@
 	background: transparent;
 }
 .content-grid-2021 {
-  grid-auto-columns: unset;
-  grid-auto-rows: unset;
-  grid-row-gap: unset;
-  grid-template-columns: unset;
-  -ms-grid-rows: unset;
-  grid-template-rows: unset;
-  grid-auto-flow: unset;
-  /*grid-column-gap: unset;*/
+	grid-auto-columns: unset;
+	grid-auto-rows: unset;
+	grid-row-gap: unset;
+	grid-template-columns: unset;
+	-ms-grid-rows: unset;
+	grid-template-rows: unset;
+	grid-auto-flow: unset;
+	/*grid-column-gap: unset;*/
 }
 .b3-2021.w-richtext p {
 	margin: 0;
@@ -17,16 +17,16 @@
 
 @media screen and (min-width: 1280px) {
 	.carousel-container-2021 img {
-	    width: 100%;
+		width: 100%;
 	}
 }
 
 a[href="/contact-thanksgiving"] {
-  display: none;
+	display: none;
 }
 
 @media screen and (max-width: 479px) {
-  .breadcrumb-category-list-wrapper {
-    overflow-x: scroll;
-  }
+	.breadcrumb-category-list-wrapper {
+		overflow-x: scroll;
+	}
 }
