@@ -240,9 +240,9 @@ window.addEventListener('load', function () {
           }
 
           var dots = carousel.find('.dot');
-          var ctas = carousel.find('.cta:not(.w-condition-invisible)');
+          var ctas = carousel.find('.cta');
           if (ctas.length == 0) {
-            ctas = carousel.find('.cta-button-2021:not(.w-condition-invisible)');
+            ctas = carousel.find('.cta-button-2021');
           }
           var currentIndex = 0;
           var nextIndex = 1;
@@ -352,8 +352,11 @@ window.addEventListener('load', function () {
 
           ctas.each(function(i) {
               var cta = $(this);
-              cta.attr('data-index', i);
-              cta.css({'display': 'none'});
+              if(!cta.classList.contains('w-condition-invisible')) {
+                let ctaIndex = Math.floor(i/2);
+                cta.attr('data-index', ctaIndex);
+                cta.css({'display': 'none'});
+              }
           });
           ctas.eq(0).css({'display': 'inline-block'});
 
