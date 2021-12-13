@@ -352,7 +352,7 @@ window.addEventListener('load', function () {
 
           ctas.each(function(i) {
               var cta = $(this);
-              if(!cta.classList.contains('w-condition-invisible')) {
+              if(!cta[0].classList.contains('w-condition-invisible')) {
                 let ctaIndex = Math.floor(i/2);
                 cta.attr('data-index', ctaIndex);
                 cta.css({'display': 'none'});
