@@ -450,7 +450,8 @@ window.addEventListener('load', function () {
   // update visibility of toast based on status cookie
   wtr.wanderToast = localStorage.getItem('wanderToast_0821');
   wtr.toastEl = document.getElementsByClassName('toast-wrapper')[0];
-  if ((wtr.toastEl && !wtr.wanderToast) || (window.location.pathname.indexOf('/cms') == 0)) {
+  wtr.toastToggle = document.querySelector('.toggle-wrapper .toast-toggle');
+  if ((wtr.toastEl && wtr.toastToggle && !wtr.wanderToast) || (window.location.pathname.indexOf('/cms') == 0)) {
       wtr.toastEl.style.display = "block";
   }
   
