@@ -1,0 +1,103 @@
+/* paragraph (mimics b3-2021) */
+.story-body p {
+	margin-bottom: 0px;
+	font-family: Silka, Tahoma, sans-serif;
+	font-size: 16px;
+	line-height: 28.8px;
+	font-weight: 300;
+	letter-spacing: 0.03em;
+}
+@media screen and (min-width: 1280px) {
+	.story-body p {
+		font-size: 20px;
+		line-height: 36px;
+	}
+}
+@media screen and (max-width: 991px) {
+	.story-body p {
+	    font-size: 16px;
+	    line-height: 28.8px;
+	}
+}
+
+/* photo caption (mimics h4-2021) */
+.story-body figure figcaption {
+	margin: 0px;
+	padding: 0px;
+	font-family: Berlingskeserif, sans-serif;
+	font-size: 22px;
+	line-height: 35.2px;
+	font-weight: 400;
+	letter-spacing: 0.01em;
+}
+@media screen and (min-width: 1280px) {
+	.story-body figure figcaption {
+	    font-size: 28px;
+	    line-height: 44.8px;
+	}
+}
+
+/* section title (mimics h3-2021) */
+.story-body h2 {
+	margin-top: 0px;
+	margin-bottom: 0px;
+	font-family: Silka, Tahoma, sans-serif;
+	font-size: 30px;
+	line-height: 42px;
+	font-weight: 300;
+}
+@media screen and (min-width: 1280px) {
+	.story-body h2 {
+		font-size: 40px;
+		line-height: 56px;
+	}
+}
+@media screen and (max-width: 991px) {
+	.story-body h2 {
+	    font-size: 26px;
+		line-height: 36.4px;
+	}
+}
+/* blockquote (mimics h4-2021) */
+.story-body blockquote {
+	margin: 0px;
+	padding: 0px;
+	font-family: Berlingskeserif, sans-serif;
+	font-size: 22px;
+	line-height: 35.2px;
+	font-weight: 400;
+	letter-spacing: 0.01em;
+}
+@media screen and (min-width: 1280px) {
+	.story-body blockquote {
+	    font-size: 28px;
+	    line-height: 44.8px;
+	}
+}
+
+/* blockquote caption (mimics c1-2021 and c2-2021) */
+.story-body h6 {
+	margin-bottom: 0px;
+	font-family: Silka, Tahoma, sans-serif;
+	font-size: 16px;
+	line-height: 25.6px;
+	letter-spacing: 0.03em;
+}
+.story-body h6 strong {
+	margin-bottom: 0px;
+	font-family: Silka, Tahoma, sans-serif;
+	font-size: 16px;
+	line-height: 25.6px;
+	font-weight: 600;
+	letter-spacing: 0.03em;
+}
+@media screen and (max-width: 991px) {
+	.story-body h6 {
+	    font-size: 13px;
+	    line-height: 20.8px;
+	}
+	.story-body h6 strong {
+	    font-size: 13px;
+	    line-height: 20.8px;
+	}
+}
