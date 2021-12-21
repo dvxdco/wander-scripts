@@ -1,6 +1,6 @@
 /* paragraph (mimics b3-2021) */
-.story-body p {
-	margin-bottom: 0px;
+.story-body.all-season p {
+	margin-bottom: 30px;
 	font-family: Silka, Tahoma, sans-serif;
 	font-size: 16px;
 	line-height: 28.8px;
@@ -11,6 +11,7 @@
 	.story-body p {
 		font-size: 20px;
 		line-height: 36px;
+		margin-bottom: 40px;
 	}
 }
 @media screen and (max-width: 991px) {
@@ -21,7 +22,7 @@
 }
 
 /* section title (mimics h3-2021) */
-.story-body h2 {
+.story-body.all-season h2 {
 	margin-top: 0px;
 	margin-bottom: 0px;
 	font-family: Silka, Tahoma, sans-serif;
@@ -30,19 +31,19 @@
 	font-weight: 300;
 }
 @media screen and (min-width: 1280px) {
-	.story-body h2 {
+	.story-body.all-season h2 {
 		font-size: 40px;
 		line-height: 56px;
 	}
 }
 @media screen and (max-width: 991px) {
-	.story-body h2 {
+	.story-body.all-season h2 {
 	    font-size: 26px;
 		line-height: 36.4px;
 	}
 }
 /* blockquote (mimics h4-2021) */
-.story-body blockquote {
+.story-body.all-season blockquote {
 	margin: 0px;
 	padding: 0px;
 	font-family: Berlingskeserif, sans-serif;
@@ -52,21 +53,21 @@
 	letter-spacing: 0.01em;
 }
 @media screen and (min-width: 1280px) {
-	.story-body blockquote {
+	.story-body.all-season blockquote {
 	    font-size: 28px;
 	    line-height: 44.8px;
 	}
 }
 
 /* blockquote caption (mimics c1-2021 and c2-2021) */
-.story-body h6 {
+.story-body.all-season h6 {
 	margin-bottom: 0px;
 	font-family: Silka, Tahoma, sans-serif;
 	font-size: 16px;
 	line-height: 25.6px;
 	letter-spacing: 0.03em;
 }
-.story-body h6 strong {
+.story-body.all-season h6 strong {
 	margin-bottom: 0px;
 	font-family: Silka, Tahoma, sans-serif;
 	font-size: 16px;
@@ -75,18 +76,18 @@
 	letter-spacing: 0.03em;
 }
 @media screen and (max-width: 991px) {
-	.story-body h6 {
+	.story-body.all-season h6 {
 	    font-size: 13px;
 	    line-height: 20.8px;
 	}
-	.story-body h6 strong {
+	.story-body.all-season h6 strong {
 	    font-size: 13px;
 	    line-height: 20.8px;
 	}
 }
 
 /* photo caption (mimics c1-2021 and c2-2021) */
-.story-body figure figcaption {
+.story-body.all-season figure figcaption {
 	margin-bottom: 0px;
 	font-family: Silka, Tahoma, sans-serif;
 	font-size: 16px;
@@ -94,7 +95,7 @@
 	letter-spacing: 0.03em;
 }
 @media screen and (min-width: 1280px) {
-	.story-body figure figcaption {
+	.story-body.all-season figure figcaption {
 	    font-size: 13px;
 	    line-height: 20.8px;
 	}
