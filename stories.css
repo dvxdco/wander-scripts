@@ -20,23 +20,6 @@
 	}
 }
 
-/* photo caption (mimics h4-2021) */
-.story-body figure figcaption {
-	margin: 0px;
-	padding: 0px;
-	font-family: Berlingskeserif, sans-serif;
-	font-size: 22px;
-	line-height: 35.2px;
-	font-weight: 400;
-	letter-spacing: 0.01em;
-}
-@media screen and (min-width: 1280px) {
-	.story-body figure figcaption {
-	    font-size: 28px;
-	    line-height: 44.8px;
-	}
-}
-
 /* section title (mimics h3-2021) */
 .story-body h2 {
 	margin-top: 0px;
@@ -97,6 +80,21 @@
 	    line-height: 20.8px;
 	}
 	.story-body h6 strong {
+	    font-size: 13px;
+	    line-height: 20.8px;
+	}
+}
+
+/* photo caption (mimics c1-2021 and c2-2021) */
+.story-body figure figcaption {
+	margin-bottom: 0px;
+	font-family: Silka, Tahoma, sans-serif;
+	font-size: 16px;
+	line-height: 25.6px;
+	letter-spacing: 0.03em;
+}
+@media screen and (min-width: 1280px) {
+	.story-body figure figcaption {
 	    font-size: 13px;
 	    line-height: 20.8px;
 	}
