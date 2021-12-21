@@ -363,6 +363,7 @@ window.addEventListener('load', function () {
           onSelectCarouselItem(currentIndex, false);
       });
   }
+
   // initialize all second variant carousels on page
   wtr.initNeoCarousels = function() {
 
@@ -422,12 +423,119 @@ window.addEventListener('load', function () {
     });
   }
 
+  // initialize all second variant carousels on page
+  wtr.initNeoCarousels2 = function() {
+
+    $(".neocarousel-container-2021.uses-cms").each(function() {
+
+        var carouselItemClass = '.anim-forward';
+        var carousel = $(this);
+        var containers = carousel.find(carouselItemClass).parent();
+        var items = carousel.find(carouselItemClass);
+
+        var captionsContainer = carousel.find('.carousel-caption-2021');
+        var dotsContainer = carousel.find('.carousel-dots-2021');
+        var ctasContainer = carousel.find('.carousel-cta-2021');
+
+        containers.each(function(i) {
+          var item = $(this);
+          let dot = item.find('.dot');
+          dotsContainer.append(dot);
+          let caption = item.find('.c2-2021');
+          captionsContainer.append(caption);
+          let ctas = item.find('.cta-button-2021');
+          ctasContainer.append(ctas);
+        });
+
+        var captions = carousel.find('.c2-2021');
+        var dots = carousel.find('.dot');
+        var ctas = carousel.find('.cta-button-2021');
+
+        var currentIndex = 0;
+
+        var onSelectCarouselItem = function(index, notFirst = true) {
+            if (currentIndex == index && notFirst) {
+              return;
+            }
+            currentIndex = index;
+
+            var item = carousel.find(carouselItemClass+'[data-index="'+currentIndex+'"]');  
+            var caption = carousel.find('.c2-2021[data-index="'+currentIndex+'"]');
+
+            var dot = carousel.find('.dot[data-index="'+currentIndex+'"]');
+
+            var cta = carousel.find('.cta-button-2021[data-index="'+currentIndex+'"]');
+
+            items.removeClass('active-2021');
+            item.addClass('active-2021');
+
+            captions.removeClass('active-2021');
+            captions.css({'display': 'none'});
+            caption.addClass('active-2021');
+            caption.css({'display': 'inline-block'});
+
+            dots.removeClass('active-2021');
+            dot.addClass('active-2021');
+            ctas.removeClass('active');
+            ctas.css({'display': 'none'});
+            cta.addClass('active');
+            cta.css({'display': 'inline-block'});
+
+        }
+
+        $(items.get().reverse()).each(function(i) {
+            var item = $(this);
+            item.attr('data-index', i);
+            if (item.hasClass('neocarousel-image')) {
+              if (i == 0) {
+                item.addClass('neocarousel-image-left-3');
+              } else if (i == 1) {
+                item.addClass('neocarousel-image-right-2');
+              } else if (i == 2) {
+                item.addClass('neocarousel-image-left');
+              }
+            }
+            item.on('click', function(e) {
+                onSelectCarouselItem(i);
+            });
+        });
+
+        dots.each(function(i) {
+            var dot = $(this);
+            var target = $(carouselItemClass+'[data-index="'+i+'"]');
+            dot.attr('data-index', i);
+            dot.on('click', function(e) {
+                onSelectCarouselItem(i);
+            });
+        });
+
+        captions.each(function(i) {
+            var caption = $(this);
+            caption.attr('data-index', i);
+            caption.css({'display': 'none'});
+        });
+        captions.eq(0).css({'display': 'inline-block'});
+        ctas.each(function(i) {
+            var cta = $(this);
+            if(!cta[0].classList.contains('w-condition-invisible')) {
+              let ctaIndex = Math.floor(i/2);
+              cta.attr('data-index', ctaIndex);
+              cta.css({'display': 'none'});
+            }
+        });
+        ctas.eq(0).css({'display': 'inline-block'});
+
+        onSelectCarouselItem(currentIndex, false);
+    });
+  }
+
   // run initializers
   $(document).ready(function() {
       wtr.initCarousels();
       wtr.initNewCarousels();
       wtr.initNewCarousels2021();
       wtr.initNeoCarousels();
+      wtr.initNeoCarousels2();
       wtr.initHero();
   });
 
