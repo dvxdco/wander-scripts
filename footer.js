@@ -367,7 +367,7 @@ window.addEventListener('load', function () {
   // initialize all second variant carousels on page
   wtr.initNeoCarousels = function() {
 
-    $(".neocarousel-container-2021").each(function() {
+    $(".neocarousel-container-2021:not(.uses-cms)").each(function() {
 
         var carouselItemClass = '.anim-forward';
         var carousel = $(this);
