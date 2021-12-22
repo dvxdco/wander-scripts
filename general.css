@@ -34,3 +34,12 @@ a[href="/contact-thanksgiving"] {
 .product-image-carousel .mask .slide {
 	background-repeat: no-repeat;
 }
+
+blockquote:before {
+  content: '“';
+  margin-left: -10px;
+}
+
+blockquote:after {
+  content: '”';
+}

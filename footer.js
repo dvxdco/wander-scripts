@@ -20,7 +20,7 @@ window.addEventListener('load', function () {
       }
   };
 
-  // initialize all carousels on page
+  // initialize all carousels on page - to be deprecated
   wtr.initCarousels = function() {
       
       $(".carousel-container:not(.new-slider), .carousel-container-2021, .events-carousel, .stay-carousel").each(function() {
@@ -85,7 +85,7 @@ window.addEventListener('load', function () {
       });
   }
 
-  // initialize all first variant carousels on page
+  // initialize all first variant carousels on page - to be deprecated
   wtr.initNewCarousels = function() {
 
       $(".carousel-container.new-slider:not(.new-slider-2021)").each(function() {
@@ -211,7 +211,7 @@ window.addEventListener('load', function () {
       });
   }
 
-  // initialize all updated first variant carousels on page
+  // full width carousels
   wtr.initNewCarousels2021 = function() {
 
       $(".carousel-container.new-slider-2021").each(function() {
@@ -364,7 +364,7 @@ window.addEventListener('load', function () {
       });
   }
 
-  // initialize all second variant carousels on page
+  // standard carousels
   wtr.initNeoCarousels = function() {
 
     $(".neocarousel-container-2021:not(.uses-cms)").each(function() {
@@ -423,8 +423,8 @@ window.addEventListener('load', function () {
     });
   }
 
-  // initialize all second variant carousels on page
-  wtr.initNeoCarousels2 = function() {
+  // standard carousels using CMS
+  wtr.initNeoCarouselsCMS = function() {
 
     $(".neocarousel-container-2021.uses-cms").each(function() {
 
@@ -483,7 +483,7 @@ window.addEventListener('load', function () {
 
         }
 
-        $(items.get().reverse()).each(function(i) {
+        items.each(function(i) {
             var item = $(this);
             item.attr('data-index', i);
             if (item.hasClass('neocarousel-image')) {
@@ -535,7 +535,7 @@ window.addEventListener('load', function () {
       wtr.initNewCarousels();
       wtr.initNewCarousels2021();
       wtr.initNeoCarousels();
-      wtr.initNeoCarousels2();
+      wtr.initNeoCarouselsCMS();
       wtr.initHero();
   });
 
