@@ -483,7 +483,7 @@ window.addEventListener('load', function () {
 
         }
 
-        items.each(function(i) {
+        $(items.get().reverse()).each(function(i) {
             var item = $(this);
             item.attr('data-index', i);
             if (item.hasClass('neocarousel-image')) {
@@ -509,7 +509,7 @@ window.addEventListener('load', function () {
             });
         });
 
-        captions.each(function(i) {
+        $(captions.get().reverse()).each(function(i) {
             var caption = $(this);
             caption.attr('data-index', i);
             caption.css({'display': 'none'});
