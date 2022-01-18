@@ -4,6 +4,7 @@
   "description": "external scripts for wander the resort",
   "main": "index.js",
   "scripts": {
+    "build": "webpack",
     "start": "webpack-dev-server --config ./webpack.config.js --mode development --progress --port 3000",
     "test": "test"
   },
