@@ -13,7 +13,7 @@
     "url": "git+https://github.com/dvxdco/wander-scripts.git"
   },
   "author": "dvxd",
-  "license": "ISC",
+  "license": "",
   "bugs": {
     "url": "https://github.com/dvxdco/wander-scripts/issues"
   },
@@ -28,6 +28,7 @@
     "@babel/preset-env": "^7.16.8",
     "@babel/preset-react": "^7.16.7",
     "babel-loader": "^8.2.3",
+    "terser-webpack-plugin": "^5.3.0",
     "webpack": "^5.66.0",
     "webpack-cli": "^4.9.1",
     "webpack-dev-server": "^4.7.3"

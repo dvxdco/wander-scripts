@@ -3,13 +3,16 @@ import ReactDOM from 'react-dom'
 
 class App extends Component {
     render() {
+        console.log('Wander Resort Map —', this.props);
         return (
-            <div>This is a React component inside of Webflow!</div>
+            <div>Loading {this.props.title}...</div>
         )
     }
-}
+};
 
 ReactDOM.render(
-    React.createElement(App, {}, null),
+    React.createElement(App, {
+        title: 'Wander Resort Map'
+    }, null),
     document.getElementById('react-target')
 );

@@ -1,31 +1,38 @@
 const path = require('path')
+const TerserPlugin = require('terser-webpack-plugin')
 
 module.exports = {
- entry: './src/index.js',
- module: {
-    rules: [
-        {
-            test: /\.(js|jsx)$/,
-            exclude: /node_modules/,
-            use: ['babel-loader']
-        },
-        {
-            test: /\.css$/,
-            use: ["style-loader", "css-loader"]
-        },
-        {
-            test: /\.(pdf|jpg|png|gif|svg|ico)$/,
-            use: [
-                {
-                    loader: 'url-loader'
-                },
-            ]
-        },
-        {  
-            test: /\.(woff|woff2|eot|ttf|otf)$/,
-            loader: "file-loader"
-        }
-    ]
+    entry: './wander-resort-map/src/index.js',
+    mode: 'production',
+    optimization: {
+        minimizer: [new TerserPlugin({
+            extractComments: false,
+        })],
+    },
+    module: {
+        rules: [
+            {
+                test: /\.(js|jsx)$/,
+                exclude: /node_modules/,
+                use: ['babel-loader']
+            },
+            {
+                test: /\.css$/,
+                use: ["style-loader", "css-loader"]
+            },
+            {
+                test: /\.(pdf|jpg|png|gif|svg|ico)$/,
+                use: [
+                    {
+                        loader: 'url-loader'
+                    },
+                ]
+            },
+            {  
+                test: /\.(woff|woff2|eot|ttf|otf)$/,
+                loader: "file-loader"
+            }
+        ]
     },
     resolve: {
         extensions: ['*', '.js', '.jsx']
@@ -33,11 +40,11 @@ module.exports = {
     output: {
         path: __dirname + '/dist',
         publicPath: '/',
-        filename: 'bundle.js'
+        filename: 'wander-resort-map.js'
     },
     devServer: {
-    static: {
-        directory: path.join(__dirname, 'dist')
+        static: {
+            directory: path.join(__dirname, 'dist')
         }
-    }
+    },
 };
