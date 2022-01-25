@@ -5,7 +5,20 @@ class App extends Component {
     render() {
         const { title, features } = this.props; 
         return (
-            <div>Loading {title}...</div>
+            <>
+                <h1>{title}</h1>
+                <ul>
+                    {
+                        features.map((feature, i) => (
+                            <li key={i}>
+                                <h3>{ feature.name }</h3>
+                                <p>{ feature.slug }</p>
+                                <p>{ feature.desc }</p>
+                            </li>
+                        ))
+                    }
+                </ul>
+            </>
         )
     }
 };
