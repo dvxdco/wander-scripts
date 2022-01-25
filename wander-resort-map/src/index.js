@@ -10,9 +10,18 @@ class App extends Component {
     }
 };
 
+const resortMapData = { items: [] };
+const resortMapItemsEl = document.querySelectorAll('.resort-map-item');
+resortMapItemsEl.forEach((item) => {
+    resortMapData.items.push({
+        slug: item.getAttribute('data-slug'),
+        name: item.getAttribute('data-name'),
+        desc: item.getAttribute('data-desc')
+    })
+});
+console.log('resortMapData ::: ', resortMapData);
+
 ReactDOM.render(
-    React.createElement(App, {
-        title: 'Wander Resort Map'
-    }, null),
+    React.createElement(App, resortMapData, null),
     document.getElementById('react-target')
 );
