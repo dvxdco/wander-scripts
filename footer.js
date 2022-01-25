@@ -558,11 +558,14 @@ window.addEventListener('load', function () {
   // update visibility of toast based on status cookie
   wtr.wanderToast = localStorage.getItem('wanderToast_0821');
   wtr.toastEl = document.getElementsByClassName('toast-wrapper')[0];
+  wtr.toastElCMS = document.getElementsByClassName('toast-wrapper')[1];
   wtr.toastToggle = document.querySelector('.toggle-wrapper .toast-toggle');
-  if ((wtr.toastEl && wtr.toastToggle && !wtr.wanderToast) || (window.location.pathname.indexOf('/cms') == 0)) {
-      wtr.toastEl.style.display = "block";
+  if (wtr.toastEl && wtr.toastToggle && !wtr.wanderToast) {
+    wtr.toastEl.style.display = "block";
   }
-  
+  if (window.location.pathname.indexOf('/cms') == 0) {
+    wtr.toastElCMS.style.display = "block";
+  }
   // listener on "close toast" button to set toast status cookie
   wtr.toastCloseEl = document.getElementsByClassName('toast-close')[0];
   if (wtr.toastCloseEl) {
