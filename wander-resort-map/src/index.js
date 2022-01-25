@@ -3,20 +3,23 @@ import ReactDOM from 'react-dom'
 
 class App extends Component {
     render() {
-        console.log('Wander Resort Map —', this.props);
+        const { title, features } = this.props; 
         return (
-            <div>Loading {this.props.title}...</div>
+            <div>Loading {title}...</div>
         )
     }
 };
 
-const resortMapData = { items: [] };
-const resortMapItemsEl = document.querySelectorAll('.resort-map-item');
-resortMapItemsEl.forEach((item) => {
-    resortMapData.items.push({
-        slug: item.getAttribute('data-slug'),
-        name: item.getAttribute('data-name'),
-        desc: item.getAttribute('data-desc')
+const resortMapData = {
+    title: 'Wander The Resort Map',
+    features: [] 
+};
+const resortMapFeatureEls = document.querySelectorAll('.resort-map-feature');
+resortMapFeatureEls.forEach((feature) => {
+    resortMapData.features.push({
+        slug: feature.getAttribute('data-slug'),
+        name: feature.getAttribute('data-name'),
+        desc: feature.getAttribute('data-desc')
     })
 });
 console.log('resortMapData ::: ', resortMapData);
