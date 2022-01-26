@@ -1,0 +1,45 @@
+.w-tab-link.w--current {
+	background: transparent;
+}
+.content-grid-2021 {
+	grid-auto-columns: unset;
+	grid-auto-rows: unset;
+	grid-row-gap: unset;
+	grid-template-columns: unset;
+	-ms-grid-rows: unset;
+	grid-template-rows: unset;
+	grid-auto-flow: unset;
+	/*grid-column-gap: unset;*/
+}
+.b3-2021.w-richtext p {
+	margin: 0;
+}
+
+@media screen and (min-width: 1280px) {
+	.carousel-container-2021 img {
+		width: 100%;
+	}
+}
+
+a[href="/contact-thanksgiving"] {
+	display: none;
+}
+
+@media screen and (max-width: 479px) {
+	.breadcrumb-category-list-wrapper {
+		overflow-x: scroll;
+	}
+}
+
+.product-image-carousel .mask .slide {
+	background-repeat: no-repeat;
+}
+
+blockquote:before {
+  content: '“';
+  margin-left: -10px;
+}
+
+blockquote:after {
+  content: '”';
+}

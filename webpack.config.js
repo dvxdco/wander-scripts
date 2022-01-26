@@ -40,7 +40,7 @@ module.exports = {
     output: {
         path: __dirname + '/dist',
         publicPath: '/',
-        filename: 'wander-resort-map.js'
+        filename: 'wander-resort-map.min.js'
     },
     devServer: {
         static: {

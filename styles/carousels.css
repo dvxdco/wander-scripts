@@ -1,0 +1,123 @@
+/* CAROUSEL STYLES */
+
+.carousel-container .c2.active,
+.carousel-container-2021 .c2-2021.active,
+.neocarousel-container-2021 .c2-2021.active-2021 {
+  animation-name: animation-fade;
+  animation-duration: 0.6s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in-out;
+}
+
+.carousel-container .dot,
+.carousel-container-2021 .dot,
+.neocarousel-container-2021 .dot {
+  position: relative;
+  opacity: 0.5;
+}
+.carousel-container .dot:after,
+.carousel-container-2021 .dot:after,
+.neocarousel-container-2021 .dot:after {
+  content: '•';
+  font-size: 32px;
+  color: #333;
+  
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.neocarousel-container-2021 .dot:after,
+.new-slider .dot:after {
+  font-size: 16px;
+  line-height: 7px;
+}
+.carousel-container .dot.active,
+.carousel-container-2021 .dot.active,
+.neocarousel-container-2021 .dot.active-2021 {
+  opacity: 1;
+  transition: all 0.32s ease;
+}
+
+.carousel-container:not(.new-slider) .anim-forward,
+.carousel-container-2021:not(.new-slider) .anim-forward,
+.neocarousel-container-2021:not(.new-slider) .anim-forward {
+  z-index: 0 !important;
+}
+.new-slider .anim-forward {
+  z-index: 0 !important;
+  transform: translate(-100%, 0);
+  animation-name: animation-preslide-back;
+  animation-duration: 0.6s;
+  animation-fill-mode: backwards;
+  animation-timing-function: ease-in-out;
+  transform-origin: 50% 50%;
+}
+.new-slider .anim-forward.forward {
+  animation-name: animation-preslide;
+}
+
+.carousel-container:not(.new-slider) .anim-forward.active,
+.carousel-container-2021:not(.new-slider) .anim-forward.active,
+.neocarousel-container-2021:not(.new-slider) .anim-forward.active-2021 {
+  z-index: 1 !important;
+  animation-name: animation-sort;
+  animation-duration: 0.6s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in-out;
+  transform-origin: 50% 50%;
+}
+.new-slider .anim-forward.active {
+  z-index: 1 !important;
+  animation-name: animation-slide-back;
+  animation-duration: 0.6s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in-out;
+  transform-origin: 50% 50%;
+}
+.new-slider .anim-forward.forward.active {
+  animation-name: animation-slide;
+}
+.new-slider .anim-forward.last {
+  z-index: 1 !important;
+  animation-name: animation-keepslidin-back;
+  animation-duration: 0.6s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in-out;
+  transform-origin: 50% 50%;
+}
+.new-slider .anim-forward.forward.last {
+  animation-name: animation-keepslidin;
+}
+
+.new-slider-prototype .anim-forward {
+  -webkit-box-ordinal-group: 4;
+  -webkit-order: 3;
+  -ms-flex-order: 3;
+  order: 3;
+}
+.new-slider .anim-forward.active {
+  -webkit-box-ordinal-group: 2 !important;
+  -webkit-order: 1 !important;
+  -ms-flex-order: 1 !important;
+  order: 1 !important;
+}
+.new-slider .anim-forward.next {
+  -webkit-box-ordinal-group: 3;
+  -webkit-order: 2;
+  -ms-flex-order: 2;
+  order: 2;
+}
+.new-slider .anim-forward.last {
+  -webkit-box-ordinal-group: 1;
+  -webkit-order: 0;
+  -ms-flex-order: 0;
+  order: 0;
+}
+
+.new-slider .anim-forward.fade, .new-slider .anim-forward.forward.fade {
+  animation-name: animation-fade-out;
+  animation-duration: 0.3s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in-out;
+}
