@@ -571,7 +571,7 @@ window.addEventListener('load', function () {
   wtr.toastCloseEl = document.getElementsByClassName('toast-close')[0];
   if (wtr.toastCloseEl) {
     wtr.toastCloseEl.onclick = function setWanderToast() {
-        localStorage.setItem('wanderToast_0821', true);
+        localStorage.setItem('wanderToast_0122', true);
     }
   }
 
