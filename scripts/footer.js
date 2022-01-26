@@ -554,23 +554,24 @@ window.addEventListener('load', function () {
   if (wtr.oldToast) {
     localStorage.removeItem('wanderToast');
   }
+  wtr.oldToast2 = localStorage.getItem('wanderToast_0821');
+  if (wtr.oldToast2) {
+    localStorage.removeItem('wanderToast_0821');
+  }
 
   // update visibility of toast based on status cookie
-  wtr.wanderToast = localStorage.getItem('wanderToast_0821');
+  wtr.wanderToast = localStorage.getItem('wanderToast_0122');
   wtr.toastEl = document.getElementsByClassName('toast-wrapper')[0];
-  wtr.toastElCMS = document.getElementsByClassName('toast-wrapper')[1];
   wtr.toastToggle = document.querySelector('.toggle-wrapper .toast-toggle');
   if (wtr.toastEl && wtr.toastToggle && !wtr.wanderToast) {
     wtr.toastEl.style.display = "block";
   }
-  if (window.location.pathname.indexOf('/cms') == 0) {
-    wtr.toastElCMS.style.display = "block";
-  }
+
   // listener on "close toast" button to set toast status cookie
   wtr.toastCloseEl = document.getElementsByClassName('toast-close')[0];
   if (wtr.toastCloseEl) {
     wtr.toastCloseEl.onclick = function setWanderToast() {
-        localStorage.setItem('wanderToast_0821', true);
+        localStorage.setItem('wanderToast_0122', true);
     }
   }
 
