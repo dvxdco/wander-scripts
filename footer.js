@@ -554,9 +554,13 @@ window.addEventListener('load', function () {
   if (wtr.oldToast) {
     localStorage.removeItem('wanderToast');
   }
+  wtr.oldToast2 = localStorage.getItem('wanderToast_0821');
+  if (wtr.oldToast2) {
+    localStorage.removeItem('wanderToast_0821');
+  }
 
   // update visibility of toast based on status cookie
-  wtr.wanderToast = localStorage.getItem('wanderToast_0821');
+  wtr.wanderToast = localStorage.getItem('wanderToast_0122');
   wtr.toastEl = document.getElementsByClassName('toast-wrapper')[0];
   wtr.toastToggle = document.querySelector('.toggle-wrapper .toast-toggle');
   if (wtr.toastEl && wtr.toastToggle && !wtr.wanderToast) {
