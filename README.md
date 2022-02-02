@@ -1,7 +1,7 @@
 # wander-scripts
 External scripts and styles for `wandertheresort.com`
 
-## NOTE
+### NOTE
 - 01/26/22: keeping js files in root dir for now until we replace all imports in webflow to dist/[filename].min.js
 
 ### embed script example
@@ -19,7 +19,13 @@ terser --compress --mangle --output dist/footer.min.js -- scripts/footer.js
 css-minify -d styles -o dist
 ```
 
-## TERSER
+## Resort Map
+```
+npm run start
+npm run build
+```
+
+### terser
 https://www.npmjs.com/package/terser
 
 ## css-minify

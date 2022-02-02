@@ -1,19 +1,23 @@
 import React, {Component} from 'react'
 import ReactDOM from 'react-dom'
 
+import Map from './components/Map'
+
 class App extends Component {
     render() {
         const { title, features } = this.props; 
         return (
             <>
                 <h1>{title}</h1>
+                <Map name="Hellooo" />
+                <h3>Data</h3>
                 <ul>
                     {
                         features.map((feature, i) => (
                             <li key={i}>
-                                <h3>{ feature.name }</h3>
-                                <p>{ feature.slug }</p>
-                                <p>{ feature.desc }</p>
+                                <p>{ feature.name }</p>
+                                <small>{ feature.slug }</small>
+                                <small>{ feature.desc }</small>
                             </li>
                         ))
                     }
