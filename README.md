@@ -8,11 +8,14 @@ Scripts and styles in `/dist` are requested as needed on different wander pages 
 https://www.jsdelivr.com/?docs=gh
 https://www.jsdelivr.com/github
 
-### Embed script via jsDelivr example
+### Embed script or styles via jsDelivr example
 ```
 <script src="https://cdn.jsdelivr.net/gh/dvxdco/wander-scripts@main/dist/footer.min.js" type="text/javascript" defer></script>
+<link href="https://cdn.jsdelivr.net/gh/dvxdco/wander-scripts@main/dist/general.min.css" rel="stylesheet">
+```
 
-// to get script directly from via github pages example (but jsDelivr preferred)
+To get script directly from via github pages example (but jsDelivr preferred)
+```
 <script src="https://dvxdco.github.io/wander-scripts/dist/footer.min.js" type="text/javascript" defer></script>
 ```
 
