@@ -141,3 +141,7 @@ table {
 ul, li {
     padding: 10px;
 }
+
+.container {
+    background-color: #ccc;
+}
