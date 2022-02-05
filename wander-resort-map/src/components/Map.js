@@ -60,7 +60,7 @@ function Map(props) {
     }
 
 	const getColour = (index) => {
-		return (index === activeIndex) ? "#000" : "#ccc"
+		return (index === activeIndex) ? "#000" : "#fff"
 	}
 
     return (
