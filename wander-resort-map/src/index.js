@@ -1,28 +1,28 @@
 import React, {Component} from 'react'
 import ReactDOM from 'react-dom'
-
 import Map from './components/Map'
+import './styles.css'
 
 class App extends Component {
     render() {
         const { title, features } = this.props; 
         return (
-            <>
+            <div className="app">
                 <h1>{title}</h1>
-                <Map name="Hellooo" />
-                <h3>Data</h3>
+                <Map features={features} />
+                {/* <h3>Data</h3>
                 <ul>
                     {
                         features.map((feature, i) => (
                             <li key={i}>
                                 <p>{ feature.name }</p>
-                                <small>{ feature.slug }</small>
+                                <p>{ feature.slug }</p>
                                 <small>{ feature.desc }</small>
                             </li>
                         ))
                     }
-                </ul>
-            </>
+                </ul> */}
+            </div>
         )
     }
 };
@@ -39,7 +39,7 @@ resortMapFeatureEls.forEach((feature) => {
         desc: feature.getAttribute('data-desc')
     })
 });
-console.log('resortMapData ::: ', resortMapData);
+console.log('resortMapData: ', resortMapData);
 
 ReactDOM.render(
     React.createElement(App, resortMapData, null),
