@@ -80,7 +80,7 @@ function Map(props) {
 								<li key={index} onClick={(e) => setActiveIndex(index)} style={{
 									border: `1px solid ${getColour(index)}`,
 								}}>
-									<h3>{feature.slug}</h3>
+									{feature.slug}
 								</li>
 							)
 						})

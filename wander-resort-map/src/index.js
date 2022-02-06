@@ -7,7 +7,7 @@ class App extends Component {
     render() {
         const { title, features } = this.props; 
         return (
-            <div className="app">
+            <div className="wander-resort-map">
                 <h1>{title}</h1>
                 <Map features={features} />
                 {/* <h3>Data</h3>
