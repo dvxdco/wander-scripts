@@ -10,18 +10,6 @@ class App extends Component {
             <div className="wander-resort-map">
                 <h1>{title}</h1>
                 <Map features={features} />
-                {/* <h3>Data</h3>
-                <ul>
-                    {
-                        features.map((feature, i) => (
-                            <li key={i}>
-                                <p>{ feature.name }</p>
-                                <p>{ feature.slug }</p>
-                                <small>{ feature.desc }</small>
-                            </li>
-                        ))
-                    }
-                </ul> */}
             </div>
         )
     }
@@ -39,7 +27,7 @@ resortMapFeatureEls.forEach((feature) => {
         desc: feature.getAttribute('data-desc')
     })
 });
-console.log('resortMapData: ', resortMapData);
+console.log('Wander Resort Map Data: ', resortMapData);
 
 ReactDOM.render(
     React.createElement(App, resortMapData, null),

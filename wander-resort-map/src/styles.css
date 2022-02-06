@@ -1,4 +1,5 @@
 .wander-resort-map {
+    /* font-family: Arial; */
     padding: 25px;
 }
 
@@ -6,6 +7,17 @@
     padding: 10px;
 }
 
-.wander-resort-map .container {
+.wander-resort-map__container {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #333;
     background-color: #ccc;
+}
+
+.wander-resort-map__nav {
+    position: absolute; 
+    top: 0; 
+    right: 0;
+    padding: 15; 
+    background: white;
 }
