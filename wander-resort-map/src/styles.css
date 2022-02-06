@@ -1,9 +1,10 @@
 .wander-resort-map {
-    /* font-family: Arial; */
+    font-family: Arial;
     padding: 25px;
 }
 
 .wander-resort-map ul, li {
+    list-style: none;
     padding: 10px;
 }
 
