@@ -3,17 +3,17 @@ External scripts and styles for `wandertheresort.com`
 
 #### Notes:
 ```
-- 01/26/22: keeping js files in root dir for now until we replace all imports in webflow to dist/[filename].min.js
+- 01/26/22: keeping js files in root dir for now until we replace all imports in webflow to github pages `dist/[filename].min.js` when in development, and jsDeliver for prod
 ```
 
-Scripts and styles in `/dist` are requested as needed on different wander pages via CDN `jsDelivr` which handles minification, backup, version fallback, so no need to minify or bundle these files manually.
+Scripts and styles in `/dist` are requested as needed on different Wander pages via CDN `jsDelivr` which handles minification, backup, version fallback.
 https://www.jsdelivr.com/?docs=gh 
 https://www.jsdelivr.com/github 
 
 ### Embed scripts or styles via jsDelivr:
 ```
-<script src="https://cdn.jsdelivr.net/gh/dvxdco/wander-scripts@main/dist/footer.min.js" type="text/javascript" defer></script>
-<link href="https://cdn.jsdelivr.net/gh/dvxdco/wander-scripts@main/dist/general.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/gh/dvxdco/wander-scripts@latest/dist/footer.min.js" type="text/javascript" defer></script>
+<link href="https://cdn.jsdelivr.net/gh/dvxdco/wander-scripts@latest/dist/general.min.css" rel="stylesheet">
 ```
 
 Get script directly from via github pages (but jsDelivr preferred):
