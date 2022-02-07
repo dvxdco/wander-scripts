@@ -3,7 +3,7 @@ import { gsap } from 'gsap'
 import { Draggable } from 'gsap/Draggable'
 
 const MAP_WIDTH = 1000
-const MAP_HEIGHT = 600
+const MAP_HEIGHT = 650
 const COLOUR_ACTIVE = '#000'
 const COLOUR_INACTIVE = '#FFF'
 
@@ -24,8 +24,11 @@ function Map(props) {
 		// https://greensock.com/docs/v2/Utilities/Draggable
 		Draggable.create(mapRef.current, {
 			// bounds: containerRef.current
-		});
-	}, []);
+		})
+		gsap.set(mapRef.current, {
+			x: getX()
+		})
+	}, [])
 
 	const panTo = (i) => {
 		const el = elementsRef.current[i]?.current
@@ -43,7 +46,7 @@ function Map(props) {
 
 	const zoomOut = (e) => {
         gsap.to(mapRef.current, {
-			x: MAP_WIDTH/2,
+			x: getX(),
 			y: 0,
             scale: 1,
             duration: 0.5,
@@ -73,6 +76,10 @@ function Map(props) {
 
 	const getColour = (index) => {
 		return (index === activeIndex) ? COLOUR_ACTIVE : COLOUR_INACTIVE
+	}
+
+	const getX = () => {
+		return (containerRef.current.offsetWidth>>1) - (MAP_WIDTH>>1)
 	}
 
     return (
