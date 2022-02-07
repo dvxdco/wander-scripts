@@ -11,8 +11,12 @@
 .wander-resort-map__container {
     position: relative;
     overflow: hidden;
-    border: 1px solid #333;
-    background-color: #ccc;
+    border: 1px solid #eee;
+    background-color: #eee;
+}
+
+.wander-resort-map__map {
+    background-color: #ddd;
 }
 
 .wander-resort-map__nav {
@@ -21,4 +25,8 @@
     right: 0;
     padding: 15; 
     background: white;
+}
+
+.wander-resort-map__nav li {
+    cursor: pointer;
 }
