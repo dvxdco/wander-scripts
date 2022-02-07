@@ -21,14 +21,6 @@ Get script directly from via github pages (but jsDelivr preferred):
 <script src="https://dvxdco.github.io/wander-scripts/dist/footer.min.js" type="text/javascript" defer></script>
 ```
 
-## Resort Map
-
-React project uses webpack
-```
-npm run start
-npm run build
-```
-
 ### To manually minify script and styles to `/dist`
 
 1. Install globally
@@ -48,3 +40,20 @@ https://www.npmjs.com/package/terser
 
 ### CSS-minify
 https://www.npmjs.com/package/css-minify
+
+---
+
+# Resort Map
+
+The Wander Resort Map (not to be confused with the county map), is a React component. The script targets selector `#wander-resort-map` added in Webflow. 
+
+React project uses webpack
+```
+// run locally
+npm run start
+```
+Build to `prod`, merge to `main`,
+```
+// build for prod
+npm run build
+```

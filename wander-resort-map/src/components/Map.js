@@ -24,6 +24,7 @@ function Map(props) {
 		// https://greensock.com/docs/v2/Utilities/Draggable
 		Draggable.create(mapRef.current, {
 			// bounds: containerRef.current
+			bounds: { minX: 100, minY: 100, maxX: -100, maxY: -100 }
 		})
 		gsap.set(mapRef.current, {
 			x: getX()

@@ -17,9 +17,9 @@ class App extends Component {
 
 const resortMapData = {
     title: 'Wander The Resort Map',
-    features: [] 
+    features: []
 };
-const resortMapFeatureEls = document.querySelectorAll('.resort-map-feature');
+const resortMapFeatureEls = document.querySelectorAll('.resort-map-feature')
 resortMapFeatureEls.forEach((feature) => {
     resortMapData.features.push({
         slug: feature.getAttribute('data-slug'),
@@ -27,9 +27,9 @@ resortMapFeatureEls.forEach((feature) => {
         desc: feature.getAttribute('data-desc')
     })
 });
-console.log('Wander Resort Map Data: ', resortMapData);
+console.log('Wander Resort Map Data: ', resortMapData)
 
 ReactDOM.render(
     React.createElement(App, resortMapData, null),
-    document.getElementById('react-target')
-);
+    document.getElementById('wander-resort-map')
+)
