@@ -3,7 +3,8 @@ import { gsap } from 'gsap'
 import { Draggable } from 'gsap/Draggable'
 
 const MAP_HEIGHT = 600
-const COLOUR_ACTIVE = '#ff0ff'
+const COLOUR_ACTIVE = '#000'
+const COLOUR_INACTIVE = '#FFF'
 
 gsap.registerPlugin(Draggable);
 
@@ -70,7 +71,7 @@ function Map(props) {
     }
 
 	const getColour = (index) => {
-		return (index === activeIndex) ? '#000' : '#fff'
+		return (index === activeIndex) ? COLOUR_ACTIVE : COLOUR_INACTIVE
 	}
 
     return (
@@ -82,17 +83,21 @@ function Map(props) {
 				<rect ref={elementsRef.current[3]} id={features[3].slug} onClick={() => setActiveIndex(3)} x="700" y="200" width="100" height="100" fill={getColour(3)} />
 			</svg>
 			<div className="wander-resort-map__nav">
-				<button onClick={zoomOut}>zoom out</button>
 				<ul>
 					{
 						features.map((feature, index) => {
 							return (
-								<li key={index} onClick={(e) => setActiveIndex(index)}>
+								<li key={index} onClick={(e) => setActiveIndex(index)} style={{
+									backgroundColor: (index === activeIndex) ? '#eee' : '#fff'
+								}}>
 									{feature.slug}
 								</li>
 							)
 						})
 					}
+					<li>
+						<button onClick={zoomOut}>zoom out</button>
+					</li>
 				</ul>
 			</div>
         </div>

@@ -3,9 +3,13 @@
     padding: 25px;
 }
 
-.wander-resort-map ul, li {
+.wander-resort-map ul {
+    padding: 0;
+}
+
+.wander-resort-map ul li {
     list-style: none;
-    padding: 10px;
+    padding: 10px 25px;
 }
 
 .wander-resort-map__container {
