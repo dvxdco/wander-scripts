@@ -1,6 +1,6 @@
 import React, { createRef, useRef, useEffect, useState } from 'react'
 import { gsap } from 'gsap'
-import { Draggable } from 'gsap/Draggable'
+import { Draggable } from 'gsap/Draggable' // https://greensock.com/docs/v2/Utilities/Draggable
 
 const MAP_WIDTH = 1000
 const MAP_HEIGHT = 650
@@ -21,11 +21,11 @@ function Map(props) {
 	}, [activeIndex])
 
 	useEffect(() => {
-		// https://greensock.com/docs/v2/Utilities/Draggable
 		Draggable.create(mapRef.current, {
 			// bounds: containerRef.current
-			bounds: { minX: 100, minY: 100, maxX: -100, maxY: -100 }
+			// bounds: { minX: 100, minY: 100, maxX: -100, maxY: -100 }
 		})
+		// center svg in container on first load
 		gsap.set(mapRef.current, {
 			x: getX()
 		})
