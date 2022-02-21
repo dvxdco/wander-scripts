@@ -549,18 +549,11 @@ window.addEventListener('load', function () {
     });
   });
 
-  // purge old toast status cookie if still present
-  wtr.oldToast = localStorage.getItem('wanderToast');
-  if (wtr.oldToast) {
-    localStorage.removeItem('wanderToast');
-  }
-  wtr.oldToast2 = localStorage.getItem('wanderToast_0821');
-  if (wtr.oldToast2) {
-    localStorage.removeItem('wanderToast_0821');
-  }
-
+  let toastCopyDate = document.querySelector('.toast-copy-date').innerText.replaceAll('-', '');
+  let toastName = 'wanderToast_'+toastCopyDate;
+  
   // update visibility of toast based on status cookie
-  wtr.wanderToast = localStorage.getItem('wanderToast_0122');
+  wtr.wanderToast = localStorage.getItem(toastName);
   wtr.toastEl = document.getElementsByClassName('toast-wrapper')[0];
   wtr.toastToggle = document.querySelector('.toggle-wrapper .toast-toggle');
   if (wtr.toastEl && wtr.toastToggle && !wtr.wanderToast) {
@@ -571,7 +564,7 @@ window.addEventListener('load', function () {
   wtr.toastCloseEl = document.getElementsByClassName('toast-close')[0];
   if (wtr.toastCloseEl) {
     wtr.toastCloseEl.onclick = function setWanderToast() {
-        localStorage.setItem('wanderToast_0122', true);
+        localStorage.setItem(toastName, true);
     }
   }
 
