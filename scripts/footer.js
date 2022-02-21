@@ -487,16 +487,20 @@ window.addEventListener('load', function () {
             var item = $(this);
             item.attr('data-index', i);
             if (item.hasClass('neocarousel-image')) {
-              if (i == 0) {
-                item.addClass('neocarousel-image-left');
-              } else if (i == 1) {
-                if (items.length == 3) {
+              if (items.length == 3) {
+                if (i == 0) {
+                  item.addClass('neocarousel-image-left-3');
+                } else if (i == 1) {
                   item.addClass('neocarousel-image-right-2');
                 } else {
+                  item.addClass('neocarousel-image-left');
+                }
+              } else {
+                if (i == 0) {
+                  item.addClass('neocarousel-image-left');
+                } else if (i == 1) {
                   item.addClass('neocarousel-image-right-3');
                 }
-              } else if (i == 2) {
-                item.addClass('neocarousel-image-left-3');
               }
             }
             item.on('click', function(e) {
