@@ -34,6 +34,10 @@ window.addEventListener('load', function () {
 			customizationsTextarea.placeholder = customizationsTextareaPlaceholder.innerText;
 		}
 
+		const hasError = () => {
+			return (customizationsTextareaActive && customizationsTextarea.value === '') || (dateDropdown && dateDropdown.value === '');
+		}
+
 		const updateValue = () => {
 			wtr.wanderAddons[wtr.currentPage][index] = {
 				quantity: quantityDropdown.value,
@@ -41,7 +45,7 @@ window.addEventListener('load', function () {
 				name: itemName.innerText,
 				price: itemPrice.innerText,
 				customizations: customizationsTextarea.value,
-				error: customizationsTextareaActive && customizationsTextarea.value === ''
+				error: hasError()
 			};
 		}
 

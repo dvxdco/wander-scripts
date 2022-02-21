@@ -24,6 +24,10 @@ window.addEventListener('load', function () {
 		let quantityDropdown = row.querySelector('#Item-Qty-Select');
 		let today = new Date();
 
+		const hasError = () => {
+			return (dateDropdown && dateDropdown.value === '');
+		}
+
 		const updateValue = () => {
 			wtr.wanderAddons[wtr.currentPage][index] = {
 				quantity: quantityDropdown.value,
@@ -31,7 +35,7 @@ window.addEventListener('load', function () {
 				name: itemName.innerText,
 				price: itemPrice.innerText,
 				customizations: '',
-				error: false
+				error: hasError()
 			};
 		}
 
