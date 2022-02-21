@@ -490,7 +490,11 @@ window.addEventListener('load', function () {
               if (i == 0) {
                 item.addClass('neocarousel-image-left');
               } else if (i == 1) {
-                item.addClass('neocarousel-image-right-3');
+                if (items.length == 3) {
+                  item.addClass('neocarousel-image-right-2');
+                } else {
+                  item.addClass('neocarousel-image-right-3');
+                }
               } else if (i == 2) {
                 item.addClass('neocarousel-image-left-3');
               }
