@@ -53,20 +53,13 @@ window.addEventListener('load', function () {
   subTotalClonedItem.classList.toggle('subtotal');
   lineItemsContainer.append(subTotalClonedItem);
 
-  let adminFee = runningPrice * 0.18;
-  let adminFeeClonedItem = clonedItem.cloneNode(true);
-  adminFeeClonedItem.querySelectorAll('.b3-2021')[0].innerText = "Admin Fee (18%)";
-  adminFeeClonedItem.querySelectorAll('.b3-2021')[1].innerText = "$" + adminFee.toFixed(2);
-  adminFeeClonedItem.classList.toggle('admin');
-  lineItemsContainer.append(adminFeeClonedItem);
-
   let taxClonedItem = clonedItem.cloneNode(true);
   taxClonedItem.querySelectorAll('.b3-2021')[0].innerText = "HST (13%)";
   taxClonedItem.querySelectorAll('.b3-2021')[1].innerText = "$" + taxAmount.toFixed(2);
   taxClonedItem.classList.toggle('hst');
   lineItemsContainer.append(taxClonedItem);
 
-  let totalAmount = runningPrice + adminFee + taxAmount;
+  let totalAmount = runningPrice + taxAmount;
 
   let totalClonedItem = clonedItem.cloneNode(true);
   totalClonedItem.querySelectorAll('.b3-2021')[0].innerText = "Total";
@@ -74,7 +67,7 @@ window.addEventListener('load', function () {
   totalClonedItem.classList.toggle('total');
   lineItemsContainer.append(totalClonedItem);
 
-  runningDetails += `—<br />Sub-Total: \$${runningPrice}<br />Admin Fee (18%): \$${adminFee.toFixed(2)}<br />HST (13%): \$${taxAmount.toFixed(2)}<br />—<br /><strong>Total: \$${(totalAmount).toFixed(2)}</strong>`;
+  runningDetails += `—<br />Sub-Total: \$${runningPrice}<br />HST (13%): \$${taxAmount.toFixed(2)}<br />—<br /><strong>Total: \$${(totalAmount).toFixed(2)}</strong>`;
   detailsTextarea.value = runningDetails;
 
   // clear localstorage
