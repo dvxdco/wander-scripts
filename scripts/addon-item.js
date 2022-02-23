@@ -10,6 +10,7 @@ window.addEventListener('load', function () {
 	wtr.addonRows?.forEach((row, index) => {
 		let checkbox = row.querySelector('input[type="checkbox"]');
 		let dateDropdown = row.querySelector('#Item-Date-Select');
+		let dateStatus = !row.querySelector('.addon-date').classList.contains('w-condition-invisible')
 		let dateStart = row.querySelector('.addon-date-start')?.innerText;
 		let dateLimit = row.querySelector('.addon-date-limit')?.innerText;
 		let customizationsTextarea = row.querySelector('.option-textarea');
@@ -35,7 +36,14 @@ window.addEventListener('load', function () {
 		}
 
 		const hasError = () => {
-			return (customizationsTextareaActive && customizationsTextarea.value === '') || (dateDropdown && dateDropdown.value === '');
+			let error = false;
+			if (customizationsTextareaActive && customizationsTextarea.value === '') {
+				error = true;
+			}
+			if (dateStatus && dateDropdown && dateDropdown.value === '') {
+				error = true;
+			}
+			return error;
 		}
 
 		const updateValue = () => {

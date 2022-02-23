@@ -11,6 +11,7 @@ window.addEventListener('load', function () {
 	wtr.addonRows?.forEach((row, index) => {
 		let checkbox = row.querySelector('input[type="checkbox"]');
 		let dateDropdown = row.querySelector('#Item-Date-Select');
+		let dateStatus = !row.querySelector('.addon-date').classList.contains('w-condition-invisible')
 		let dateStart = row.querySelector('.addon-date-start')?.innerText;
 		let dateLimit = row.querySelector('.addon-date-limit')?.innerText;
 		let itemName = row.querySelectorAll('.item-pricing .p2')[0];
@@ -25,7 +26,11 @@ window.addEventListener('load', function () {
 		let today = new Date();
 
 		const hasError = () => {
-			return (dateDropdown && dateDropdown.value === '');
+			let error = false;
+			if (dateStatus && dateDropdown && dateDropdown.value === '') {
+				error = true;
+			}
+			return error;
 		}
 
 		const updateValue = () => {
