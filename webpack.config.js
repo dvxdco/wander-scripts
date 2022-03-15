@@ -4,6 +4,9 @@ const TerserPlugin = require('terser-webpack-plugin')
 module.exports = {
     entry: './wander-resort-map/src/index.js',
     mode: 'production',
+    performance: {
+        hints: false
+    },
     optimization: {
         minimizer: [new TerserPlugin({
             extractComments: false,
