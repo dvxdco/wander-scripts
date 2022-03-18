@@ -21,7 +21,7 @@ function Nav({ label, features, activeIndex, setActiveIndex }) {
 					{
 						features.map((feature, index) => {
 							return (
-								<li className={(index === activeIndex ? 'selected' : '')} 
+								<li className={(index === activeIndex ? 'active' : '')} 
 									key={index} 
 									onClick={(e) => setActiveIndex(index)}>
 									{feature.slug}

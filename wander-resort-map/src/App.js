@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import './styles.css'
 import Map from './components/Map'
 import Nav from './components/Nav'
+import Card from './components/Card'
 
 function App({ data }) {
     const [ activeIndex, setActiveIndex ] = useState()
@@ -16,6 +17,13 @@ function App({ data }) {
                     activeIndex={activeIndex}
                     setActiveIndex={setActiveIndex}
                 />
+                {
+                    features.map((feature, index) => {
+                        return (
+                            <Card active={(index === activeIndex ? 'active' : '')} feature={feature} key={index} />
+                        )
+                    })
+                }
                 <Map 
                     features={features}
                     activeIndex={activeIndex}
