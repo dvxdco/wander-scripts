@@ -11,6 +11,8 @@
 
     display: flex;
     flex-direction: column;
+
+    padding-top: 4rem;
 }
 
 .wander-resort-map h2 {

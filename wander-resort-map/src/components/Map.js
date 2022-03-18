@@ -1,17 +1,15 @@
 import React, { createRef, useRef, useEffect } from 'react'
 import { gsap } from 'gsap'
-// import { Draggable } from 'gsap/Draggable' // https://greensock.com/docs/v2/Utilities/Draggable
-
-// import mapAsset from './../map.png';
+import { Draggable } from 'gsap/Draggable' // https://greensock.com/docs/v2/Utilities/Draggable
 
 const MAP_WIDTH = window.innerWidth
-const MAP_HEIGHT = 'auto'
-const COLOUR_ACTIVE = '#000'
-const COLOUR_INACTIVE = '#FFF'
+const MAP_HEIGHT = '100%'
+const COLOUR_ACTIVE = '#333'
+const COLOUR_INACTIVE = '#eee'
 
-// gsap.registerPlugin(Draggable);
+gsap.registerPlugin(Draggable);
 
-function Map({ features, activeIndex, setActiveIndex }) {
+function Map({ features, activeIndex, isNavOpen, setActiveIndex, setIsNavOpen }) {
     const containerRef = useRef()
     const mapRef = useRef()
 	const elementsRef = useRef(features.map(() => createRef()));
@@ -21,10 +19,10 @@ function Map({ features, activeIndex, setActiveIndex }) {
 	}, [activeIndex])
 
 	useEffect(() => {
-		// Draggable.create(mapRef.current, {
-		// 	// bounds: containerRef.current
-		// 	// bounds: { minX: 100, minY: 100, maxX: -100, maxY: -100 }
-		// })
+		Draggable.create(mapRef.current, {
+			// bounds: containerRef.current
+			// bounds: { minX: -100, minY: -100, maxX: 100, maxY: 100 }
+		})
 		
 		// center svg in container on first load
 		gsap.set(mapRef.current, {
