@@ -13,7 +13,8 @@ resortMapFeatureEls.forEach((feature) => {
     resortMapData.features.push({
         slug: feature.getAttribute('data-slug'),
         name: feature.getAttribute('data-name'),
-        desc: feature.getAttribute('data-desc')
+        desc: feature.getAttribute('data-desc'),
+        hero: feature.getAttribute('data-hero')
     })
 })
 console.log('Wander Resort Map Data: ', resortMapData)

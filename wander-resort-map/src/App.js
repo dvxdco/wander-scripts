@@ -9,9 +9,9 @@ function App({ data }) {
     const { title, features, navLabel } = data
 
     return (
-        <div className="wander-resort-map">
-            <h2>{title}</h2>
-            <div className="wander-resort-map__wrap">
+        <div className="wrm">
+            <h2 className="wrm__title">{title}</h2>
+            <div className="wrm__wrap">
                 <Nav label={navLabel}
                     features={features}
                     activeIndex={activeIndex}
@@ -20,7 +20,11 @@ function App({ data }) {
                 {
                     features.map((feature, index) => {
                         return (
-                            <Card active={(index === activeIndex ? 'active' : '')} feature={feature} key={index} />
+                            <Card
+                                onClose={() => { setActiveIndex(null) }}
+                                active={(index === activeIndex ? 'active' : '')} 
+                                feature={feature} 
+                                key={index} />
                         )
                     })
                 }
@@ -30,6 +34,7 @@ function App({ data }) {
                     setActiveIndex={setActiveIndex}
                 />
             </div>
+            <p>Lorem ipsum</p>
         </div>
     )
 }

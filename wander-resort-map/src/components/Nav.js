@@ -8,7 +8,7 @@ function Nav({ label, features, activeIndex, setActiveIndex }) {
     }, [activeIndex])
 
     return (
-		<nav className="wander-resort-map__nav">
+		<nav className="wrm__nav">
 			<input ref={toggle} id="dropdown-toggle" className="toggle" type="checkbox"/>
 			<label htmlFor="dropdown-toggle" className="nav-label">
 				{ label }
