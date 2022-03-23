@@ -1,19 +1,43 @@
-.wander-resort-map {
+.wrm {
     --color-bg: #FCF9F3;
     --color-winter: #35363B;
     --color-allseason: #F3F3F4;
 
-    font-family: Arial;
-    font-family: Silka, Tahoma, sans-serif;
+    font-family: Silka, Tahoma, sans-serif, Arial;
     font-weight: 100;
 
     background-color: var(--color-bg);
 
     display: flex;
     flex-direction: column;
+
+    padding-top: 4rem;
 }
 
-.wander-resort-map h2 {
+.wrm h1, h2, h3 {
+    font-weight: 100;
+}
+
+.wrm p {
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 29px;
+    letter-spacing: 0.03em;
+}
+
+@media screen and (min-width: 768px) {
+    .wrm p {
+        font-size: 16px;
+    }
+}
+
+.wrm button {
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.wrm__title {
     font-weight: 100;
     font-size: 40px;
     text-align: center;
@@ -21,15 +45,25 @@
     padding: 40px;
 }
 
-.wander-resort-map__wrap {
+.wrm__wrap {
+    overflow: hidden;
     position: relative;
     background-color: inherit;
+    height: 550px;
+}
+
+@media screen and (min-width: 768px) {
+    .wrm__wrap {
+        height: 700px;
+    }
 }
 
 /* NAV */
 
-.wander-resort-map__nav {
-    z-index: 1;
+.wrm__nav {
+    z-index: 3;
+    overflow: hidden;
+    
     position: absolute;
     top: 0;
     left: 0;
@@ -41,21 +75,20 @@
     font-size: 20px;
 }
 
-.wander-resort-map__nav .dropdown-content {
+.wrm__nav .dropdown-content {
     max-height: 0px;
-    overflow: hidden;
-    transition: max-height .325s ease-in-out;
+    transition: max-height .4s ease-in-out;
 }
 
-.wander-resort-map__nav .dropdown-content-inner {
+.wrm__nav .dropdown-content-inner {
     padding: 2rem 0;
 }
 
-.wander-resort-map__nav input[type='checkbox'] {
+.wrm__nav input[type='checkbox'] {
     display: none;
 }
 
-.wander-resort-map__nav .nav-label {
+.wrm__nav .nav-label {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -66,15 +99,16 @@
     border-bottom: 1px solid rgba(0,0,0,0.1);
 }
 
-.wander-resort-map__nav svg {
+.wrm__nav svg {
     margin-left: auto;
 }
 
-.wander-resort-map__nav .toggle:checked+.nav-label+.dropdown-content {
+.wrm__nav .toggle:checked+.nav-label+.dropdown-content {
     max-height: 100vh;
+    overflow-y: scroll;
 }
 
-.wander-resort-map__nav ul {
+.wrm__nav ul {
     width: 100%;
     margin: 0;
     padding: 0;
@@ -83,19 +117,19 @@
 }
 
 @media screen and (min-width: 768px) {
-    .wander-resort-map__nav ul {
+    .wrm__nav ul {
         column-count: 3;
     }
 }
 
-.wander-resort-map__nav li {
+.wrm__nav li {
     list-style: none;
     background-color: inherit !important;
     cursor: pointer;
 
     padding: 1rem 0;
 }
-.wander-resort-map__nav li.selected {
+.wrm__nav li.active {
     color: black;
     font-weight: 600;
 }
@@ -103,19 +137,105 @@
 
 /* MAP */
 
-.wander-resort-map__container {
+.wrm__container {
+    z-index: 1;
     position: relative;
     overflow: hidden;
     background-color: var(--color-allseason);
-
-    flex-grow: 1;
-    width: 100%;
-    height: 100%;
+    width: 3066px;
+    height: 2272px;
 }
 
-.wander-resort-map__map {
-    min-height: 650px;
-    flex-grow: 1;
-    width: 100%;
-    height: 100%;
+/*
+.wrm__container svg {
+    position: absolute;
+    top: -50%;
+    left: -50%
 }
+*/
+
+/* 
+.wrm__map {
+    width: 2000px;
+    height: 2000px;
+} */
+
+/* Card */
+
+.wrm__card {
+    visibility: hidden;
+    z-index: 1;
+    position: absolute;
+    
+    top: 50%;
+    left: 0;
+    right: 0;
+    min-width: 250px;
+    max-width: 420px;
+    background-color: var(--color-bg);
+
+    margin: 2rem 1rem 1rem 1rem;
+    padding: 0rem 1rem 1rem 1rem;
+
+    opacity: 0;
+    transform: translate3d(25%, -50%, 0);
+    transition: opacity 0.325s ease-in, transform 0.325s ease-in;
+}
+.wrm__card.active {
+    visibility: visible;
+    z-index: 2;
+
+    opacity: 1;
+    transform: translate3d(0, -50%, 0);
+    transition-delay: 0.8s;
+}
+
+@media screen and (min-width: 420px) {
+    .wrm__card {
+        margin: 2rem auto 1rem auto;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .wrm__card {
+        top: 50%;
+        right: 0;
+        bottom: auto;
+        left: auto;
+        
+        width: 33.333%;
+        margin: 2rem;
+        padding: 1rem 2rem 2rem 2rem;
+        transform: translate3d(25%, -50%, 0);
+    }
+    .wrm__card.active {
+       transform: translate3d(0, -50%, 0);
+    }
+}
+
+.wrm__card-content {
+    position: relative;
+}
+
+
+.wrm__card p {
+    padding-bottom: 1rem;
+}
+
+.wrm__close {
+    z-index: 2;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 1rem;
+}
+
+.wrm__close svg line {
+    transition: stroke 0.2s ease-out;
+}
+
+.wrm__close:hover svg line {
+    transition: all 0.75s ease-out;
+    stroke: #000;
+}
+
