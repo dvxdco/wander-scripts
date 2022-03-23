@@ -57,3 +57,6 @@ Build to `prod`, merge to `main`,
 // build for prod
 npm run build
 ```
+
+To add a new location, add the following with the appropriate index to the appropriate SVG element 
+`id="your_id" ref={elementsRef.current[0]} onClick={() => setActiveIndex(0)}`
