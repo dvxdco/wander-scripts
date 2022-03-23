@@ -24,7 +24,7 @@ function Nav({ label, features, activeIndex, setActiveIndex }) {
 								<li className={(index === activeIndex ? 'active' : '')} 
 									key={index} 
 									onClick={(e) => setActiveIndex(index)}>
-									{feature.slug}
+									{feature.name}
 								</li>
 							)
 						})
