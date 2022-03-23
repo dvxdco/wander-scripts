@@ -34,7 +34,6 @@ function App({ data }) {
                     setActiveIndex={setActiveIndex}
                 />
             </div>
-            <p>Lorem ipsum</p>
         </div>
     )
 }
