@@ -10,7 +10,6 @@ function App({ data }) {
 
     return (
         <div className="wrm">
-            <h2 className="wrm__title">{title}</h2>
             <div className="wrm__wrap">
                 <Nav label={navLabel}
                     features={features}
