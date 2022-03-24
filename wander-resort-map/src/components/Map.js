@@ -12,11 +12,11 @@ gsap.registerPlugin(Draggable);
 
 // create array of 5 names
 
-function Map({ features, activeIndex, isNavOpen, setActiveIndex, setIsNavOpen }) {
+function Map({ features, activeIndex, setActiveIndex }) {
     const containerRef = useRef()
     const mapRef = useRef()
 	const elementsRef = useRef(features.map(() => createRef()));
-	const offsetY = 0; // 0.15;
+	// const offsetY = 0; // 0.15;
 
 	useEffect(() => {
 		panTo(activeIndex)
@@ -63,12 +63,17 @@ function Map({ features, activeIndex, isNavOpen, setActiveIndex, setIsNavOpen })
 	
 
     const onUpdate = (el) => {
+		let offsetY = containerRef.current.getBoundingClientRect().y;
         let rect = el.getBoundingClientRect();
 		let centerX = window.innerWidth / 2;
-        // let centerY = window.innerHeight / (2 - offsetY); // offset for nav 
-		let centerY = MAP_CONTAINER_HEIGHT;
+        
+		// let centerY = window.innerHeight / 2);
+
+		let centerY = (MAP_CONTAINER_HEIGHT / 2) + offsetY;
         let deltaX = centerX - (rect.x + rect.width / 2);
         let deltaY = centerY - (rect.y + rect.height / 2);
+
+		// console.log(containerRef.current.getBoundingClientRect().y);
       
         return function () {
             gsap.to(mapRef.current, {
