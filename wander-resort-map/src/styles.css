@@ -145,20 +145,6 @@
     height: 2272px;
 }
 
-/*
-.wrm__container svg {
-    position: absolute;
-    top: -50%;
-    left: -50%
-}
-*/
-
-/* 
-.wrm__map {
-    width: 2000px;
-    height: 2000px;
-} */
-
 /* Card */
 
 .wrm__card {
@@ -216,9 +202,14 @@
     position: relative;
 }
 
-
-.wrm__card p {
+.wrm__card p,
+.wrm__card a {
+    display: block;
     padding-bottom: 1rem;
+}
+
+.wrm__card a {
+    cursor: pointer;
 }
 
 .wrm__close {
