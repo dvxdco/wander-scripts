@@ -6,6 +6,7 @@ function Card({ active, index, feature, onClose }) {
 
 	const onLinkOut = () => {
 		document.dispatchEvent(new CustomEvent('eModalShow', { payload: { index: index } }))
+		console.log('eModalShow dispatched', index);
 	}
 
     return (
