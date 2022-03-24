@@ -2,6 +2,7 @@ import React, { createRef, useRef, useEffect } from 'react'
 import { gsap } from 'gsap'
 import { Draggable } from 'gsap/Draggable' // https://greensock.com/docs/v2/Utilities/Draggable
 
+const MAP_CONTAINER_HEIGHT = 700;
 const MAP_WIDTH = 3066 // window.innerWidth
 const MAP_HEIGHT = 2272
 const COLOUR_ACTIVE = '#e2e'
@@ -30,7 +31,7 @@ function Map({ features, activeIndex, isNavOpen, setActiveIndex, setIsNavOpen })
 		// center svg in container on first load
 		gsap.set(mapRef.current, {
 			x: getX(),
-			scale: 0.75
+			scale: 1
 		})
 	}, [])
 
@@ -59,10 +60,13 @@ function Map({ features, activeIndex, isNavOpen, setActiveIndex, setIsNavOpen })
 		setActiveIndex(null)
     }
 
+	
+
     const onUpdate = (el) => {
         let rect = el.getBoundingClientRect();
-        let centerX = window.innerWidth / 2;
-        let centerY = window.innerHeight / (2 - offsetY); // offset for nav 
+		let centerX = window.innerWidth / 2;
+        // let centerY = window.innerHeight / (2 - offsetY); // offset for nav 
+		let centerY = MAP_CONTAINER_HEIGHT;
         let deltaX = centerX - (rect.x + rect.width / 2);
         let deltaY = centerY - (rect.y + rect.height / 2);
       
