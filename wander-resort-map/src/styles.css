@@ -1,12 +1,11 @@
 .wrm {
-    --color-bg: #FCF9F3;
     --color-winter: #35363B;
     --color-allseason: #F3F3F4;
 
     font-family: Silka, Tahoma, sans-serif, Arial;
     font-weight: 100;
 
-    background-color: var(--color-bg);
+    background-color: var(--color-allseason);
 
     display: flex;
     flex-direction: column;
@@ -172,7 +171,7 @@
     right: 0;
     min-width: 250px;
     max-width: 420px;
-    background-color: var(--color-bg);
+    background-color: var(--color-allseason);
 
     margin: 2rem 1rem 1rem 1rem;
     padding: 0rem 1rem 1rem 1rem;
