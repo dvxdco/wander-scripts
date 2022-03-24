@@ -22,6 +22,7 @@ function App({ data }) {
                             <Card
                                 onClose={() => { setActiveIndex(null) }}
                                 active={(index === activeIndex ? 'active' : '')} 
+                                index={index}
                                 feature={feature} 
                                 key={index} />
                         )
