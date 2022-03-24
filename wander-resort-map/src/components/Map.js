@@ -15,7 +15,7 @@ function Map({ features, activeIndex, isNavOpen, setActiveIndex, setIsNavOpen })
     const containerRef = useRef()
     const mapRef = useRef()
 	const elementsRef = useRef(features.map(() => createRef()));
-	const offsetY = 0.15;
+	const offsetY = 0; // 0.15;
 
 	useEffect(() => {
 		panTo(activeIndex)
