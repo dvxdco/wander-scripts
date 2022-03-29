@@ -557,7 +557,7 @@ window.addEventListener('load', function () {
     });
   });
 
-  let toastCopyDate = document.querySelector('.toast-copy-date').innerText.replaceAll('-', '');
+  let toastCopyDate = document.querySelector('.toast-copy-date')?.innerText.replaceAll('-', '');
   let toastName = 'wanderToast_'+toastCopyDate;
   
   // update visibility of toast based on status cookie
