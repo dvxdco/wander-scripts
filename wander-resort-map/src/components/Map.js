@@ -10,8 +10,6 @@ const COLOUR_INACTIVE = '#222'
 
 gsap.registerPlugin(Draggable);
 
-// create array of 5 names
-
 function Map({ features, activeIndex, setActiveIndex }) {
     const containerRef = useRef()
     const mapRef = useRef()

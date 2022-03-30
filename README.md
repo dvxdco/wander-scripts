@@ -60,3 +60,38 @@ npm run build
 
 To add a new location, add the following with the appropriate index to the appropriate SVG element 
 `id="your_id" ref={elementsRef.current[0]} onClick={() => setActiveIndex(0)}`
+
+
+# Glide Sliders
+
+To add glide sliders to a page:
+1. import cdn script in <head>
+```
+<script src="https://cdn.jsdelivr.net/npm/@glidejs/glide"></script>
+``` 
+2. add the following snippet to </body>
+```
+// GLIDE SLIDERS
+const sliders = document.querySelectorAll('.glide');
+const conf = {
+    type: 'carousel',
+    perView: 1,
+    perTouch: 1,
+    peek: 500,
+    focusAt: 0,
+    breakpoints: {
+        1536: { peek: 300 },
+        1024: { peek: 250 },
+        768: { peek: 200 },
+        640: { peek: 50 }
+    }
+};
+sliders.forEach(item => {
+  new Glide(item, conf).mount()
+});
+
+const glideSlideTextWrap = document.querySelectorAll('.glide__slide-textwrap');
+glideSlideTextWrap.forEach((el) => {
+	el.classList.add('glide__slide-textwrap--hidden');
+});
+```
