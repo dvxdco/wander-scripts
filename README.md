@@ -95,3 +95,5 @@ glideSlideTextWrap.forEach((el) => {
 	el.classList.add('glide__slide-textwrap--hidden');
 });
 ```
+3. Add webflow symbol to page and customize
+4. Have fun!

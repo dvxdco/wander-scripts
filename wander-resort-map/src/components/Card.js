@@ -5,7 +5,7 @@ function Card({ active, index, feature, onClose }) {
 	const { slug, name, desc, hero } = feature; // these are grabbed in index.js from data attributes in html
 
 	const onLinkOut = () => {
-		document.dispatchEvent(new CustomEvent('eModalShow', { payload: { index: index } }))
+		document.dispatchEvent(new CustomEvent('eModalShow', { detail: { index: index } }))
 		console.log('eModalShow dispatched', index);
 	}
 
