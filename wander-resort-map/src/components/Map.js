@@ -338,7 +338,7 @@ function Map({ features, activeIndex, setActiveIndex }) {
                     <path d="M848.3 1753.5v30.9c-2.9 1.3-6.1 2-9.5 2-2.3 0-4.4-.3-6.5-.9v-32h16z" />
                 </g>
                 <g id="number_x5F_22_00000142161608081383784410000016227739457184851134_">
-                    <circle className="st46" cx={763.7} cy={1753.5} r={16.4} />
+                    <circle cx={763.7} cy={1753.5} r={16.4} />
                     <path className="st0" d="M747.3 1745.4H780v24.5h-32.7z" />
                     <text transform="translate(753.055 1759.027)" className="st5 st47 st48">
                     {"22"}
@@ -416,7 +416,7 @@ function Map({ features, activeIndex, setActiveIndex }) {
                     <path d="M1830.4 1117.9v30.9c-2.9 1.3-6.1 2-9.5 2-2.3 0-4.4-.3-6.5-.9v-32h16z" />
                 </g>
                 <g id="number_x5F_21">
-                    <circle className="st46" cx={1810.2} cy={1074.3} r={16.4} />
+                    <circle cx={1810.2} cy={1074.3} r={16.4} />
                     <path className="st0" d="M1793.8 1066.2h32.7v24.5h-32.7z" />
                     <text transform="translate(1800.731 1079.74)" className="st5 st47 st48">
                     {"21"}
@@ -488,7 +488,7 @@ function Map({ features, activeIndex, setActiveIndex }) {
                     />
                 </g>
                 <g id="number_x5F_4_00000145051989928583617690000006129929300132846245_">
-                    <circle className="st46" cx={1782.7} cy={1476.1} r={16.4} />
+                    <circle cx={1782.7} cy={1476.1} r={16.4} />
                     <path className="st0" d="M1766.3 1468h32.7v24.5h-32.7z" />
                     <text
                     transform="translate(1777.088 1481.577)"
@@ -563,7 +563,7 @@ function Map({ features, activeIndex, setActiveIndex }) {
                     />
                 </g>
                 <g id="number_x5F_5">
-                    <circle className="st46" cx={1782.7} cy={1564.3} r={16.4} />
+                    <circle cx={1782.7} cy={1564.3} r={16.4} />
                     <path className="st0" d="M1766.3 1556.2h32.7v24.5h-32.7z" />
                     <text transform="translate(1777.242 1569.74)" className="st5 st47 st48">
                     {"5"}
@@ -572,7 +572,7 @@ function Map({ features, activeIndex, setActiveIndex }) {
                 </g>
                 <g id="marigold">
                 <g id="number_x5F_6_00000039133109489589564770000005266009186595276438_">
-                    <circle className="st46" cx={1811.3} cy={1632.4} r={16.4} />
+                    <circle cx={1811.3} cy={1632.4} r={16.4} />
                     <path className="st0" d="M1794.9 1624.3h32.7v24.5h-32.7z" />
                     <text
                     transform="translate(1805.674 1637.863)"
@@ -647,7 +647,7 @@ function Map({ features, activeIndex, setActiveIndex }) {
                 </g>
                 <g id="hawthorn">
                 <g id="number_x5F_7">
-                    <circle className="st46" cx={1688.2} cy={1632.4} r={16.4} />
+                    <circle cx={1688.2} cy={1632.4} r={16.4} />
                     <path className="st0" d="M1671.9 1624.3h32.7v24.5h-32.7z" />
                     <text
                     transform="translate(1683.193 1637.863)"
@@ -785,7 +785,7 @@ function Map({ features, activeIndex, setActiveIndex }) {
                     />
                 </g>
                 <g id="number_x5F_8_00000137841431795132345620000012403322978908647568_">
-                    <circle className="st46" cx={1562.7} cy={1632.4} r={16.4} />
+                    <circle cx={1562.7} cy={1632.4} r={16.4} />
                     <path className="st0" d="M1546.3 1624.3h32.7v24.5h-32.7z" />
                     <text
                     transform="translate(1557.073 1637.863)"
@@ -860,7 +860,7 @@ function Map({ features, activeIndex, setActiveIndex }) {
                     />
                 </g>
                 <g id="number_x5F_9">
-                    <circle className="st46" cx={1445.6} cy={1632.4} r={16.4} />
+                    <circle cx={1445.6} cy={1632.4} r={16.4} />
                     <path className="st0" d="M1429.3 1624.3h32.7v24.5h-32.7z" />
                     <text
                     transform="translate(1439.985 1637.863)"
@@ -935,7 +935,7 @@ function Map({ features, activeIndex, setActiveIndex }) {
                     />
                 </g>
                 <g id="number_x5F_13_00000114752403987670166510000010415923864183726762_">
-                    <circle className="st46" cx={1078.5} cy={1617.6} r={16.4} />
+                    <circle cx={1078.5} cy={1617.6} r={16.4} />
                     <path className="st0" d="M1062.2 1609.5h32.7v24.5h-32.7z" />
                     <text
                     transform="translate(1068.911 1623.094)"
@@ -1010,7 +1010,7 @@ function Map({ features, activeIndex, setActiveIndex }) {
                     />
                 </g>
                 <g id="number_x5F_14_00000091734451674143204760000013355995576274224826_">
-                    <circle className="st46" cx={1059.6} cy={1769.5} r={16.4} />
+                    <circle cx={1059.6} cy={1769.5} r={16.4} />
                     <path className="st0" d="M1043.2 1761.4h32.7v24.5h-32.7z" />
                     <text
                     transform="translate(1049.847 1774.978)"
@@ -1022,7 +1022,7 @@ function Map({ features, activeIndex, setActiveIndex }) {
                 </g>
                 <g id="meadowrue">
                 <g id="number_x5F_15_00000154409813367174359510000000382766469616357277_">
-                    <circle className="st46" cx={1041} cy={1924.9} r={16.4} />
+                    <circle cx={1041} cy={1924.9} r={16.4} />
                     <path className="st0" d="M1024.7 1916.8h32.7v24.5h-32.7z" />
                     <text
                     transform="translate(1031.479 1930.366)"
@@ -1097,7 +1097,7 @@ function Map({ features, activeIndex, setActiveIndex }) {
                 </g>
                 <g id="waterleaf">
                 <g id="number_x5F_16_00000124874604501900005600000011631396578026578337_">
-                    <circle className="st46" cx={1036.3} cy={2091.1} r={16.4} />
+                    <circle cx={1036.3} cy={2091.1} r={16.4} />
                     <path className="st0" d="M1020 2083h32.7v24.5H1020z" />
                     <text
                     transform="translate(1026.562 2096.606)"
@@ -1174,7 +1174,7 @@ function Map({ features, activeIndex, setActiveIndex }) {
                 </g>
                 <g id="direction_x5F_sign_00000031201554951121862200000011097329147039634325_">
                 <g id="direction_x5F_sign">
-                    <circle className="st46" cx={2173.2} cy={423.8} r={56.6} />
+                    <circle cx={2173.2} cy={423.8} r={56.6} />
                     <path
                     className="st70"
                     d="m2157.6 442 8.3-25.2 4.1 1.4 5.8 22.6.2.1 6.1-18.7 3.8 1.2-8.3 25.2-4.2-1.4-5.7-22.6-.2-.1-6.1 18.7-3.8-1.2zM2188.8 414.2l-5.1-16.8-14.5 10.3z"
@@ -1189,7 +1189,7 @@ function Map({ features, activeIndex, setActiveIndex }) {
                     />
                 </g>
                 <g id="number_x5F_18_00000168826569689547945420000007250464505942262206_">
-                    <circle className="st46" cx={1164.7} cy={1057.9} r={16.4} />
+                    <circle cx={1164.7} cy={1057.9} r={16.4} />
                     <path className="st0" d="M1148.3 1049.8h32.7v24.5h-32.7z" />
                     <text transform="translate(1154.903 1063.36)" className="st5 st47 st48">
                     {"18"}
@@ -1198,7 +1198,7 @@ function Map({ features, activeIndex, setActiveIndex }) {
                 </g>
                 <g id="firepit">
                 <g id="number_x5F_10">
-                    <circle className="st46" cx={1272.7} cy={2274.9} r={16.4} />
+                    <circle cx={1272.7} cy={2274.9} r={16.4} />
                     <path className="st0" d="M1256.4 2266.8h32.7v24.5h-32.7z" />
                     <text transform="translate(1263.03 2280.397)" className="st5 st47 st48">
                     {"10"}
@@ -1217,7 +1217,7 @@ function Map({ features, activeIndex, setActiveIndex }) {
                     d="M1307.6 2054.9H1418v60.9h-110.4z"
                 />
                 <g id="number_x5F_23_00000032606996376916489760000011541312426601176484_">
-                    <circle className="st46" cx={1362.8} cy={2085.4} r={16.4} />
+                    <circle cx={1362.8} cy={2085.4} r={16.4} />
                     <path className="st0" d="M1346.4 2077.3h32.7v24.5h-32.7z" />
                     <text
                     transform="translate(1351.997 2090.867)"
@@ -1229,7 +1229,7 @@ function Map({ features, activeIndex, setActiveIndex }) {
                 </g>
                 <g id="poolside_x5F_firepit">
                 <g id="number_x5F_19">
-                    <circle className="st46" cx={1576.7} cy={1424.7} r={16.4} />
+                    <circle cx={1576.7} cy={1424.7} r={16.4} />
                     <path className="st0" d="M1560.3 1416.6h32.7v24.5h-32.7z" />
                     <text transform="translate(1566.89 1430.208)" className="st5 st47 st48">
                     {"19"}
@@ -1242,7 +1242,7 @@ function Map({ features, activeIndex, setActiveIndex }) {
                 </g>
                 <g id="hygge_x5F_hut">
                 <g id="number_x5F_17_00000132800195734320634840000012355709242346427790_">
-                    <circle className="st46" cx={887.6} cy={1897.1} r={16.4} />
+                    <circle cx={887.6} cy={1897.1} r={16.4} />
                     <path className="st0" d="M871.2 1889h32.7v24.5h-32.7z" />
                     <text transform="translate(878.406 1902.59)" className="st5 st47 st48">
                     {"17"}
@@ -1261,7 +1261,7 @@ function Map({ features, activeIndex, setActiveIndex }) {
                 </g>
                 <g id="wander_x5F_haus">
                 <g id="number_x5F_12">
-                    <circle className="st46" cx={2025.3} cy={1304.8} r={16.4} />
+                    <circle cx={2025.3} cy={1304.8} r={16.4} />
                     <path className="st0" d="M2008.9 1296.7h32.7v24.5h-32.7z" />
                     <text transform="translate(2015.83 1310.295)" className="st5 st47 st48">
                     {"12"}
@@ -1320,7 +1320,7 @@ function Map({ features, activeIndex, setActiveIndex }) {
                 </g>
                 <g id="beach">
                 <g id="number_x5F_11_00000106109651198747998170000016811581086795586981_">
-                    <circle className="st46" cx={702.1} cy={2134.9} r={16.4} />
+                    <circle cx={702.1} cy={2134.9} r={16.4} />
                     <path className="st0" d="M685.7 2126.8h32.7v24.5h-32.7z" />
                     <text transform="translate(693.826 2140.367)" className="st5 st47 st48">
                     {"11"}
@@ -1339,7 +1339,7 @@ function Map({ features, activeIndex, setActiveIndex }) {
                     d="M1307 1923.5h110.4v60.9H1307z"
                 />
                 <g id="number_x5F_24_00000021834189930353439420000011689201968948852386_">
-                    <circle className="st46" cx={1362.2} cy={1954} r={16.4} />
+                    <circle cx={1362.2} cy={1954} r={16.4} />
                     <path className="st0" d="M1345.9 1945.9h32.7v24.5h-32.7z" />
                     <text transform="translate(1351.34 1959.462)" className="st5 st47 st48">
                     {"24"}
@@ -1353,7 +1353,7 @@ function Map({ features, activeIndex, setActiveIndex }) {
                     d="M555.2 1869.6h170.2v103.9H555.2z"
                 />
                 <g id="number_x5F_24_00000043459659730181824270000007982033173238552200_">
-                    <circle className="st46" cx={638.7} cy={1919.8} r={16.4} />
+                    <circle cx={638.7} cy={1919.8} r={16.4} />
                     <path className="st0" d="M622.3 1911.7H655v24.5h-32.7z" />
                     <text transform="translate(627.902 1925.26)" className="st5 st47 st48">
                     {"25"}
@@ -1377,13 +1377,17 @@ function Map({ features, activeIndex, setActiveIndex }) {
                 </g>
                 </g>
                 <g id="clubhouse">
-                <g id="number_x5F_2_00000034800061137457630840000016091598400730321803_">
-                    <circle className="st46" cx={1294} cy={1470.9} r={16.4} />
+                <g id="feature_clubhouse" ref={elementsRef.current[1]} onClick={() => setActiveIndex(1)}>
+                    <circle cx={1294} cy={1470.9} r={16.4} fill={activeIndex == 1 ? 'white' : '#000' } />
+                    <path className="st0" d="M1277.6 1462.8h32.7v24.5h-32.7z" />
+                </g>
+                {/* <g id="number_x5F_2_00000034800061137457630840000016091598400730321803_">
+                    <circle cx={1294} cy={1470.9} r={16.4} />
                     <path className="st0" d="M1277.6 1462.8h32.7v24.5h-32.7z" />
                     <text transform="translate(1288.65 1476.425)" className="st5 st47 st48">
                     {"2"}
                     </text>
-                </g>
+                </g> */}
                 <g id="biodome_x5F_5_00000003099734302820375210000003546748607706406578_">
                     <path
                     className="st54"
@@ -1446,28 +1450,25 @@ function Map({ features, activeIndex, setActiveIndex }) {
                 </g>
                 </g>
                 <g id="entrance">
-                <g id="your_id" ref={elementsRef.current[0]} onClick={() => setActiveIndex(0)}>
-                    <circle className="st46" cx={1377} cy={614.7} r={16.4} />
-                    <path className="st0" d="M1360.6 606.6h32.7v24.5h-32.7z" />
-                    <text transform="translate(1372.853 620.188)" className="st5 st47 st48">
-                    {"1"}
-                    </text>
-                </g>
-                <g id="entrance_x5F_sign">
-                    <path
-                    className="st76"
-                    d="M1277.8 648.6h-3.7v.4c.5.4.8.8.8 1.5 0 .8-.3 2-.9 3.9l-2.4 7.4-2.1-7.3c-.5-2-.9-3.2-.9-4.1 0-.7.2-1.1.7-1.4v-.4h-3.9v.4c.6.4.9.8.9 1.7 0 .8-.3 2-.8 3.7l-2.2 7.8-2-7.7c-.5-2-.9-3.3-.9-4.2 0-.7.2-1.1.7-1.4v-.4h-4.6v.4c1 .7 1.6 2.1 2.5 5.5l2.6 9.2h2.1l3.3-11 3.1 11h1.9l3.1-9.2c1.3-3.9 1.8-4.9 2.7-5.5v-.3zM1278.9 663.7h3.5v-.4c-.5-.3-.7-.6-.7-1.2 0-.8.4-1.9 1-3.8h5.8c.7 1.9 1 3 1 3.8 0 .6-.2.9-.6 1.1v.3h4.3v-.3c-1-.7-1.6-2.2-2.7-5.5l-3.3-9.2h-2.1l-3.4 9.2c-1.4 3.8-2 4.9-2.9 5.5v.5zm6.6-13.6 2.7 7.6h-5.3l2.6-7.6zM1323.4 648.6h-6.2v.3c.9.4 1.1 1.2 1.1 2.6v9.1c0 1.5-.2 2.2-1.1 2.6v.3h6c5 0 8.5-2.8 8.5-7.9 0-4.5-3.8-7-8.3-7zm-.2 14.4h-2.7v-13.7h2.9c3.1 0 5.7 3 5.7 6.6 0 3.9-2.1 7.1-5.9 7.1zM1364 663.3c-.6-.3-1-.8-2.1-2.2l-3.4-4.8c1.9-.5 4-1.7 4-3.9 0-2.6-1.9-3.8-5-3.8h-6v.3c.9.4 1.1 1.2 1.1 2.6v9.1c0 1.5-.2 2.2-1.1 2.6v.3h4.5v-.3c-.9-.4-1.1-1.2-1.1-2.6v-3.9h1.4l3.3 4.8c1.2 1.9 1.4 2 3.8 2h.7v-.2zm-9.1-7.1v-6.9h2.2c1.7 0 2.9 1.4 2.9 3.3 0 2.3-1.7 3.5-3.3 3.5h-1.8zM1342.7 649.3c1.4 0 2 .3 2.9 1.9h.3v-2.6h-9.3v.3c.9.4 1.1 1.2 1.1 2.6V662.7s0 .1-.1.1v.1l-.1.1-.1.1-.1.1s-.1 0-.1.1h-.1s-.1 0-.1.1h-.1c-.1 0-.1.1-.2.1v.3h9.3v-2.7h-.3c-1 1.6-1.5 1.9-2.9 1.9h-2.6v-6.7h2.6c.9 0 1.4.2 2 .9h.3v-2.6h-.3c-.6.7-1.1.9-2 .9h-2.6v-6.3h2.5zM1298.1 650.8v8.3c0 2.8-.2 3.7-1.1 4.2v.3h3.3v-.4c-.9-.5-1.1-1.5-1.1-4.2v-8l10.3 12.6h1.2v-10.5c0-2.8.2-3.7 1.1-4.2v-.3h-3.3v.3c.9.5 1.1 1.5 1.1 4.2v7l-9.6-11.5h-3.4v.3c1 .5 1.5 1.3 1.5 1.9z"
-                    />
-                    <path
-                    transform="rotate(-90 1373.583 656.157)"
-                    className="st76"
-                    d="M1360.3 655.8h26.5v.7h-26.5z"
-                    />
-                    <path
-                    className="st76"
-                    d="M1383.2 663.7V658h1.9c1.1 0 1.9.7 1.9 1.7 0 .4-.1.7-.3 1-.2.3-.5.5-.8.6l1.3 2.4h-.8l-1.3-2.3h-1.2v2.3h-.7zm.7-2.9h1.3c.7 0 1.2-.4 1.2-1.1 0-.6-.4-1.1-1.2-1.1h-1.2v2.2zM1388.8 663.7V658h3.2v.6h-2.6v1.9h2.2v.6h-2.2v2h2.7v.6h-3.3zM1394 662c0 .3.1.6.4.8.3.2.6.3 1 .3.8 0 1.3-.4 1.3-1 0-1.8-3.1-.5-3.1-2.8 0-.4.2-.8.5-1.1.3-.3.8-.4 1.3-.4.9 0 1.9.5 1.9 1.7h-.7c0-.7-.4-1-1.2-1-.8 0-1.2.4-1.2.9 0 1.6 3.2.5 3.2 2.8 0 .5-.2.8-.5 1.2-.4.3-.8.5-1.4.5-1.1 0-2-.8-2-1.8h.5zM1401.6 657.9c1.7 0 2.9 1.3 2.9 3s-1.2 3-3 3c-1.7 0-2.9-1.3-2.9-3 .1-1.7 1.3-3 3-3zm0 5.3c.7 0 1.2-.2 1.6-.7.4-.4.6-1 .6-1.7 0-1.3-1-2.3-2.3-2.3-1.3 0-2.3 1-2.3 2.3.2 1.4 1.1 2.4 2.4 2.4zM1406.3 663.7V658h1.9c1.1 0 1.9.7 1.9 1.7 0 .4-.1.7-.3 1s-.5.5-.8.6l1.3 2.4h-.8l-1.3-2.3h-1.2v2.3h-.7zm.7-2.9h1.3c.7 0 1.2-.4 1.2-1.1 0-.6-.4-1.1-1.2-1.1h-1.2v2.2zM1411.3 658.6v-.6h4.1v.6h-1.7v5.1h-.7v-5.1h-1.7zM1383.2 649.2v-.6h4.1v.6h-1.7v5.1h-.7v-5.1h-1.7zM1388.9 654.3v-5.7h.7v2.5h3v-2.5h.7v5.7h-.7v-2.6h-3v2.6h-.7zM1395.4 654.3v-5.7h3.2v.6h-2.6v1.9h2.2v.6h-2.2v2h2.7v.6h-3.3z"
-                    />
-                </g>
+                    <g id="feature_entrance" ref={elementsRef.current[0]} onClick={() => setActiveIndex(0)}>
+                        <circle cx={1377} cy={614.7} r={16.4} fill={activeIndex == 0 ? 'white' : '#000' } />
+                        <path className="st0" d="M1360.6 606.6h32.7v24.5h-32.7z" />
+                    </g>
+                    <g id="entrance_x5F_sign">
+                        <path
+                        className="st76"
+                        d="M1277.8 648.6h-3.7v.4c.5.4.8.8.8 1.5 0 .8-.3 2-.9 3.9l-2.4 7.4-2.1-7.3c-.5-2-.9-3.2-.9-4.1 0-.7.2-1.1.7-1.4v-.4h-3.9v.4c.6.4.9.8.9 1.7 0 .8-.3 2-.8 3.7l-2.2 7.8-2-7.7c-.5-2-.9-3.3-.9-4.2 0-.7.2-1.1.7-1.4v-.4h-4.6v.4c1 .7 1.6 2.1 2.5 5.5l2.6 9.2h2.1l3.3-11 3.1 11h1.9l3.1-9.2c1.3-3.9 1.8-4.9 2.7-5.5v-.3zM1278.9 663.7h3.5v-.4c-.5-.3-.7-.6-.7-1.2 0-.8.4-1.9 1-3.8h5.8c.7 1.9 1 3 1 3.8 0 .6-.2.9-.6 1.1v.3h4.3v-.3c-1-.7-1.6-2.2-2.7-5.5l-3.3-9.2h-2.1l-3.4 9.2c-1.4 3.8-2 4.9-2.9 5.5v.5zm6.6-13.6 2.7 7.6h-5.3l2.6-7.6zM1323.4 648.6h-6.2v.3c.9.4 1.1 1.2 1.1 2.6v9.1c0 1.5-.2 2.2-1.1 2.6v.3h6c5 0 8.5-2.8 8.5-7.9 0-4.5-3.8-7-8.3-7zm-.2 14.4h-2.7v-13.7h2.9c3.1 0 5.7 3 5.7 6.6 0 3.9-2.1 7.1-5.9 7.1zM1364 663.3c-.6-.3-1-.8-2.1-2.2l-3.4-4.8c1.9-.5 4-1.7 4-3.9 0-2.6-1.9-3.8-5-3.8h-6v.3c.9.4 1.1 1.2 1.1 2.6v9.1c0 1.5-.2 2.2-1.1 2.6v.3h4.5v-.3c-.9-.4-1.1-1.2-1.1-2.6v-3.9h1.4l3.3 4.8c1.2 1.9 1.4 2 3.8 2h.7v-.2zm-9.1-7.1v-6.9h2.2c1.7 0 2.9 1.4 2.9 3.3 0 2.3-1.7 3.5-3.3 3.5h-1.8zM1342.7 649.3c1.4 0 2 .3 2.9 1.9h.3v-2.6h-9.3v.3c.9.4 1.1 1.2 1.1 2.6V662.7s0 .1-.1.1v.1l-.1.1-.1.1-.1.1s-.1 0-.1.1h-.1s-.1 0-.1.1h-.1c-.1 0-.1.1-.2.1v.3h9.3v-2.7h-.3c-1 1.6-1.5 1.9-2.9 1.9h-2.6v-6.7h2.6c.9 0 1.4.2 2 .9h.3v-2.6h-.3c-.6.7-1.1.9-2 .9h-2.6v-6.3h2.5zM1298.1 650.8v8.3c0 2.8-.2 3.7-1.1 4.2v.3h3.3v-.4c-.9-.5-1.1-1.5-1.1-4.2v-8l10.3 12.6h1.2v-10.5c0-2.8.2-3.7 1.1-4.2v-.3h-3.3v.3c.9.5 1.1 1.5 1.1 4.2v7l-9.6-11.5h-3.4v.3c1 .5 1.5 1.3 1.5 1.9z"
+                        />
+                        <path
+                        transform="rotate(-90 1373.583 656.157)"
+                        className="st76"
+                        d="M1360.3 655.8h26.5v.7h-26.5z"
+                        />
+                        <path
+                        className="st76"
+                        d="M1383.2 663.7V658h1.9c1.1 0 1.9.7 1.9 1.7 0 .4-.1.7-.3 1-.2.3-.5.5-.8.6l1.3 2.4h-.8l-1.3-2.3h-1.2v2.3h-.7zm.7-2.9h1.3c.7 0 1.2-.4 1.2-1.1 0-.6-.4-1.1-1.2-1.1h-1.2v2.2zM1388.8 663.7V658h3.2v.6h-2.6v1.9h2.2v.6h-2.2v2h2.7v.6h-3.3zM1394 662c0 .3.1.6.4.8.3.2.6.3 1 .3.8 0 1.3-.4 1.3-1 0-1.8-3.1-.5-3.1-2.8 0-.4.2-.8.5-1.1.3-.3.8-.4 1.3-.4.9 0 1.9.5 1.9 1.7h-.7c0-.7-.4-1-1.2-1-.8 0-1.2.4-1.2.9 0 1.6 3.2.5 3.2 2.8 0 .5-.2.8-.5 1.2-.4.3-.8.5-1.4.5-1.1 0-2-.8-2-1.8h.5zM1401.6 657.9c1.7 0 2.9 1.3 2.9 3s-1.2 3-3 3c-1.7 0-2.9-1.3-2.9-3 .1-1.7 1.3-3 3-3zm0 5.3c.7 0 1.2-.2 1.6-.7.4-.4.6-1 .6-1.7 0-1.3-1-2.3-2.3-2.3-1.3 0-2.3 1-2.3 2.3.2 1.4 1.1 2.4 2.4 2.4zM1406.3 663.7V658h1.9c1.1 0 1.9.7 1.9 1.7 0 .4-.1.7-.3 1s-.5.5-.8.6l1.3 2.4h-.8l-1.3-2.3h-1.2v2.3h-.7zm.7-2.9h1.3c.7 0 1.2-.4 1.2-1.1 0-.6-.4-1.1-1.2-1.1h-1.2v2.2zM1411.3 658.6v-.6h4.1v.6h-1.7v5.1h-.7v-5.1h-1.7zM1383.2 649.2v-.6h4.1v.6h-1.7v5.1h-.7v-5.1h-1.7zM1388.9 654.3v-5.7h.7v2.5h3v-2.5h.7v5.7h-.7v-2.6h-3v2.6h-.7zM1395.4 654.3v-5.7h3.2v.6h-2.6v1.9h2.2v.6h-2.2v2h2.7v.6h-3.3z"
+                        />
+                    </g>
                 </g>
                 <g id="pool">
                 <g id="pool_x5F_house_00000061430521809163919210000014528149155098831490_">
@@ -1517,8 +1518,12 @@ function Map({ features, activeIndex, setActiveIndex }) {
                     d="M1625.8 1276.5c-1.1 0-2.1-.3-3-.8-1.6-1-3.2-.9-4.8 0-2 1.2-4 1.2-6 0-.8-.4-1.5-.7-2.4-.7-.5 0-.8-.4-.8-.8 0-.5.4-.7.9-.7 1 0 2 .3 2.8.8 1.1.7 2.3 1 3.6.6.5-.1 1-.4 1.5-.7 1.9-1 3.8-1 5.7 0 1.2.7 2.4 1 3.7.7.5-.1 1-.4 1.4-.6.9-.5 1.8-.8 2.8-.8.6 0 .9.3.9.7 0 .5-.3.8-.8.8-.9 0-1.7.3-2.4.8-1 .5-2 .7-3.1.7z"
                     />
                 </g>
-                <g id="number_x5F_3_00000057851775433297583300000009085901277445126057_">
-                    <circle className="st46" cx={1615.5} cy={1193.2} r={16.4} />
+                <g id="feature_pool" ref={elementsRef.current[2]} onClick={() => setActiveIndex(2)}>
+                    <circle cx={1615.5} cy={1193.2} r={16.4} fill={activeIndex == 2 ? 'white' : '#000' } />
+                    <path className="st0" d="M1599.1 1185.1h32.7v24.5h-32.7z" />
+                </g>
+                {/* <g id="number_x5F_3_00000057851775433297583300000009085901277445126057_">
+                    <circle cx={1615.5} cy={1193.2} r={16.4} />
                     <path className="st0" d="M1599.1 1185.1h32.7v24.5h-32.7z" />
                     <text
                     transform="translate(1609.995 1198.644)"
@@ -1526,7 +1531,7 @@ function Map({ features, activeIndex, setActiveIndex }) {
                     >
                     {"3"}
                     </text>
-                </g>
+                </g> */}
                 <path
                     id="pool_x5F_chairs_00000053542493719023740440000005444811138751070867_"
                     className="st79"
@@ -1601,7 +1606,7 @@ function Map({ features, activeIndex, setActiveIndex }) {
                     <path d="M931.4 1063.2c-.8-2.3-2.3-4.1-4.4-5.3-2.8-1.6-5.8-1.6-8.8-.3-.6-1-1.2-2-1.7-3-.1-.1 0-.4.1-.5l1.5-2.4c.4-.6.1-1.2-.6-1.2h-4.2c-.5 0-.8.3-.8.7 0 .4.3.7.8.7H916.2c-.4.6-.6 1-.9 1.5-.1.1-.3.2-.5.2H903c-.4 0-.5-.1-.5-.5h.3c.6 0 .9-.3.9-.8s-.4-.7-1-.7h-5.3c-.6 0-1 .3-1 .7 0 .5.3.8 1 .8s1.4.1 2.1 0c.7-.1 1.2.2 1.5.8.1.3.2.5 0 .8-.5.8-.9 1.6-1.3 2.4-.1.3-.3.3-.6.2-.8-.2-1.7-.6-2.6-.6-4.1-.3-7.3 1.4-9.3 5-2 3.6-1.6 7.3.9 10.6 3.3 4.2 9.5 4.8 13.6 1.4 1.9-1.6 3-3.6 3.3-6.1.1-.4.2-.6.6-.5h1.3c.9 0 .9 0 .8.9 0 0 0 .1-.1.2h-1c-.5 0-.8.3-.9.8 0 .5.3.7.8.8h3.2c.5 0 .8-.3.7-.7 0-.5-.3-.7-.7-.8h-.6c0-.8-.1-1.5.3-2.3 1.6-2.6 3-5.2 4.6-7.8.4-.7.8-1.3 1.2-2.1.5.9.9 1.6 1.4 2.4-5.4 4.1-4.7 10.4-2.4 13.5 3 4 8.1 5.2 12.4 2.9 4.4-2.4 6.4-7.4 4.8-11.7zm-32.9 10.7c-3.6 1.3-7.5.1-9.6-3.1-2.1-3.2-1.8-7.3 1-10.1 2.6-2.7 6.5-2.9 8.8-1.7-.1.1-.1.3-.2.4-1.1 2.1-2.2 4.1-3.3 6.2-.6 1.1-.3 1.5 1 1.5h7.4c0 2.4-1.9 5.6-5.1 6.8zm-1.6-8.4c1.1-2 2.1-3.9 3.1-5.9 1.8.8 3.6 3.9 3.5 5.9h-6.6zm8.6.1c-.4 0-.3-.3-.3-.5-.3-2.4-1.4-4.4-3.2-6-.3-.3-.7-.5-1.1-.8.4-.7.8-1.5 1.2-2.3 1.8 3.2 3.5 6.4 5.3 9.6h-1.9zm3.1-.8c-1.8-3.2-3.5-6.4-5.2-9.6h10.8c-1.9 3.2-3.7 6.4-5.6 9.6zm18 8.4c-3.9 2.4-9 1.1-11.2-2.9-2.2-3.9-.7-8.5 2.4-10.5l.3.6c1.2 2 2.4 4.1 3.5 6.1 0 0 0 .1.1.1.3.5.7.6 1.1.4.4-.2.5-.6.2-1.1-.3-.6-.7-1.2-1-1.8-.9-1.5-1.8-3.1-2.7-4.6-.1-.1-.1-.2-.2-.4 2.8-1.5 7.6-1 10 2.8 2.5 3.8 1.4 8.9-2.5 11.3z" />
                 </g>
                 <g id="number_x5F_26">
-                    <circle className="st46" cx={910.8} cy={1020} r={16.4} />
+                    <circle cx={910.8} cy={1020} r={16.4} />
                     <text transform="translate(899.873 1025.422)" className="st5 st47 st48">
                     {"26"}
                     </text>
@@ -2366,7 +2371,7 @@ function Map({ features, activeIndex, setActiveIndex }) {
                     />
                 </g>
                 <g id="number_x5F_20">
-                    <circle className="st46" cx={875.7} cy={1180.1} r={16.4} />
+                    <circle cx={875.7} cy={1180.1} r={16.4} />
                     <path className="st0" d="M859.4 1172h32.7v24.5h-32.7z" />
                     <text transform="translate(864.85 1185.579)" className="st5 st47 st48">
                     {"20"}
