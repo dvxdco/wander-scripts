@@ -2,7 +2,7 @@ import React, { createRef, useRef, useEffect } from 'react'
 import { gsap } from 'gsap'
 import { Draggable } from 'gsap/Draggable' // https://greensock.com/docs/v2/Utilities/Draggable
 
-const MAP_CONTAINER_HEIGHT = 700;
+const MAP_CONTAINER_HEIGHT = 900;
 const MAP_WIDTH = 3066 // window.innerWidth
 const MAP_HEIGHT = 2272
 const COLOUR_ACTIVE = '#e2e'
