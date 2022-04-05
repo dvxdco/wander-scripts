@@ -5,17 +5,24 @@
     font-family: Silka, Tahoma, sans-serif, Arial;
     font-weight: 100;
 
-    background-color: var(--color-allseason);
-
     display: flex;
     flex-direction: column;
 
     padding-top: 2rem;
+
+    background-color: var(--color-allseason);
 }
 
 .wrm h1, h2, h3 {
     font-weight: 100;
 }
+
+
+.wrm h3 {
+    font-size: 16px;
+    font-weight: 600;
+}
+
 
 .wrm p {
     font-size: 12px;
@@ -48,18 +55,19 @@
     overflow: hidden;
     position: relative;
     background-color: inherit;
-    height: 600px;
 }
 
 svg.wrm__map circle {
     transition: fill 0.3s ease;
 }
 
+/*
 @media screen and (min-width: 768px) {
     .wrm__wrap {
         height: 900px;
     }
 }
+*/
 
 /* NAV */
 
@@ -137,6 +145,14 @@ svg.wrm__map circle {
     font-weight: 600;
 }
 
+.wrm__btn-zoom {
+    z-index: 1;
+    position: absolute;
+    bottom: 50px;
+    left: 0;
+    padding: 1rem;
+    background-color: red !important;
+}
 
 /* MAP */
 
@@ -144,9 +160,14 @@ svg.wrm__map circle {
     z-index: 1;
     position: relative;
     overflow: hidden;
-    background-color: var(--color-allseason);
-    width: 3066px;
-    height: 2272px;
+    background-color: #fcfbfa;
+    height: 600px;
+}
+
+@media screen and (min-width: 768px) {
+    .wrm__container {
+        height: 850px;
+    }
 }
 
 /* Card */
@@ -164,7 +185,7 @@ svg.wrm__map circle {
     background-color: var(--color-allseason);
 
     margin: 2rem 1rem 1rem 1rem;
-    padding: 0rem 1rem 1rem 1rem;
+    padding: 0rem 1rem 0rem 1rem;
 
     opacity: 0;
     transform: translate3d(25%, -50%, 0);
@@ -194,7 +215,7 @@ svg.wrm__map circle {
         
         width: 33.333%;
         margin: 2rem;
-        padding: 1rem 2rem 2rem 2rem;
+        padding: 1rem 2rem 1rem 2rem;
         transform: translate3d(25%, -50%, 0);
     }
     .wrm__card.active {

@@ -3,10 +3,11 @@ import { gsap } from 'gsap'
 import { Draggable } from 'gsap/Draggable' // https://greensock.com/docs/v2/Utilities/Draggable
 
 const MAP_CONTAINER_HEIGHT = 900;
-const MAP_WIDTH = 3066 // window.innerWidth
-const MAP_HEIGHT = 2272
-const COLOUR_ACTIVE = '#e2e'
-const COLOUR_INACTIVE = '#222'
+const MAP_WIDTH = 3066;
+const MAP_HEIGHT = 2272;
+const COLOUR_ACTIVE = '#e2e';
+const COLOUR_INACTIVE = '#222';
+const SCALE_FACTOR = 2;
 
 gsap.registerPlugin(Draggable);
 
@@ -27,10 +28,18 @@ function Map({ features, activeIndex, setActiveIndex }) {
 		})
 		
 		// center svg in container on first load
+        const startEl = document.getElementById('feature_clubhouse');
+        const offsetY = containerRef.current.getBoundingClientRect().y;
+        const rect = startEl.getBoundingClientRect();
+		const centerX = window.innerWidth / 2;
+		const centerY = (MAP_CONTAINER_HEIGHT / 2) + offsetY;
+        const deltaX = centerX - (rect.x + rect.width / 2);
+        const deltaY = centerY - (rect.y + rect.height / 2);
+
 		gsap.set(mapRef.current, {
-			x: -MAP_WIDTH*0.25,
-            y: -MAP_HEIGHT*0.5,
-			scale: 1
+			x: deltaX,
+            y: deltaY,
+			scale: SCALE_FACTOR
 		})
 	}, [])
 
@@ -40,8 +49,8 @@ function Map({ features, activeIndex, setActiveIndex }) {
 			gsap.to(mapRef.current, {
 				x: '+=1',
 				y: '+=1',
-				scale: 1, // 2
-				duration: 0.5,
+				scale: SCALE_FACTOR, // 2
+				duration: 0.4,
 				ease: 'Power1.linear',
 				onUpdate: onUpdate(el)
 			})
@@ -52,33 +61,26 @@ function Map({ features, activeIndex, setActiveIndex }) {
         gsap.to(mapRef.current, {
 			x: getX(),
 			y: 0,
-            scale: 1,
+            scale: SCALE_FACTOR,
             duration: 0.5,
             ease: 'Power1.linear'
         })
 		setActiveIndex(null)
     }
 
-	
-
     const onUpdate = (el) => {
 		let offsetY = containerRef.current.getBoundingClientRect().y;
         let rect = el.getBoundingClientRect();
 		let centerX = window.innerWidth / 2;
-        
-		// let centerY = window.innerHeight / 2);
-
 		let centerY = (MAP_CONTAINER_HEIGHT / 2) + offsetY;
         let deltaX = centerX - (rect.x + rect.width / 2);
         let deltaY = centerY - (rect.y + rect.height / 2);
-
-		// console.log(containerRef.current.getBoundingClientRect().y);
       
         return function () {
             gsap.to(mapRef.current, {
                 x: '+=' + deltaX,
                 y: '+=' + deltaY,
-                scale: 1, // 1.5
+                scale: SCALE_FACTOR, // 1.5
                 duration: gsap.utils.clamp(0, 1, this.duration() - this.time()),
                 overwrite: true,
                 ease: 'Power1.linear'
@@ -86,16 +88,13 @@ function Map({ features, activeIndex, setActiveIndex }) {
         }
     }
 
-	const getColour = (index) => {
-		return (index === activeIndex) ? COLOUR_ACTIVE : COLOUR_INACTIVE
-	}
-
 	const getX = () => {
 		return (containerRef.current.offsetWidth>>1) - (MAP_WIDTH>>1)
 	}
 
     return (
         <div ref={containerRef} className="wrm__container">
+            {/* <button className="wrm__btn-zoom" onClick={zoomOut}>Zoom Out</button> */}
             <svg
                 ref={mapRef}
                 className="wrm__map"
@@ -103,8 +102,7 @@ function Map({ features, activeIndex, setActiveIndex }) {
                 xmlnsXlink="http://www.w3.org/1999/xlink"
                 viewBox="0 0 2761.4 2917.1"
                 style={{
-                    enableBackground: "new 0 0 2761 2917",
-                    // transform: "translate3d(-630px, -1160px, 0)"
+                    enableBackground: "new 0 0 2761 2917"
                 }}
                 xmlSpace="preserve"
             >
