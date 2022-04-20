@@ -1,11 +1,11 @@
 import React, { useEffect, useRef } from 'react'
 
-function Nav({ label, features, activeIndex, setActiveIndex }) {
+function Nav({ label, features, activeId, setActiveId }) {
 	const toggle = useRef();
 
 	useEffect(() => {
         toggle.current.checked = false
-    }, [activeIndex])
+    }, [activeId])
 
     return (
 		<nav className="wrm__nav">
@@ -21,9 +21,9 @@ function Nav({ label, features, activeIndex, setActiveIndex }) {
 					{
 						features.map((feature, index) => {
 							return (
-								<li className={(index === activeIndex ? 'active' : '')} 
+								<li className={(feature.slug === activeId ? 'active' : '')} 
 									key={index} 
-									onClick={(e) => setActiveIndex(index)}>
+									onClick={(e) => setActiveId(feature.slug)}>
 									{feature.name}
 								</li>
 							)

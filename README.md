@@ -59,7 +59,7 @@ npm run build
 ```
 
 To add a new location, add the following with the appropriate index to the appropriate SVG element 
-`id="your_id" ref={elementsRef.current[0]} onClick={() => setActiveIndex(0)}`
+`id="your_id" ref={elementsRef.current[0]} onClick={() => setActiveId(0)}`
 
 
 # Glide Sliders
@@ -68,11 +68,41 @@ To add glide sliders to a page:
 1. import cdn script in <head>
 ```
 <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Glide.js/3.2.0/css/glide.core.css" integrity="sha512-ShLuspGzRsTiMlQ2Rg0e+atjy/gVQr3oYKnKmQkHQ6sxcnDAEOtOaPz2rRmeygV2CtnwUawDyHkGgH4zUbP3Hw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 ``` 
-2. add the following snippet to </body>
+2. Copy and paste existing `glide` layer from `Slider Example` page.
 ```
+<script>
 // GLIDE SLIDERS
-const sliders = document.querySelectorAll('.glide');
+const glides = [];
+const gliderEls = document.querySelectorAll('.glide');
+const conf = {
+    type: 'carousel',
+    perView: 1,
+    perTouch: 1,
+    peek: 0,
+    focusAt: 0
+};
+gliderEls.forEach((el, index) => {
+    // if using webflow's "multiimage" field, remove its conflicting scripts
+    const multiImageScripts = el.getElementsByTagName('script');
+    for (let s of multiImageScripts) {
+        s.remove();
+    };
+    const bullets = el.querySelectorAll('.glide__bullet');
+    bullets.forEach((bullet, i) => {
+        bullet.setAttribute('data-glide-dir', `=${i}`);
+    });
+    glides[index] = new Glide(el, conf).mount()
+});
+</script>
+```
+or version for slider with peeking slides and fading text content
+```
+<script>
+// GLIDE SLIDERS
+const glides = [];
+const gliderEls = document.querySelectorAll('.glide');
 const conf = {
     type: 'carousel',
     perView: 1,
@@ -86,14 +116,25 @@ const conf = {
         640: { peek: 50 }
     }
 };
-sliders.forEach(item => {
-  new Glide(item, conf).mount()
+gliderEls.forEach((el, index) => {
+    // if using webflow's "multiimage" field, remove its conflicting scripts
+    const multiImageScripts = el.getElementsByTagName('script');
+    for (let s of multiImageScripts) {
+        s.remove();
+    };
+    const bullets = el.querySelectorAll('.glide__bullet');
+    bullets.forEach((bullet, i) => {
+        bullet.setAttribute('data-glide-dir', `=${i}`);
+    });
+    glides[index] = new Glide(el, conf).mount()
 });
 
+// fades in/out test on slides with text content
 const glideSlideTextWrap = document.querySelectorAll('.glide__slide-textwrap');
 glideSlideTextWrap.forEach((el) => {
-	el.classList.add('glide__slide-textwrap--hidden');
+    el.classList.add('glide__slide-textwrap--hidden');
 });
+</script>
 ```
-3. Add webflow symbol to page and customize
+3. add the following snippet to </body> and customize `conf` as desired
 4. Have fun!
