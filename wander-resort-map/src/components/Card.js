@@ -1,12 +1,11 @@
 import React from 'react'
 import Close from './Close'
 
-function Card({ active, index, feature, onClose }) {
+function Card({ active, feature, onClose }) {
 	const { slug, name, desc, hero } = feature; // these are grabbed in index.js from data attributes in html
 
 	const onLinkOut = () => {
-		document.dispatchEvent(new CustomEvent('eModalShow', { detail: { index: index } }))
-		// console.log('eModalShow dispatched', index);
+		document.dispatchEvent(new CustomEvent('eModalShow', { detail: { id: slug } }))
 	}
 
     return (
@@ -15,10 +14,13 @@ function Card({ active, index, feature, onClose }) {
 				<Close onClick={onClose} />
 				<h3>{name}</h3>
 				<p>{desc}</p>
-				<a onClick={onLinkOut}>See More ></a>
-				<a onClick={onLinkOut}>
-					<img src={hero} alt={name}/>
-				</a>
+				<a onClick={onLinkOut}>{`See More >`}</a>
+				{
+					hero &&
+						<a onClick={onLinkOut}>
+							<img src={hero} alt={name}/>
+						</a>
+				}
 			</div>
 		</div>
     )

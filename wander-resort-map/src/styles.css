@@ -156,18 +156,14 @@ svg.wrm__map circle {
 
 /* MAP */
 
-.wrm__container {
+.wrm__svg-container {
     z-index: 1;
     position: relative;
     overflow: hidden;
     background-color: #fcfbfa;
-    height: 600px;
-}
+    height: 95vh;
 
-@media screen and (min-width: 768px) {
-    .wrm__container {
-        height: 850px;
-    }
+    min-width: 1000px;
 }
 
 /* Card */
@@ -180,7 +176,7 @@ svg.wrm__map circle {
     top: 50%;
     left: 0;
     right: 0;
-    min-width: 250px;
+    min-width: 350px;
     max-width: 420px;
     background-color: var(--color-allseason);
 
@@ -190,6 +186,9 @@ svg.wrm__map circle {
     opacity: 0;
     transform: translate3d(25%, -50%, 0);
     transition: opacity 0.325s ease-in, transform 0.325s ease-in;
+
+    max-height: 60vh;
+    overflow-y: auto;
 }
 .wrm__card.active {
     visibility: visible;
