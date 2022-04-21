@@ -4,10 +4,8 @@ import Map from './components/Map'
 import Nav from './components/Nav'
 import Card from './components/Card'
 
-const START_ON_FEATURE_ID = 'clubhouse';
-
 function App({ data }) {
-    const [ activeId, setActiveId ] = useState(START_ON_FEATURE_ID)
+    const [ activeId, setActiveId ] = useState()
     const { features, navLabel } = data
 
     return (

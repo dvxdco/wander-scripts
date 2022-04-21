@@ -2,9 +2,9 @@ import React, { createRef, useRef, useEffect } from 'react'
 import { gsap } from 'gsap'
 import { Draggable } from 'gsap/Draggable' // https://greensock.com/docs/v2/Utilities/Draggable
 
-const MAP_CONTAINER_HEIGHT = 900
+// const MAP_CONTAINER_HEIGHT = 900
 const MAP_WIDTH = 3066
-const SCALE_FACTOR = 2
+const SCALE_FACTOR = 1
 const START_ON_FEATURE_ID = 'clubhouse'
 
 gsap.registerPlugin(Draggable)
@@ -12,12 +12,18 @@ gsap.registerPlugin(Draggable)
 function Map({ features, activeId, setActiveId }) {
     const containerRef = useRef()
     const mapRef = useRef()
-	const elementsRef = useRef(features.map(() => createRef()))
+	const refs = useRef(features.map(() => createRef()))
 
 	useEffect(() => {
-        console.log(activeId, getIndex(activeId))
-		panTo(getIndex(activeId))
-	}, [activeId])
+        gsap.globalTimeline.clear()
+
+        const index = getFeatureIndex(activeId);
+        panTo(index)
+
+        const el = refs.current[index]?.current?.querySelector('.st49')
+        if (el) gsap.from(el, { opacity: 0.8, scale: 1.2, yoyo: true, repeat: -1, duration: 0.5, transformOrigin: 'center' })
+
+    }, [activeId])
 
 	useEffect(() => {
 		Draggable.create(mapRef.current, {
@@ -27,38 +33,53 @@ function Map({ features, activeId, setActiveId }) {
 		
 		// center svg in container on first load
         const startEl = document.getElementById(START_ON_FEATURE_ID);
-
         if (startEl) {
             const offsetY = containerRef.current.getBoundingClientRect().y
             const rect = startEl.getBoundingClientRect()
             const centerX = window.innerWidth / 2
-            const centerY = (MAP_CONTAINER_HEIGHT / 2) + offsetY
+            const centerY =(window.innerHeight / 2) + offsetY // containerRef.current.clientHeight
             const deltaX = centerX - (rect.x + rect.width / 2)
             const deltaY = centerY - (rect.y + rect.height / 2)
 
-            gsap.set(mapRef.current, {
-                x: deltaX,
-                y: deltaY,
-                scale: SCALE_FACTOR
-            })
+            panTo(getFeatureIndex(activeId))
         }
 	}, [])
 
 	const panTo = (i) => {
-		const el = elementsRef.current[i]?.current
+		const el = refs.current[i]?.current
 		if (el) {
 			gsap.to(mapRef.current, {
 				x: '+=1',
 				y: '+=1',
-				scale: SCALE_FACTOR, // 2
-				duration: 0.4,
-				ease: 'Power1.linear',
+				scale: SCALE_FACTOR,
+				duration: 0.3,
+				// ease: 'power1.out',
 				onUpdate: onUpdate(el)
 			})
 		}
     }
 
-	const zoomOut = (e) => {
+    const onUpdate = (el) => {
+		let offsetY = containerRef.current.getBoundingClientRect().y
+        let rect = el.getBoundingClientRect()
+		let centerX = window.innerWidth / 2
+		let centerY = (window.innerHeight / 2) + offsetY
+        let deltaX = centerX - (rect.x + rect.width / 2)
+        let deltaY = centerY - (rect.y + rect.height / 2)
+      
+        return function () {
+            gsap.to(mapRef.current, {
+                x: '+=' + deltaX,
+                y: '+=' + deltaY,
+                scale: SCALE_FACTOR,
+                duration: gsap.utils.clamp(0, 1, this.duration() - this.time()),
+                overwrite: true,
+                ease: 'Power1.linear'
+            })
+        }
+    }
+
+    const zoomOut = (e) => {
         gsap.to(mapRef.current, {
 			x: getX(),
 			y: 0,
@@ -69,35 +90,15 @@ function Map({ features, activeId, setActiveId }) {
 		setActiveId(null)
     }
 
-    const onUpdate = (el) => {
-		let offsetY = containerRef.current.getBoundingClientRect().y
-        let rect = el.getBoundingClientRect()
-		let centerX = window.innerWidth / 2
-		let centerY = (MAP_CONTAINER_HEIGHT / 2) + offsetY
-        let deltaX = centerX - (rect.x + rect.width / 2)
-        let deltaY = centerY - (rect.y + rect.height / 2)
-      
-        return function () {
-            gsap.to(mapRef.current, {
-                x: '+=' + deltaX,
-                y: '+=' + deltaY,
-                scale: SCALE_FACTOR, // 1.5
-                duration: gsap.utils.clamp(0, 1, this.duration() - this.time()),
-                overwrite: true,
-                ease: 'Power1.linear'
-            })
-        }
-    }
-
-	const getX = () => {
-		return (containerRef.current.offsetWidth>>1) - (MAP_WIDTH>>1)
-	}
-
-    const getIndex = (id) => {
+    const getFeatureIndex = (id) => {
         return features.findIndex(object => {
             return object.slug === id;
         });
     }
+
+    const getX = () => {
+		return (containerRef.current.offsetWidth>>1) - (MAP_WIDTH>>1)
+	}
 
     return (
         <div ref={containerRef} className="wrm__svg-container">
@@ -3523,7 +3524,7 @@ function Map({ features, activeId, setActiveId }) {
                     </g>
                 </g>
                 </g>
-                <g id="sauna_x5F_2" ref={elementsRef.current[getIndex('sauna')]} onClick={() => setActiveId('sauna')}>
+                <g id="sauna_x5F_2" ref={refs.current[getFeatureIndex('sauna')]} onClick={() => setActiveId('sauna')}>
                 <g id="sauna_x5F_2_00000083070415539101867620000005280314765136308103_">
                     <path
                     className="st19"
@@ -7840,7 +7841,7 @@ function Map({ features, activeId, setActiveId }) {
                     />
                 </g>
                 </g>
-                <g id="parking" ref={elementsRef.current[getIndex('parking')]} onClick={() => setActiveId('parking')}>
+                <g id="parking" ref={refs.current[getFeatureIndex('parking')]} onClick={() => setActiveId('parking')}>
                 <g id="parking_00000044857144899949137610000000768858757820799156_">
                     <line className="st78" x1={976.8} y1={945} x2={968.2} y2={988} />
                     <line className="st78" x1={1000.7} y1={949.8} x2={992.1} y2={992.8} />
@@ -7882,7 +7883,7 @@ function Map({ features, activeId, setActiveId }) {
                     <rect x={1206.1} y={947} className="st0" width={32.7} height={24.5} />
                 </g>
                 </g>
-                <g id="firepit" ref={elementsRef.current[getIndex('firepit')]} onClick={() => setActiveId('firepit')}>
+                <g id="firepit" ref={refs.current[getFeatureIndex('firepit')]} onClick={() => setActiveId('firepit')}>
                 <g id="number_x5F_10">
                     <circle className="st49" cx={1272.7} cy={2160.7} r={16.4} />
                     <rect
@@ -8179,12 +8180,6 @@ function Map({ features, activeId, setActiveId }) {
                     width={32.7}
                     height={24.5}
                     />
-                    <text
-                    transform="matrix(1 0 0 1 1989.1488 2047.3403)"
-                    className="st5 st50 st51"
-                    >
-                    {"27"}
-                    </text>
                 </g>
                 <g id="firepit_x5F_19_00000068634946866808204380000008886199713608300179_">
                     <g>
@@ -8192,7 +8187,7 @@ function Map({ features, activeId, setActiveId }) {
                     </g>
                 </g>
                 </g>
-                <g id="hygge_x5F_hut" ref={elementsRef.current[getIndex('hygge-huts')]} onClick={() => setActiveId('hygge-huts')}>
+                <g id="hygge_x5F_hut" ref={refs.current[getFeatureIndex('hygge-huts')]} onClick={() => setActiveId('hygge-huts')}>
                 <g id="number_x5F_17_00000132800195734320634840000012355709242346427790_">
                     <circle className="st49" cx={887.6} cy={1782.9} r={16.4} />
                     <rect x={871.2} y={1774.8} className="st0" width={32.7} height={24.5} />
@@ -8717,7 +8712,7 @@ function Map({ features, activeId, setActiveId }) {
                     />
                 </g>
                 </g>
-                <g id="beach" ref={elementsRef.current[getIndex('west-beach')]} onClick={() => setActiveId('west-beach')}>
+                <g id="beach" ref={refs.current[getFeatureIndex('west-beach')]} onClick={() => setActiveId('west-beach')}>
                 <g id="number_x5F_11_00000106109651198747998170000016811581086795586981_">
                     <circle className="st49" cx={702.1} cy={2020.7} r={16.4} />
                     <rect x={685.7} y={2012.6} className="st0" width={32.7} height={24.5} />
@@ -8925,9 +8920,9 @@ function Map({ features, activeId, setActiveId }) {
                     </g>
                 </g>
                 </g>
-                <g id="clubhouse" ref={elementsRef.current[getIndex('clubhouse')]} onClick={() => setActiveId('clubhouse')}>
-                <g id="number_x5F_2_00000034800061137457630840000016091598400730321803_">
-                    <circle className="st49" cx={1322.3} cy={1358.1} r={16.4} fill={activeId == 1 ? 'white' : '#000' }/>
+                <g id="clubhouse">
+                <g id="number_x5F_2_00000034800061137457630840000016091598400730321803_" ref={refs.current[getFeatureIndex('clubhouse')]} onClick={() => setActiveId('clubhouse')}>
+                    <circle className="st49" cx={1322.3} cy={1358.1} r={16.4}/>
                     <rect x={1305.9} y={1350} className="st0" width={32.7} height={24.5} />
                 </g>
                 <g id="clubhouse_00000165923118226393720310000005097905579075260856_">
@@ -9361,7 +9356,7 @@ function Map({ features, activeId, setActiveId }) {
                     />
                 </g>
                 </g>
-                <g id="entrance" ref={elementsRef.current[getIndex('entrance')]} onClick={() => setActiveId('entrance')}>
+                <g id="entrance" ref={refs.current[getFeatureIndex('entrance')]} onClick={() => setActiveId('entrance')}>
                 <g id="number_x5F_1_00000016756895272965621550000009197502897046271889_">
                     <circle className="st49" cx={1377} cy={500.5} r={16.4} />
                     <rect x={1360.6} y={492.4} className="st0" width={32.7} height={24.5} />
@@ -9455,7 +9450,7 @@ function Map({ features, activeId, setActiveId }) {
                     </g>
                 </g>
                 </g>
-                <g id="pool" ref={elementsRef.current[getIndex('pool')]} onClick={() => setActiveId('pool')}>
+                <g id="pool" ref={refs.current[getFeatureIndex('pool')]} onClick={() => setActiveId('pool')}>
                 <g id="pool_x5F_house_00000061430521809163919210000014528149155098831490_">
                     <rect
                     x={1486.2}
@@ -9499,7 +9494,7 @@ function Map({ features, activeId, setActiveId }) {
                     />
                     </g>
                 </g>
-                <g id="number_x5F_3_00000057851775433297583300000009085901277445126057_" ref={elementsRef.current[getIndex('pool')]} onClick={() => setActiveId('pool')}>
+                <g id="number_x5F_3_00000057851775433297583300000009085901277445126057_" ref={refs.current[getFeatureIndex('pool')]} onClick={() => setActiveId('pool')}>
                     <circle className="st49" cx={1627.1} cy={1078.9} r={16.4} />
                     <rect
                     x={1610.8}
@@ -10149,7 +10144,7 @@ function Map({ features, activeId, setActiveId }) {
                 />
                 <path className="st16" d="M-1489.4,1064.6" />
                 </g>
-                <g id="garden" ref={elementsRef.current[getIndex('garden')]} onClick={() => setActiveId('garden')}>
+                <g id="garden" ref={refs.current[getFeatureIndex('garden')]} onClick={() => setActiveId('garden')}>
                 <g id="garden_x5F_1_00000034802556566463890830000001840919954038566552_">
                     <path
                     id="garden_00000020358397139906613510000003151715362680924596_"
@@ -11265,21 +11260,3 @@ function Map({ features, activeId, setActiveId }) {
 }
 
 export default Map
-
-/*
-	<svg ref={mapRef} className="wrm__map" width={MAP_WIDTH}>  
-		// width={MAP_WIDTH} height={MAP_HEIGHT}>
-		// <image href={mapAsset} width="100%" alt="map" />
-		// <image href="./map.png" width="100%" alt="map" />
-		<rect x="0" y="0" width={MAP_WIDTH} height="1000" fill="#ceffcf" />
-		<rect ref={elementsRef.current[0]} onClick={() => setActiveId(0)} id={features[0].slug} x="100" y="100" width="100" height="100" fill={getColour(0)} />
-		<rect ref={elementsRef.current[1]} onClick={() => setActiveId(1)} id={features[1].slug} x="250" y="400" width="100" height="100" fill={getColour(1)} />
-		<rect ref={elementsRef.current[2]} onClick={() => setActiveId(2)} id={features[2].slug} x="700" y="350" width="100" height="100" fill={getColour(2)} />
-		<rect ref={elementsRef.current[3]} onClick={() => setActiveId(3)} id={features[3].slug} x="1200" y="800" width="100" height="100" fill={getColour(3)} />
-		<rect ref={elementsRef.current[4]} onClick={() => setActiveId(4)} id={features[4].slug} x="1400" y="400" width="100" height="100" fill={getColour(4)} />
-	</svg>
-	<li>
-		<button onClick={()=>{}}>zoom out</button>
-	</li>
-*/
-
