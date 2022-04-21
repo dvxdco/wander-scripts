@@ -32,17 +32,17 @@ function Map({ features, activeId, setActiveId }) {
 		})
 		
 		// center svg in container on first load
-        const startEl = document.getElementById(START_ON_FEATURE_ID);
-        if (startEl) {
-            const offsetY = containerRef.current.getBoundingClientRect().y
-            const rect = startEl.getBoundingClientRect()
-            const centerX = window.innerWidth / 2
-            const centerY =(window.innerHeight / 2) + offsetY // containerRef.current.clientHeight
-            const deltaX = centerX - (rect.x + rect.width / 2)
-            const deltaY = centerY - (rect.y + rect.height / 2)
+        // const startEl = document.getElementById(START_ON_FEATURE_ID);
+        // if (startEl) {
+        //     const offsetY = containerRef.current.getBoundingClientRect().y
+        //     const rect = startEl.getBoundingClientRect()
+        //     const centerX = window.innerWidth / 2
+        //     const centerY =(window.innerHeight / 2) + offsetY // containerRef.current.clientHeight
+        //     const deltaX = centerX - (rect.x + rect.width / 2)
+        //     const deltaY = centerY - (rect.y + rect.height / 2)
+        // }
 
-            panTo(getFeatureIndex(activeId))
-        }
+        panTo(getFeatureIndex(activeId))
 	}, [])
 
 	const panTo = (i) => {

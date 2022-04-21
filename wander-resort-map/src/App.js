@@ -20,9 +20,10 @@ function App({ data }) {
                     features.map((feature, index) => {
                         return (
                             <Card
-                                onClose={() => setActiveId(null)}
+                                index={index}
                                 active={(feature.slug === activeId ? 'active' : '')} 
-                                feature={feature} 
+                                feature={feature}
+                                onClose={() => setActiveId(null)}
                                 key={index} />
                         )
                     })
