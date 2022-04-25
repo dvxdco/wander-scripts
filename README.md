@@ -122,6 +122,8 @@ gliderEls.forEach((el, index) => {
     for (let s of multiImageScripts) {
         s.remove();
     };
+
+    // init bullet nav
     const bullets = el.querySelectorAll('.glide__bullet');
     bullets.forEach((bullet, i) => {
         bullet.setAttribute('data-glide-dir', `=${i}`);
