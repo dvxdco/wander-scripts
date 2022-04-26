@@ -6,6 +6,7 @@ import { Draggable } from 'gsap/Draggable' // https://greensock.com/docs/v2/Util
 const MAP_WIDTH = 3066
 const SCALE_FACTOR = 1
 const START_ON_FEATURE_ID = 'clubhouse'
+const TARGET_CLASSNAME = '.target'
 
 gsap.registerPlugin(Draggable)
 
@@ -15,18 +16,20 @@ function Map({ features, activeId, setActiveId }) {
 	const refs = useRef(features.map(() => createRef()))
 
 	useEffect(() => {
-        gsap.globalTimeline.clear()
-
         const index = getFeatureIndex(activeId);
         panTo(index)
 
-        const el = refs.current[index]?.current?.querySelector('.st49')
-        if (el) gsap.from(el, { opacity: 0.8, scale: 1.2, yoyo: true, repeat: -1, duration: 0.5, transformOrigin: 'center' })
+        gsap.set(TARGET_CLASSNAME, { opacity: 1, scale: 1 })
+        gsap.globalTimeline.killTweensOf(TARGET_CLASSNAME)
+
+        const el = refs.current[index]?.current?.querySelector(TARGET_CLASSNAME)
+        if (el) gsap.from(el, { opacity: 0.5, scale: 1.6, yoyo: true, repeat: -1, duration: 0.5, transformOrigin: 'center' })
 
     }, [activeId])
 
 	useEffect(() => {
 		Draggable.create(mapRef.current, {
+            dragClickables: false
 			// bounds: containerRef.current
 			// bounds: { minX: -100, minY: -100, maxX: 100, maxY: 100 }
 		})
@@ -50,17 +53,16 @@ function Map({ features, activeId, setActiveId }) {
 	}, [])
 
 	const panTo = (i) => {
-		const el = refs.current[i]?.current
-		if (el) {
-			gsap.to(mapRef.current, {
+		const el = refs.current[i]?.current    
+        if (el) {
+            gsap.to(mapRef.current, {
 				x: '+=1',
 				y: '+=1',
 				scale: SCALE_FACTOR,
 				duration: 0.3,
-				// ease: 'power1.out',
 				onUpdate: onUpdate(el)
 			})
-		}
+        }
     }
 
     const onUpdate = (el) => {
@@ -77,8 +79,7 @@ function Map({ features, activeId, setActiveId }) {
                 y: '+=' + deltaY,
                 scale: SCALE_FACTOR,
                 duration: gsap.utils.clamp(0, 1, this.duration() - this.time()),
-                overwrite: true,
-                ease: 'Power1.linear'
+                overwrite: true
             })
         }
     }
@@ -106,7 +107,6 @@ function Map({ features, activeId, setActiveId }) {
 
     return (
         <div ref={containerRef} className="wrm__svg-container">
-            {/* <button className="wrm__btn-zoom" onClick={zoomOut}>Zoom Out</button> */}
             <svg
                 ref={mapRef}
                 className="wrm__map"
@@ -122,7 +122,7 @@ function Map({ features, activeId, setActiveId }) {
             >
                 <style type="text/css">
                 {
-                    "\n\t.st0{fill:none;}\n\t.st1{fill:#221F20;}\n\t.st2{fill:#FCFBFA;}\n\t.st3{fill:#DBE3E6;stroke:#231F20;stroke-width:1.1261;stroke-miterlimit:10;stroke-dasharray:13.5134;}\n\t.st4{display:none;fill:#F3EDE7;}\n\t.st5{fill:#F3EDE7;}\n\t.st6{fill:#DBE3E6;}\n\t.st7{fill:#31353A;}\n\t.st8{fill:none;stroke:#231F20;stroke-width:1.0493;stroke-miterlimit:10;stroke-dasharray:12.5912;}\n\t.st9{fill:#C1C1C1;}\n\t.st10{fill:#EFEDEE;}\n\t.st11{opacity:0.2;fill:url(#concrete_x5F_1_00000013914539510649046590000003234145268987014319_);}\n\t.st12{clip-path:url(#SVGID_00000169535826978527267970000000560620837648970421_);}\n\t.st13{fill:#DFC38D;}\n\t.st14{fill:#DFC28D;}\n\t.st15{fill:#D0D7D5;}\n\t.st16{fill:#9AA8A3;}\n\t.st17{fill:none;stroke:#231F20;stroke-miterlimit:10;}\n\t.st18{clip-path:url(#SVGID_00000068642727842883211880000016815202025545845645_);}\n\t.st19{fill:#89725B;}\n\t.st20{clip-path:url(#SVGID_00000067231980881740217790000013995860042664470665_);}\n\t.st21{fill:#775B40;}\n\t.st22{fill:#765A40;}\n\t.st23{fill:#765A3F;}\n\t.st24{fill:#75593F;}\n\t.st25{fill:#74593F;}\n\t.st26{fill:#74583E;}\n\t.st27{fill:#73583E;}\n\t.st28{fill:#73573E;}\n\t.st29{fill:#72573E;}\n\t.st30{fill:#71563D;}\n\t.st31{fill:#70553D;}\n\t.st32{fill:#6F553C;}\n\t.st33{fill:#6F543C;}\n\t.st34{fill:#6E543C;}\n\t.st35{fill:#6D533B;}\n\t.st36{fill:#6C533B;}\n\t.st37{fill:#6C523B;}\n\t.st38{fill:#6B523A;}\n\t.st39{fill:#6A513A;}\n\t.st40{fill:#695039;}\n\t.st41{fill:#685039;}\n\t.st42{fill:#684F39;}\n\t.st43{fill:#674F39;}\n\t.st44{fill:#674E38;}\n\t.st45{fill:#664E38;}\n\t.st46{fill:#654D38;}\n\t.st47{fill:#654D37;}\n\t.st48{fill:#644C37;}\n\t.st49{fill:#232020;}\n\t.st50{font-family:'Silka-Medium';}\n\t.st51{font-size:18.107px;}\n\t.st52{clip-path:url(#SVGID_00000127024686017486938870000012016827620374362784_);}\n\t.st53{fill:#FFFFFF;}\n\t.st54{clip-path:url(#SVGID_00000176746704422470469490000017603084480147821489_);}\n\t.st55{fill:#413D39;}\n\t.st56{fill:#413C38;}\n\t.st57{fill:#403D38;}\n\t.st58{fill:none;stroke:#000000;stroke-width:0.3739;stroke-miterlimit:10;}\n\t.st59{clip-path:url(#SVGID_00000122717215163139859040000000263276653104887482_);}\n\t.st60{clip-path:url(#SVGID_00000129893613616994483280000005206001459751534261_);}\n\t.st61{clip-path:url(#SVGID_00000148622170580569275440000013176775446859459203_);}\n\t.st62{clip-path:url(#SVGID_00000072998682383109680700000003207290426543503266_);}\n\t.st63{clip-path:url(#SVGID_00000057126687826376484060000007226958765773566890_);}\n\t.st64{fill:#D1D8D6;stroke:#000000;stroke-width:0.3523;stroke-miterlimit:10;}\n\t.st65{clip-path:url(#SVGID_00000173155294428134619500000009558277558141792431_);}\n\t.st66{fill:none;stroke:#000000;stroke-width:0.2491;stroke-miterlimit:10;}\n\t.st67{fill:#D1D8D6;stroke:#000000;stroke-width:0.4706;stroke-miterlimit:10;}\n\t.st68{fill:#D1D8D6;stroke:#000000;stroke-width:0.343;stroke-miterlimit:10;}\n\t.st69{clip-path:url(#SVGID_00000054231343973343951820000011494983216288361379_);}\n\t.st70{clip-path:url(#SVGID_00000019670813428586374340000008666396712359386791_);}\n\t.st71{fill:#D1D8D6;stroke:#000000;stroke-width:0.3281;stroke-miterlimit:10;}\n\t.st72{clip-path:url(#SVGID_00000013171466231933331250000004435065116039395773_);}\n\t.st73{fill:#D1D8D6;stroke:#000000;stroke-width:0.4562;stroke-miterlimit:10;}\n\t.st74{fill:#D1D8D6;stroke:#000000;stroke-width:0.2467;stroke-miterlimit:10;}\n\t.st75{fill:#221E20;}\n\t.st76{font-size:21px;}\n\t.st77{fill:#EEE4D5;}\n\t.st78{fill:none;stroke:#231F20;stroke-width:1.0049;stroke-miterlimit:10;}\n\t.st79{clip-path:url(#watersport_x5F_shed_00000087399439025065051260000009169978029551698592_);}\n\t.st80{opacity:0.5;fill:#FFFFFF;}\n\t.st81{clip-path:url(#SVGID_00000064318663925090246940000003690716429116446907_);}\n\t.st82{fill:none;stroke:#7F6752;stroke-width:1.3571;stroke-linecap:round;stroke-miterlimit:10;}\n\t.st83{fill:#E8DCD1;}\n\t.st84{clip-path:url(#SVGID_00000098210040115459509840000016883440313305125773_);}\n\t.st85{fill:#01060C;}\n\t.st86{fill:#DBE3E6;stroke:#C3D3D8;stroke-miterlimit:10;}\n\t.st87{fill:#DBE3E6;stroke:#C3D3D8;stroke-width:0.9126;stroke-miterlimit:10;}\n\t.st88{fill:#E5D0AE;}\n\t.st89{clip-path:url(#SVGID_00000044145557996284170900000005129695643396208809_);}\n\t.st90{fill:#7F6752;}\n\t.st91{clip-path:url(#SVGID_00000019668378764285328780000003846494413402668702_);}\n\t.st92{fill:#936B71;}\n\t.st93{fill:#CC9777;}\n\t.st94{fill:#687E77;}\n\t.st95{fill:#DED4CC;}\n\t.st96{fill:#CBBCB1;}\n\t.st97{fill:#D1D8D6;stroke:#000000;stroke-width:0.5;stroke-miterlimit:10;}\n\t.st98{fill:#D1D8D6;stroke:#000000;stroke-width:0.4139;stroke-miterlimit:10;}\n\t.st99{fill:none;stroke:#231F20;stroke-width:0.7431;stroke-miterlimit:10;}\n\t.st100{fill:#D1D8D6;stroke:#000000;stroke-width:0.3171;stroke-miterlimit:10;}\n\t.st101{fill:#D1D8D6;stroke:#000000;stroke-width:0.5099;stroke-miterlimit:10;}\n\t.st102{fill:#D1D8D6;stroke:#000000;stroke-width:0.2673;stroke-miterlimit:10;}\n\t.st103{fill:#D1D8D6;stroke:#000000;stroke-width:0.2763;stroke-miterlimit:10;}\n"
+                    "\n\t.st0{fill:none;}\n\t.st1{fill:#221F20;}\n\t.st2{fill:#FCFBFA;}\n\t.st3{fill:#DBE3E6;stroke:#231F20;stroke-width:1.1261;stroke-miterlimit:10;stroke-dasharray:13.5134;}\n\t.st4{display:none;fill:#F3EDE7;}\n\t.st5{fill:#F3EDE7;}\n\t.st6{fill:#DBE3E6;}\n\t.st7{fill:#31353A;}\n\t.st8{fill:none;stroke:#231F20;stroke-width:1.0493;stroke-miterlimit:10;stroke-dasharray:12.5912;}\n\t.st9{fill:#C1C1C1;}\n\t.st10{fill:#EFEDEE;}\n\t.st11{opacity:0.2;fill:url(#concrete_x5F_1_00000013914539510649046590000003234145268987014319_);}\n\t.st12{clip-path:url(#SVGID_00000169535826978527267970000000560620837648970421_);}\n\t.st13{fill:#DFC38D;}\n\t.st14{fill:#DFC28D;}\n\t.st15{fill:#D0D7D5;}\n\t.st16{fill:#9AA8A3;}\n\t.st17{fill:none;stroke:#231F20;stroke-miterlimit:10;}\n\t.st18{clip-path:url(#SVGID_00000068642727842883211880000016815202025545845645_);}\n\t.st19{fill:#89725B;}\n\t.st20{clip-path:url(#SVGID_00000067231980881740217790000013995860042664470665_);}\n\t.st21{fill:#775B40;}\n\t.st22{fill:#765A40;}\n\t.st23{fill:#765A3F;}\n\t.st24{fill:#75593F;}\n\t.st25{fill:#74593F;}\n\t.st26{fill:#74583E;}\n\t.st27{fill:#73583E;}\n\t.st28{fill:#73573E;}\n\t.st29{fill:#72573E;}\n\t.st30{fill:#71563D;}\n\t.st31{fill:#70553D;}\n\t.st32{fill:#6F553C;}\n\t.st33{fill:#6F543C;}\n\t.st34{fill:#6E543C;}\n\t.st35{fill:#6D533B;}\n\t.st36{fill:#6C533B;}\n\t.st37{fill:#6C523B;}\n\t.st38{fill:#6B523A;}\n\t.st39{fill:#6A513A;}\n\t.st40{fill:#695039;}\n\t.st41{fill:#685039;}\n\t.st42{fill:#684F39;}\n\t.st43{fill:#674F39;}\n\t.st44{fill:#674E38;}\n\t.st45{fill:#664E38;}\n\t.st46{fill:#654D38;}\n\t.st47{fill:#654D37;}\n\t.st48{fill:#644C37;}\n\t.target{fill:#232020;}\n\t.st50{font-family:'Silka-Medium';}\n\t.st51{font-size:18.107px;}\n\t.st52{clip-path:url(#SVGID_00000127024686017486938870000012016827620374362784_);}\n\t.st53{fill:#FFFFFF;}\n\t.st54{clip-path:url(#SVGID_00000176746704422470469490000017603084480147821489_);}\n\t.st55{fill:#413D39;}\n\t.st56{fill:#413C38;}\n\t.st57{fill:#403D38;}\n\t.st58{fill:none;stroke:#000000;stroke-width:0.3739;stroke-miterlimit:10;}\n\t.st59{clip-path:url(#SVGID_00000122717215163139859040000000263276653104887482_);}\n\t.st60{clip-path:url(#SVGID_00000129893613616994483280000005206001459751534261_);}\n\t.st61{clip-path:url(#SVGID_00000148622170580569275440000013176775446859459203_);}\n\t.st62{clip-path:url(#SVGID_00000072998682383109680700000003207290426543503266_);}\n\t.st63{clip-path:url(#SVGID_00000057126687826376484060000007226958765773566890_);}\n\t.st64{fill:#D1D8D6;stroke:#000000;stroke-width:0.3523;stroke-miterlimit:10;}\n\t.st65{clip-path:url(#SVGID_00000173155294428134619500000009558277558141792431_);}\n\t.st66{fill:none;stroke:#000000;stroke-width:0.2491;stroke-miterlimit:10;}\n\t.st67{fill:#D1D8D6;stroke:#000000;stroke-width:0.4706;stroke-miterlimit:10;}\n\t.st68{fill:#D1D8D6;stroke:#000000;stroke-width:0.343;stroke-miterlimit:10;}\n\t.st69{clip-path:url(#SVGID_00000054231343973343951820000011494983216288361379_);}\n\t.st70{clip-path:url(#SVGID_00000019670813428586374340000008666396712359386791_);}\n\t.st71{fill:#D1D8D6;stroke:#000000;stroke-width:0.3281;stroke-miterlimit:10;}\n\t.st72{clip-path:url(#SVGID_00000013171466231933331250000004435065116039395773_);}\n\t.st73{fill:#D1D8D6;stroke:#000000;stroke-width:0.4562;stroke-miterlimit:10;}\n\t.st74{fill:#D1D8D6;stroke:#000000;stroke-width:0.2467;stroke-miterlimit:10;}\n\t.st75{fill:#221E20;}\n\t.st76{font-size:21px;}\n\t.st77{fill:#EEE4D5;}\n\t.st78{fill:none;stroke:#231F20;stroke-width:1.0049;stroke-miterlimit:10;}\n\t.st79{clip-path:url(#watersport_x5F_shed_00000087399439025065051260000009169978029551698592_);}\n\t.st80{opacity:0.5;fill:#FFFFFF;}\n\t.st81{clip-path:url(#SVGID_00000064318663925090246940000003690716429116446907_);}\n\t.st82{fill:none;stroke:#7F6752;stroke-width:1.3571;stroke-linecap:round;stroke-miterlimit:10;}\n\t.st83{fill:#E8DCD1;}\n\t.st84{clip-path:url(#SVGID_00000098210040115459509840000016883440313305125773_);}\n\t.st85{fill:#01060C;}\n\t.st86{fill:#DBE3E6;stroke:#C3D3D8;stroke-miterlimit:10;}\n\t.st87{fill:#DBE3E6;stroke:#C3D3D8;stroke-width:0.9126;stroke-miterlimit:10;}\n\t.st88{fill:#E5D0AE;}\n\t.st89{clip-path:url(#SVGID_00000044145557996284170900000005129695643396208809_);}\n\t.st90{fill:#7F6752;}\n\t.st91{clip-path:url(#SVGID_00000019668378764285328780000003846494413402668702_);}\n\t.st92{fill:#936B71;}\n\t.st93{fill:#CC9777;}\n\t.st94{fill:#687E77;}\n\t.st95{fill:#DED4CC;}\n\t.st96{fill:#CBBCB1;}\n\t.st97{fill:#D1D8D6;stroke:#000000;stroke-width:0.5;stroke-miterlimit:10;}\n\t.st98{fill:#D1D8D6;stroke:#000000;stroke-width:0.4139;stroke-miterlimit:10;}\n\t.st99{fill:none;stroke:#231F20;stroke-width:0.7431;stroke-miterlimit:10;}\n\t.st100{fill:#D1D8D6;stroke:#000000;stroke-width:0.3171;stroke-miterlimit:10;}\n\t.st101{fill:#D1D8D6;stroke:#000000;stroke-width:0.5099;stroke-miterlimit:10;}\n\t.st102{fill:#D1D8D6;stroke:#000000;stroke-width:0.2673;stroke-miterlimit:10;}\n\t.st103{fill:#D1D8D6;stroke:#000000;stroke-width:0.2763;stroke-miterlimit:10;}\n"
                 }
                 </style>
                 <pattern
@@ -3781,7 +3781,7 @@ function Map({ features, activeId, setActiveId }) {
                     <path d="M848.3,1639.3v30.9c-2.9,1.3-6.1,2-9.5,2c-2.3,0-4.4-0.3-6.5-0.9v-32H848.3z" />
                 </g>
                 <g id="number_x5F_22_00000023252391697160742780000004388577723385950881_">
-                    <circle className="st49" cx={763.7} cy={1639.3} r={16.4} />
+                    <circle className="target" cx={763.7} cy={1639.3} r={16.4} />
                     <rect x={747.3} y={1631.2} className="st0" width={32.7} height={24.5} />
                 </g>
                 </g>
@@ -4038,7 +4038,7 @@ function Map({ features, activeId, setActiveId }) {
                     <path d="M1830.4,1022.1v30.9c-2.9,1.3-6.1,2-9.5,2c-2.3,0-4.4-0.3-6.5-0.9v-32H1830.4z" />
                 </g>
                 <g id="number_x5F_21">
-                    <circle className="st49" cx={1810.2} cy={971.2} r={16.4} />
+                    <circle className="target" cx={1810.2} cy={971.2} r={16.4} />
                     <rect x={1793.8} y={963.1} className="st0" width={32.7} height={24.5} />
                 </g>
                 </g>
@@ -4406,7 +4406,7 @@ function Map({ features, activeId, setActiveId }) {
                     />
                 </g>
                 <g id="number_x5F_4_00000064330515042447884340000014860808642960202409_">
-                    <circle className="st49" cx={1782.7} cy={1361.9} r={16.4} />
+                    <circle className="target" cx={1782.7} cy={1361.9} r={16.4} />
                     <rect
                     x={1766.3}
                     y={1353.8}
@@ -4780,7 +4780,7 @@ function Map({ features, activeId, setActiveId }) {
                     />
                 </g>
                 <g id="number_x5F_5">
-                    <circle className="st49" cx={1782.7} cy={1450} r={16.4} />
+                    <circle className="target" cx={1782.7} cy={1450} r={16.4} />
                     <rect
                     x={1766.3}
                     y={1441.9}
@@ -4792,7 +4792,7 @@ function Map({ features, activeId, setActiveId }) {
                 </g>
                 <g id="marigold">
                 <g id="number_x5F_6_00000150815969213562362460000016754990297357757349_">
-                    <circle className="st49" cx={1841.3} cy={1516.9} r={16.4} />
+                    <circle className="target" cx={1841.3} cy={1516.9} r={16.4} />
                     <rect x={1825} y={1508.8} className="st0" width={32.7} height={24.5} />
                 </g>
                 <g id="marigold_00000047056573758004480460000007315647101699064451_">
@@ -5140,7 +5140,7 @@ function Map({ features, activeId, setActiveId }) {
                 </g>
                 <g id="hawthorn">
                 <g id="number_x5F_7">
-                    <circle className="st49" cx={1710.2} cy={1516.9} r={16.4} />
+                    <circle className="target" cx={1710.2} cy={1516.9} r={16.4} />
                     <rect
                     x={1693.9}
                     y={1508.8}
@@ -5844,7 +5844,7 @@ function Map({ features, activeId, setActiveId }) {
                     />
                 </g>
                 <g id="number_x5F_8_00000062903357229076888600000005977772675014731940_">
-                    <circle className="st49" cx={1573.7} cy={1516.9} r={16.4} />
+                    <circle className="target" cx={1573.7} cy={1516.9} r={16.4} />
                     <rect
                     x={1557.4}
                     y={1508.8}
@@ -6282,7 +6282,7 @@ function Map({ features, activeId, setActiveId }) {
                     </g>
                 </g>
                 <g id="number_x5F_9">
-                    <circle className="st49" cx={1427.8} cy={1516.9} r={16.4} />
+                    <circle className="target" cx={1427.8} cy={1516.9} r={16.4} />
                     <rect
                     x={1411.4}
                     y={1508.8}
@@ -6654,7 +6654,7 @@ function Map({ features, activeId, setActiveId }) {
                     />
                 </g>
                 <g id="number_x5F_13_00000139262215047453471340000000794600045570747540_">
-                    <circle className="st49" cx={1078.5} cy={1503.4} r={16.4} />
+                    <circle className="target" cx={1078.5} cy={1503.4} r={16.4} />
                     <rect
                     x={1062.2}
                     y={1495.3}
@@ -7034,7 +7034,7 @@ function Map({ features, activeId, setActiveId }) {
                     />
                 </g>
                 <g id="number_x5F_14_00000091734451674143204760000013355995576274224826_">
-                    <circle className="st49" cx={1059.6} cy={1655.3} r={16.4} />
+                    <circle className="target" cx={1059.6} cy={1655.3} r={16.4} />
                     <rect
                     x={1043.2}
                     y={1647.2}
@@ -7067,7 +7067,7 @@ function Map({ features, activeId, setActiveId }) {
                     d="M1124.2,1821.9 c-2.8,3-7.3,9.3-28.3,9.4l-71.5,0.3c-26.2,0.1-32.4-4.8-37.5-7.9c-10.5-6.3-20.6-18.2-16.2-25.3c0.1-0.2,0.3-0.4,0.4-0.6h155.2 C1131.2,1804.9,1130.3,1815.3,1124.2,1821.9z"
                 />
                 <g id="number_x5F_15_00000120522781592085135030000006738843611185145486_">
-                    <circle className="st49" cx={1041} cy={1825.1} r={16.4} />
+                    <circle className="target" cx={1041} cy={1825.1} r={16.4} />
                     <rect
                     x={1024.7}
                     y={1817.1}
@@ -7447,7 +7447,7 @@ function Map({ features, activeId, setActiveId }) {
                     d="M1107.7,1957.1 c1.3-0.7,2.1-1.7,2.4-2.9c0.3-1.2,0-2.6-1-3.4c-0.9-0.7-2-0.7-3.1-0.7c-42-0.5-84-2.1-126-2.3c-2.3,0-4.7,0-6.9,0.7 s-4.2,2.4-4.8,4.6c-0.8,3.1,1.3,6.3,4.1,7.7s6.1,1.6,9.2,1.8c7,0.3,13.9,0.6,20.9,0.9c12.8,0.5,26.2,2.6,38.8,1.6 c8.4-0.7,16.7-1.5,25-2.3c7.2-0.7,14.3-1.8,21.4-2.6C1091.9,1959.6,1102.7,1960,1107.7,1957.1z"
                 />
                 <g id="number_x5F_16_00000124874604501900005600000011631396578026578337_">
-                    <circle className="st49" cx={1026.3} cy={1982.2} r={16.4} />
+                    <circle className="target" cx={1026.3} cy={1982.2} r={16.4} />
                     <rect
                     x={1009.9}
                     y={1974.1}
@@ -7832,7 +7832,7 @@ function Map({ features, activeId, setActiveId }) {
                 </g>
                 <g id="direction_x5F_sign_00000031201554951121862200000011097329147039634325_">
                 <g id="direction_x5F_sign">
-                    <circle className="st49" cx={2173.2} cy={309.6} r={56.6} />
+                    <circle className="target" cx={2173.2} cy={309.6} r={56.6} />
                     <g>
                     <path
                         className="st77"
@@ -7883,13 +7883,13 @@ function Map({ features, activeId, setActiveId }) {
                     />
                 </g>
                 <g id="number_x5F_18_00000101783241007786316930000017940509475484058514_">
-                    <circle className="st49" cx={1222.5} cy={955.1} r={16.4} />
+                    <circle className="target" cx={1222.5} cy={955.1} r={16.4} />
                     <rect x={1206.1} y={947} className="st0" width={32.7} height={24.5} />
                 </g>
                 </g>
                 <g id="firepit" ref={refs.current[getFeatureIndex('firepit')]} onClick={() => setActiveId('firepit')}>
                 <g id="number_x5F_10">
-                    <circle className="st49" cx={1272.7} cy={2160.7} r={16.4} />
+                    <circle className="target" cx={1272.7} cy={2160.7} r={16.4} />
                     <rect
                     x={1256.4}
                     y={2152.6}
@@ -7910,7 +7910,7 @@ function Map({ features, activeId, setActiveId }) {
                     x={1322.7}
                     y={1947.2}
                     transform="matrix(-1.836970e-16 1 -1 -1.836970e-16 3340.4788 614.8843)"
-                    className="st49"
+                    className="target"
                     width={80.2}
                     height={60.9}
                 />
@@ -8147,7 +8147,7 @@ function Map({ features, activeId, setActiveId }) {
                     </g>
                 </g>
                 <g id="number_x5F_23_00000089572521622399127980000002103943075686610355_">
-                    <circle className="st49" cx={1362.2} cy={1979} r={16.4} />
+                    <circle className="target" cx={1362.2} cy={1979} r={16.4} />
                     <rect
                     x={1345.9}
                     y={1970.9}
@@ -8159,7 +8159,7 @@ function Map({ features, activeId, setActiveId }) {
                 </g>
                 <g id="poolside_x5F_firepit">
                 <g id="number_x5F_19">
-                    <circle className="st49" cx={1621.5} cy={1373.9} r={16.4} />
+                    <circle className="target" cx={1621.5} cy={1373.9} r={16.4} />
                     <rect
                     x={1605.1}
                     y={1365.8}
@@ -8176,7 +8176,7 @@ function Map({ features, activeId, setActiveId }) {
                 </g>
                 <g id="wanderhaus_x5F_firepit">
                 <g id="number_x5F_27_00000118370965685420582400000016786498445893895323_">
-                    <circle className="st49" cx={1999.5} cy={2041.9} r={16.4} />
+                    <circle className="target" cx={1999.5} cy={2041.9} r={16.4} />
                     <rect
                     x={1983.1}
                     y={2033.8}
@@ -8193,7 +8193,7 @@ function Map({ features, activeId, setActiveId }) {
                 </g>
                 <g id="hygge_x5F_hut" ref={refs.current[getFeatureIndex('hygge-huts')]} onClick={() => setActiveId('hygge-huts')}>
                 <g id="number_x5F_17_00000132800195734320634840000012355709242346427790_">
-                    <circle className="st49" cx={887.6} cy={1782.9} r={16.4} />
+                    <circle className="target" cx={887.6} cy={1782.9} r={16.4} />
                     <rect x={871.2} y={1774.8} className="st0" width={32.7} height={24.5} />
                 </g>
                 <g id="hygge_x5F_hut_00000034790574001023948490000012337954484938666648_">
@@ -8375,7 +8375,7 @@ function Map({ features, activeId, setActiveId }) {
                 </g>
                 <g id="wander_x5F_haus">
                 <g id="number_x5F_12_00000023268199903864580900000017073834424035530925_">
-                    <circle className="st49" cx={2003.2} cy={1195.2} r={16.4} />
+                    <circle className="target" cx={2003.2} cy={1195.2} r={16.4} />
                     <rect
                     x={1986.9}
                     y={1187.1}
@@ -8718,7 +8718,7 @@ function Map({ features, activeId, setActiveId }) {
                 </g>
                 <g id="beach" ref={refs.current[getFeatureIndex('west-beach')]} onClick={() => setActiveId('west-beach')}>
                 <g id="number_x5F_11_00000106109651198747998170000016811581086795586981_">
-                    <circle className="st49" cx={702.1} cy={2020.7} r={16.4} />
+                    <circle className="target" cx={702.1} cy={2020.7} r={16.4} />
                     <rect x={685.7} y={2012.6} className="st0" width={32.7} height={24.5} />
                 </g>
                 <g id="beach_x5F_11_00000127008888012012947670000011419874992290797716_">
@@ -8729,7 +8729,7 @@ function Map({ features, activeId, setActiveId }) {
                 </g>
                 <g id="beach_x5F_bar">
                 <g id="number_x5F_24_00000057111866810192317760000004095276210524419750_">
-                    <circle className="st49" cx={1362.2} cy={1831.9} r={16.4} />
+                    <circle className="target" cx={1362.2} cy={1831.9} r={16.4} />
                     <rect
                     x={1345.9}
                     y={1823.8}
@@ -8829,7 +8829,7 @@ function Map({ features, activeId, setActiveId }) {
                     y2={1915.4}
                     />
                     <path
-                    className="st49"
+                    className="target"
                     d="M1346.7,1909.1h-9.6c-1,0-1.8-0.8-1.8-1.8v-1.3c0-1,0.8-1.8,1.8-1.8h9.6c1,0,1.8,0.8,1.8,1.8v1.3 C1348.5,1908.3,1347.7,1909.1,1346.7,1909.1z"
                     />
                 </g>
@@ -8856,7 +8856,7 @@ function Map({ features, activeId, setActiveId }) {
                     y2={1915.4}
                     />
                     <path
-                    className="st49"
+                    className="target"
                     d="M1368.3,1909.1h-9.6c-1,0-1.8-0.8-1.8-1.8v-1.3c0-1,0.8-1.8,1.8-1.8h9.6c1,0,1.8,0.8,1.8,1.8v1.3 C1370.1,1908.3,1369.3,1909.1,1368.3,1909.1z"
                     />
                 </g>
@@ -8871,7 +8871,7 @@ function Map({ features, activeId, setActiveId }) {
                     <line className="st82" x1={1389} y1={1909.1} x2={1391.4} y2={1924.7} />
                     <line className="st82" x1={1379.7} y1={1915.4} x2={1390} y2={1915.4} />
                     <path
-                    className="st49"
+                    className="target"
                     d="M1389.7,1909.1h-9.6c-1,0-1.8-0.8-1.8-1.8v-1.3c0-1,0.8-1.8,1.8-1.8h9.6c1,0,1.8,0.8,1.8,1.8v1.3 C1391.4,1908.3,1390.6,1909.1,1389.7,1909.1z"
                     />
                 </g>
@@ -8886,7 +8886,7 @@ function Map({ features, activeId, setActiveId }) {
                     height={103.9}
                 />
                 <g id="number_x5F_24_00000043459659730181824270000007982033173238552200_">
-                    <circle className="st49" cx={638.7} cy={1805.6} r={16.4} />
+                    <circle className="target" cx={638.7} cy={1805.6} r={16.4} />
                     <rect x={622.3} y={1797.5} className="st0" width={32.7} height={24.5} />
                 </g>
                 </g>
@@ -8926,7 +8926,7 @@ function Map({ features, activeId, setActiveId }) {
                 </g>
                 <g id="clubhouse">
                 <g id="number_x5F_2_00000034800061137457630840000016091598400730321803_" ref={refs.current[getFeatureIndex('clubhouse')]} onClick={() => setActiveId('clubhouse')}>
-                    <circle className="st49" cx={1322.3} cy={1358.1} r={16.4}/>
+                    <circle className="target" cx={1322.3} cy={1358.1} r={16.4}/>
                     <rect x={1305.9} y={1350} className="st0" width={32.7} height={24.5} />
                 </g>
                 <g id="clubhouse_00000165923118226393720310000005097905579075260856_">
@@ -9362,7 +9362,7 @@ function Map({ features, activeId, setActiveId }) {
                 </g>
                 <g id="entrance" ref={refs.current[getFeatureIndex('entrance')]} onClick={() => setActiveId('entrance')}>
                 <g id="number_x5F_1_00000016756895272965621550000009197502897046271889_">
-                    <circle className="st49" cx={1377} cy={500.5} r={16.4} />
+                    <circle className="target" cx={1377} cy={500.5} r={16.4} />
                     <rect x={1360.6} y={492.4} className="st0" width={32.7} height={24.5} />
                 </g>
                 <g id="entrance_x5F_sign_00000088110092180898347320000005697762295219413909_">
@@ -9499,7 +9499,7 @@ function Map({ features, activeId, setActiveId }) {
                     </g>
                 </g>
                 <g id="number_x5F_3_00000057851775433297583300000009085901277445126057_" ref={refs.current[getFeatureIndex('pool')]} onClick={() => setActiveId('pool')}>
-                    <circle className="st49" cx={1627.1} cy={1078.9} r={16.4} />
+                    <circle className="target" cx={1627.1} cy={1078.9} r={16.4} />
                     <rect
                     x={1610.8}
                     y={1070.8}
@@ -9632,7 +9632,7 @@ function Map({ features, activeId, setActiveId }) {
                     </g>
                 </g>
                 <g id="number_x5F_26_00000053527557432891037280000016113692664807930769_">
-                    <circle className="st49" cx={816.8} cy={941} r={16.4} />
+                    <circle className="target" cx={816.8} cy={941} r={16.4} />
                 </g>
                 </g>
                 <g id="dock">
@@ -10323,7 +10323,7 @@ function Map({ features, activeId, setActiveId }) {
                     </g>
                 </g>
                 <g id="number_x5F_20_00000127013362760541884350000001840059536724303763_">
-                    <circle className="st49" cx={890.1} cy={1078.9} r={16.4} />
+                    <circle className="target" cx={890.1} cy={1078.9} r={16.4} />
                     <rect x={873.8} y={1070.8} className="st0" width={32.7} height={24.5} />
                 </g>
                 </g>

@@ -70,8 +70,22 @@ To add glide sliders to a page:
 <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Glide.js/3.2.0/css/glide.core.css" integrity="sha512-ShLuspGzRsTiMlQ2Rg0e+atjy/gVQr3oYKnKmQkHQ6sxcnDAEOtOaPz2rRmeygV2CtnwUawDyHkGgH4zUbP3Hw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 ``` 
-2. Copy and paste existing `glide` layer from `Slider Example` page.
+2. Copy and paste existing `glide` symbol and UNLINK to associate with CMS collection.
 ```
+<style>
+.glide__controls {
+	pointer-events: none;
+}
+.glide__controls .glide__arrow {
+	pointer-events: auto;
+}
+.glide__bullet .glide__bullet-btn {
+	color: #999 !important;
+}
+.glide__bullet--active  .glide__bullet-btn {
+	color: black !important;
+}
+</style>
 <script>
 // GLIDE SLIDERS
 const glides = [];

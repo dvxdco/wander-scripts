@@ -63,10 +63,6 @@
     background-color: inherit;
 }
 
-svg.wrm__map circle {
-    transition: fill 0.3s ease;
-}
-
 /*
 @media screen and (min-width: 768px) {
     .wrm__wrap {
@@ -167,14 +163,19 @@ svg.wrm__map circle {
     position: relative;
     overflow: hidden;
     background-color: #fcfbfa;
-    height: 95vh;
+    /* height: 95vh; */
 
     min-width: 2000px;
     width: 150vw;
 }
 
 .wrm__svg-container svg {
-    transform: translate(-15%, -25%);
+    touch-action: auto !important;
+    /* pointer-events: none; */
+}
+
+svg.wrm__map circle {
+    pointer-events: auto;
 }
 
 /* Card */
