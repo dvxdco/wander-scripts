@@ -15,6 +15,8 @@ function Map({ features, activeId, setActiveId }) {
     const mapRef = useRef()
 	const refs = useRef(features.map(() => createRef()))
 
+    console.log(refs)
+
 	useEffect(() => {
         const index = getFeatureIndex(activeId);
         panTo(index)
@@ -54,6 +56,9 @@ function Map({ features, activeId, setActiveId }) {
 
 	const panTo = (i) => {
 		const el = refs.current[i]?.current    
+
+        console.log('panTo:', activeId, i, el);
+
         if (el) {
             gsap.to(mapRef.current, {
 				x: '+=1',
@@ -4042,7 +4047,7 @@ function Map({ features, activeId, setActiveId }) {
                     <rect x={1793.8} y={963.1} className="st0" width={32.7} height={24.5} />
                 </g>
                 </g>
-                <g id="avens">
+                <g id="avens" ref={refs.current[getFeatureIndex('avens')]} onClick={() => setActiveId('avens')}>
                 <g id="avens_00000181055015135456625990000009150274319553716642_">
                     <path
                     className="st53"
@@ -4416,7 +4421,7 @@ function Map({ features, activeId, setActiveId }) {
                     />
                 </g>
                 </g>
-                <g id="honeysuckle">
+                <g id="honeysuckle" ref={refs.current[getFeatureIndex('honeysuckle')]} onClick={() => setActiveId('honeysuckle')}>
                 <g id="honeysuckle_00000137119991893416817190000001651659658016626597_">
                     <path
                     className="st53"
@@ -4790,7 +4795,7 @@ function Map({ features, activeId, setActiveId }) {
                     />
                 </g>
                 </g>
-                <g id="marigold">
+                <g id="marigold" ref={refs.current[getFeatureIndex('marigold')]} onClick={() => setActiveId('marigold')}>
                 <g id="number_x5F_6_00000150815969213562362460000016754990297357757349_">
                     <circle className="target" cx={1841.3} cy={1516.9} r={16.4} />
                     <rect x={1825} y={1508.8} className="st0" width={32.7} height={24.5} />
@@ -5138,7 +5143,7 @@ function Map({ features, activeId, setActiveId }) {
                     />
                 </g>
                 </g>
-                <g id="hawthorn">
+                <g id="hawthorn" ref={refs.current[getFeatureIndex('hawthorn')]} onClick={() => setActiveId('hawthorn')}>
                 <g id="number_x5F_7">
                     <circle className="target" cx={1710.2} cy={1516.9} r={16.4} />
                     <rect
@@ -5496,7 +5501,7 @@ function Map({ features, activeId, setActiveId }) {
                     />
                 </g>
                 </g>
-                <g id="burdock">
+                <g id="burdock" ref={refs.current[getFeatureIndex('burdock')]} onClick={() => setActiveId('burdock')}>
                 <g id="burdock_00000031197789946332027180000012639391321289743504_">
                     <path
                     className="st53"
@@ -5855,7 +5860,7 @@ function Map({ features, activeId, setActiveId }) {
                 </g>
                 </g>
                 <g id="aster_00000136398243269036982340000008860097355541675423_">
-                <g id="aster">
+                <g id="aster" ref={refs.current[getFeatureIndex('aster')]} onClick={() => setActiveId('aster')}>
                     <path
                     className="st53"
                     d="M1377.7,1572.2v40.2h51.1v-40.2l-25.5-29.5L1377.7,1572.2z"
@@ -6292,7 +6297,7 @@ function Map({ features, activeId, setActiveId }) {
                     />
                 </g>
                 </g>
-                <g id="bellflower">
+                <g id="bellflower" ref={refs.current[getFeatureIndex('bellflower')]} onClick={() => setActiveId('bellflower')}>
                 <path
                     id="grass_x5F_patch_00000170989598902757674180000005184264912895068325_"
                     className="st15"
@@ -6680,7 +6685,7 @@ function Map({ features, activeId, setActiveId }) {
                     </g>
                 </g>
                 </g>
-                <g id="juneberry">
+                <g id="juneberry" ref={refs.current[getFeatureIndex('juneberry')]} onClick={() => setActiveId('juneberry')}>
                 <path
                     id="grass_x5F_patch_00000154390654084850589950000007585338423918136971_"
                     className="st15"
@@ -7060,7 +7065,7 @@ function Map({ features, activeId, setActiveId }) {
                     </g>
                 </g>
                 </g>
-                <g id="meadowrue">
+                <g id="meadowrue" ref={refs.current[getFeatureIndex('meadowrue')]} onClick={() => setActiveId('meadowrue')}>
                 <path
                     id="grass_x5F_patch_00000095297469953212453680000015019152172432392083_"
                     className="st15"
@@ -8373,7 +8378,7 @@ function Map({ features, activeId, setActiveId }) {
                     </g>
                 </g>
                 </g>
-                <g id="wander_x5F_haus">
+                <g id="wander_x5F_haus" ref={refs.current[getFeatureIndex('wander-haus')]} onClick={() => setActiveId('wander-haus')}>>
                 <g id="number_x5F_12_00000023268199903864580900000017073834424035530925_">
                     <circle className="target" cx={2003.2} cy={1195.2} r={16.4} />
                     <rect
@@ -8727,7 +8732,7 @@ function Map({ features, activeId, setActiveId }) {
                     </g>
                 </g>
                 </g>
-                <g id="beach_x5F_bar">
+                <g id="cabana" ref={refs.current[getFeatureIndex('cabana')]} onClick={() => setActiveId('cabana')}>
                 <g id="number_x5F_24_00000057111866810192317760000004095276210524419750_">
                     <circle className="target" cx={1362.2} cy={1831.9} r={16.4} />
                     <rect
