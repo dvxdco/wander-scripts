@@ -28,6 +28,7 @@
 .wrm h3 {
     font-size: 16px;
     font-weight: 600;
+    margin-top: 0;
 }
 
 .wrm p {
@@ -193,13 +194,13 @@ svg.wrm__map circle {
     background-color: var(--color-allseason);
 
     margin: 2rem 1rem 1rem 1rem;
-    padding: 0rem 1rem 0rem 1rem;
+    padding: 1.5rem;
 
     opacity: 0;
     transform: translate3d(25%, -50%, 0);
     transition: opacity 0.325s ease-in, transform 0.325s ease-in;
 
-    max-height: 70vh;
+    /* max-height: 70vh; */
     overflow-y: auto;
 }
 .wrm__card.active {
@@ -226,7 +227,6 @@ svg.wrm__map circle {
         
         width: 33.333%;
         margin: 2rem;
-        padding: 1rem 2rem 1rem 2rem;
         transform: translate3d(25%, -50%, 0);
     }
     .wrm__card.active {
@@ -241,11 +241,14 @@ svg.wrm__map circle {
 .wrm__card p,
 .wrm__card a {
     display: block;
-    padding-bottom: 1rem;
 }
 
 .wrm__card a {
     cursor: pointer;
+}
+
+.wrm__card img {
+    margin-top: 1rem;
 }
 
 .wrm__close {

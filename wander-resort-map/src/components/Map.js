@@ -15,8 +15,6 @@ function Map({ features, activeId, setActiveId }) {
     const mapRef = useRef()
 	const refs = useRef(features.map(() => createRef()))
 
-    console.log(refs)
-
 	useEffect(() => {
         const index = getFeatureIndex(activeId);
         panTo(index)
@@ -55,10 +53,7 @@ function Map({ features, activeId, setActiveId }) {
 	}, [])
 
 	const panTo = (i) => {
-		const el = refs.current[i]?.current    
-
-        console.log('panTo:', activeId, i, el);
-
+		const el = refs.current[i]?.current
         if (el) {
             gsap.to(mapRef.current, {
 				x: '+=1',

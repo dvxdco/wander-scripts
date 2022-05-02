@@ -13,7 +13,8 @@ resortMapFeatureEls.forEach((feature) => {
         slug: feature.getAttribute('data-slug').toLowerCase(),
         name: feature.getAttribute('data-name'),
         desc: feature.getAttribute('data-desc'),
-        hero: feature.getAttribute('data-hero')
+        hero: feature.getAttribute('data-hero'),
+        gallery: feature.getAttribute('data-gallery')
     })
 })
 
