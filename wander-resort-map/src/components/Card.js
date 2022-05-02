@@ -8,8 +8,6 @@ function Card({ index, active, feature, onClose }) {
 		document.dispatchEvent(new CustomEvent('eModalShow', { detail: { id: slug, index: index } }))
 	}
 
-	console.log(gallery);
-
     return (
 		<div className={'wrm__card ' + (active ? 'active' : '')}>
 			<Close onClick={onClose} />
