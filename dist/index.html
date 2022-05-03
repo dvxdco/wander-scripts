@@ -7,6 +7,22 @@
         <!-- import general wander styles, but this will be out of date when new versions are published -->
         <link href="https://assets-global.website-files.com/5e24d7212e290c1952d6825f/css/wander-the-resort-dev.b57bbd495.css" rel="stylesheet">
         <title>Wander Resort Map</title>
+        <style>
+            #project-wrapper {
+                padding: 0 20px;
+            }
+            @media screen and (min-width: 821px) {
+                #project-wrapper {
+                    padding: 0 40px;
+                }
+            }
+
+            @media screen and (min-width: 1280px) {
+                #project-wrapper {
+                    padding: 0;
+                }
+            }
+        </style>
     </head>
     <body style="flex-direction: column; margin: 0; padding: 0; background-color: #efedea;">
         <!-- NOTE: you can copy this html from the Map Resort Page on Webflow for local testing here -->
@@ -286,8 +302,9 @@
                 </div>
             </div>
         </div>
-
-        <div id="wander-resort-map" data-someprop='test'></div>
+        <div id="project-wrapper">
+            <div id="wander-resort-map" data-someprop='test'></div>
+        </div>
         <div style="padding-top: 800px;"></div>
         <script src="wander-resort-map.min.js"></script>
     </body>
