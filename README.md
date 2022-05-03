@@ -82,8 +82,16 @@ To add glide sliders to a page:
 .glide__bullet .glide__bullet-btn {
 	color: #999 !important;
 }
-.glide__bullet--active  .glide__bullet-btn {
+.glide__bullet--active .glide__bullet-btn {
 	color: black !important;
+}
+.glide__slide-textwrap {
+	opacity: 0;
+  transition: opacity 0.3s ease-in;
+}
+.glide__slide--active .glide__slide-textwrap {
+	opacity: 1;
+	transition: opacity 0.3s ease-in;
 }
 </style>
 <script>
@@ -143,12 +151,6 @@ gliderEls.forEach((el, index) => {
         bullet.setAttribute('data-glide-dir', `=${i}`);
     });
     glides[index] = new Glide(el, conf).mount()
-});
-
-// fades in/out test on slides with text content
-const glideSlideTextWrap = document.querySelectorAll('.glide__slide-textwrap');
-glideSlideTextWrap.forEach((el) => {
-    el.classList.add('glide__slide-textwrap--hidden');
 });
 </script>
 ```
