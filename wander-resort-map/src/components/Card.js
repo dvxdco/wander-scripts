@@ -20,16 +20,22 @@ function Card({ index, active, feature, onClose }) {
 							<a onClick={onLinkOut}>{`See More >`}</a>
 							{
 								hero &&
-									<a onClick={onLinkOut}>
-										<img src={hero} alt={name}/>
-									</a>
+									<div className="wrm__card-hero">
+										<a onClick={onLinkOut}>
+											<img src={hero} alt={name}/>
+											<span>View</span>
+										</a>
+									</div>
 							}
 						</>
 				}
 				{
 					gallery == "false" &&
 						hero &&
-							<img src={hero} alt={name}/>
+							<div className="wrm__card-hero">
+								<img src={hero} alt={name}/>
+								<span>View</span>
+							</div>
 				}
 			</div>
 		</div>

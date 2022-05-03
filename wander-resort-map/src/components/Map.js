@@ -23,7 +23,7 @@ function Map({ features, activeId, setActiveId }) {
         gsap.globalTimeline.killTweensOf(TARGET_CLASSNAME)
 
         const el = refs.current[index]?.current?.querySelector(TARGET_CLASSNAME)
-        if (el) gsap.from(el, { opacity: 0.5, scale: 1.6, yoyo: true, repeat: -1, duration: 0.5, transformOrigin: 'center' })
+        if (el) gsap.from(el, { opacity: 0.5, scale: 1.5, yoyo: true, repeat: -1, duration: 1.5, transformOrigin: 'center' })
 
     }, [activeId])
 
