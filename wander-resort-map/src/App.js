@@ -28,11 +28,13 @@ function App({ data }) {
                         )
                     })
                 }
-                <Map 
-                    features={features}
-                    activeId={activeId}
-                    setActiveId={setActiveId}
-                />
+                <div className="wrm__map-wrap">
+                    <Map 
+                        features={features}
+                        activeId={activeId}
+                        setActiveId={setActiveId}
+                    />
+                </div>
             </div>
         </div>
     )

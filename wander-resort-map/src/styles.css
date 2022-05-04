@@ -1,27 +1,38 @@
 #wander-resort-map {
     overflow: hidden;
     display: flex;
-    aspect-ratio: 9 / 16;
+}
+
+/*
+XS, S - 3:4 (portrait)
+M - 4:3 (landscape)
+L - 16:9 or 4:3
+XL - 16:9
+*/
+
+.wrm__map-wrap {
+    overflow: hidden;
+    margin-top: 66px;
+    aspect-ratio: 3 / 4;
 }
 
 @media screen and (min-width: 768px) {
-    #wander-resort-map {
-        aspect-ratio: 4 / 4;
+    .wrm__map-wrap {
+        aspect-ratio: 4 / 3;
     }
 }
 
 @media screen and (min-width: 1024px) {
-    #wander-resort-map {
-        aspect-ratio: 3 / 2;
+    .wrm__map-wrap {
+        aspect-ratio: 16 / 9;
     }
 }
 
 @media screen and (min-width: 1280px) {
     #wander-resort-map {
-        aspect-ratio: 1.85 / 1;
+        aspect-ratio: 16 / 9;
     }
 }
-
 .wrm {
     --color-winter: #35363B;
     --color-allseason: #efedea;
