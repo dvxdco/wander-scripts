@@ -108,7 +108,7 @@
 }
 
 .wrm__nav .dropdown-content-inner {
-    padding: 2rem 0;
+    padding: 2rem 0 6rem 0;
 }
 
 .wrm__nav input[type='checkbox'] {
@@ -188,7 +188,7 @@
     list-style: none;
     background-color: inherit !important;
     cursor: pointer;
-    line-height: 44px;
+    line-height: 48px;
 }
 .wrm__nav li.active {
     color: black;
@@ -305,7 +305,7 @@ svg.wrm__map circle {
     border-radius: 50%;
 
     font-family: Silka;
-    font-style: Medium;
+    font-weight: 600;
     font-size: 14px;
     line-height: 18px;
     line-height: 180%;
