@@ -155,7 +155,7 @@
 
 @media screen and (min-width: 768px) {
     .wrm__nav {
-        /* padding: 2rem 2rem; */
+        padding: 2rem 2rem;
     }
 
     .wrm__nav .nav-label {
