@@ -221,8 +221,7 @@ XL - 16:9
     z-index: 1;
     position: relative;
     overflow: hidden;
-    background-color: #fcfbfa;
-    /* height: 95vh; */
+    background-color: #CFD6D4;
 
     min-width: 1500px;
     width: 150vw;
@@ -259,8 +258,6 @@ svg.wrm__map circle {
     transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
 
     overflow-y: auto;
-    /* max-height: 70vh; */
-
     box-shadow: 0px 6px 18px 6px rgba(0, 0, 0, 0.16);
 }
 
@@ -270,14 +267,20 @@ svg.wrm__map circle {
 
     opacity: 1;
     transform: translate3d(0, -50%, 0);
-    transition-delay: 1.5s;
+    transition-delay: 1s;
 }
 
-@media screen and (min-width: 420px) {
-    .wrm__card {
-        margin: 2rem auto 1rem auto;
+@media screen and (min-width: 1280px) {
+    .wrm__card.active {
+        transition-delay: 0.5s;
     }
 }
+
+/* @media screen and (min-width: 420px) {
+    .wrm__card {
+        margin: 2rem 1rem 1rem 1rem;
+    }
+} */
 
 @media screen and (min-width: 768px) {
     .wrm__card {
