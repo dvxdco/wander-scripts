@@ -181,9 +181,9 @@ XL - 16:9
 }
 
 @media screen and (min-width: 1280px) {
-    .wrm__nav {
+    /* .wrm__nav {
         padding: 2rem 2rem;
-    }
+    } */
 
     .wrm__nav .nav-label {
         padding: 0 0 1rem 0;
