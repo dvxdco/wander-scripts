@@ -62,22 +62,33 @@ function Map({ features, activeId, setActiveId }) {
 	}, [])
 
 	const panTo = (i) => {
-		const el = refs.current[i]?.current.querySelector(TARGET_CLASSNAME)
-        if (el) {
-            gsap.to(mapRef.current, {
-				x: '+=1',
-				y: '+=1',
-				duration: 0.5,
-				onUpdate: onUpdate(el)
-			})
+        const ref = refs.current[i]?.current
+        if (ref) {
+            const el = ref.querySelector(TARGET_CLASSNAME)
+            if (el) {
+                gsap.to(mapRef.current, {
+                    x: '+=1',
+                    y: '+=1',
+                    duration: 0.5,
+                    onUpdate: onUpdate(el)
+                })
+            }
         }
     }
 
     const onUpdate = (el) => {
-		const offsetY = containerRef.current.getBoundingClientRect().y - containerRef.current.offsetTop
+        console.log(containerRef.current.clientWidth, containerRef.current.offsetLeft, containerRef.current.clientHeight, containerRef.current.offsetTop)
+		// const offsetY = containerRef.current.getBoundingClientRect().y - containerRef.current.offsetTop
+        const offsetY = containerRef.current.getBoundingClientRect().y
+
         const rect = el.getBoundingClientRect()
-		const centerX = window.innerWidth / 2
-		const centerY = (window.innerHeight / 2) + offsetY
+
+		// const centerX = window.innerWidth / 2
+        // const centerY = (window.innerHeight / 2) + offsetY
+
+        const centerX = (containerRef.current.clientWidth / 2) - containerRef.current.offsetLeft
+        const centerY = (containerRef.current.clientHeight / 2) - containerRef.current.offsetTop
+
         const deltaX = centerX - (rect.x + rect.width / 2)
         const deltaY = centerY - (rect.y + rect.height / 2)
         
@@ -4040,12 +4051,6 @@ function Map({ features, activeId, setActiveId }) {
                 <g id="number_x5F_21">
                     <circle className="target" cx={1810.2} cy={971.2} r={16.4} />
                     <rect x={1793.8} y={963.1} className="st0" width={32.7} height={24.5} />
-                    {/* <text
-                    transform="matrix(1 0 0 1 1800.7312 976.7271)"
-                    className="st5 st50 st51"
-                    >
-                    {"21"}
-                    </text> */}
                 </g>
                 </g>
                 <g id="avens" ref={refs.current[getFeatureIndex('avens')]} onClick={() => setActiveId('avens')}>
@@ -8240,7 +8245,7 @@ function Map({ features, activeId, setActiveId }) {
                     </text> */}
                 </g>
                 </g>
-                <g id="poolside_x5F_firepit">
+                <g id="poolside-firepit" ref={refs.current[getFeatureIndex('poolside-firepit')]} onClick={() => setActiveId('poolside-firepit')}>
                 <g id="number_x5F_19">
                     <circle className="target" cx={1621.5} cy={1373.9} r={16.4} />
                     <rect
@@ -8263,9 +8268,10 @@ function Map({ features, activeId, setActiveId }) {
                     </g>
                 </g>
                 </g>
-                <g id="wanderhaus_x5F_firepit">
+                {/* <g id="wander-haus-firepit" ref={refs.current[getFeatureIndex('wander-haus-firepit')]} onClick={() => setActiveId('wander-haus-firepit')}> */}
+                <g id="wander-haus-firepit">
                 <g id="number_x5F_27_00000118370965685420582400000016786498445893895323_">
-                    <circle className="target" cx={1999.5} cy={2041.9} r={16.4} />
+                    {/* <circle className="target" cx={1999.5} cy={2041.9} r={16.4} /> */}
                     <rect
                     x={1983.1}
                     y={2033.8}
@@ -8654,7 +8660,7 @@ function Map({ features, activeId, setActiveId }) {
                 </g>
                 <g id="hygge_x5F_hut_x5F_3">
                 <g id="number_x5F_17_00000015327174165924584390000015887361188845225357_">
-                    <circle className="target" cx={1731.3} cy={780.4} r={16.4} />
+                    {/* <circle className="target" cx={1731.3} cy={780.4} r={16.4} /> */}
                     <rect x={1715} y={772.3} className="st0" width={32.7} height={24.5} />
                     {/* <text
                     transform="matrix(1 0 0 1 1722.1639 785.9257)"
@@ -8840,9 +8846,10 @@ function Map({ features, activeId, setActiveId }) {
                     </g>
                 </g>
                 </g>
-                <g id="wander_haus" ref={refs.current[getFeatureIndex('wander-haus')]} onClick={() => setActiveId('wander-haus')}>
+                {/* <g id="wander_haus" ref={refs.current[getFeatureIndex('wander-haus')]} onClick={() => setActiveId('wander-haus')}> */}
+                <g id="wander_haus">
                 <g id="number_x5F_12_00000023268199903864580900000017073834424035530925_">
-                    <circle className="target" cx={2003.2} cy={1195.2} r={16.4} />
+                    {/* <circle className="target" cx={2003.2} cy={1195.2} r={16.4} /> */}
                     <rect
                     x={1986.9}
                     y={1187.1}
