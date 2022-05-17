@@ -46,14 +46,14 @@ function Map({ features, activeId, setActiveId }) {
             const offsetY = containerRef.current.getBoundingClientRect().y
             const rect = startEl.getBoundingClientRect()
             const centerX = window.innerWidth / 2
-            const centerY =(window.innerHeight / 2) + offsetY // containerRef.current.clientHeight
+            const centerY =(window.innerHeight / 2) // + offsetY // containerRef.current.clientHeight
             const deltaX = centerX - (rect.x + rect.width / 2)
             const deltaY = centerY - (rect.y + rect.height / 2)
 
             gsap.set(mapRef.current, {
                 x: deltaX,
                 y: deltaY,
-                scale: SCALE_FACTOR
+                // scale: SCALE_FACTOR
             })
         }
 	}, [])
@@ -92,7 +92,7 @@ function Map({ features, activeId, setActiveId }) {
 				duration: 0.3,
 				onUpdate: onUpdate(el)
 			})
-            gsap.to(mapRef.current, { scale: ZOOM })
+            // gsap.to(mapRef.current, { scale: ZOOM })
         }
     }
 
@@ -100,7 +100,7 @@ function Map({ features, activeId, setActiveId }) {
 		let offsetY = containerRef.current.getBoundingClientRect().y
         let rect = el.getBoundingClientRect()
 		let centerX = window.innerWidth / 2
-		let centerY = (window.innerHeight / 2) + offsetY
+		let centerY = (window.innerHeight / 2)// + offsetY
         let deltaX = centerX - (rect.x + rect.width / 2)
         let deltaY = centerY - (rect.y + rect.height / 2)
         
@@ -118,7 +118,7 @@ function Map({ features, activeId, setActiveId }) {
         gsap.to(mapRef.current, {
 			x: getX(),
 			y: 0,
-            scale: SCALE_FACTOR,
+            // scale: SCALE_FACTOR,
             duration: 0.5,
             ease: 'Power1.linear'
         })
@@ -8270,12 +8270,12 @@ function Map({ features, activeId, setActiveId }) {
                     width={32.7}
                     height={24.5}
                     />
-                    <text
+                    {/* <text
                     transform="matrix(1 0 0 1 1351.4465 1984.4874)"
                     className="st5 st50 st51"
                     >
                     {"23"}
-                    </text>
+                    </text> */}
                 </g>
                 </g>
                 <g id="poolside_x5F_firepit">
@@ -8311,12 +8311,12 @@ function Map({ features, activeId, setActiveId }) {
                     width={32.7}
                     height={24.5}
                     />
-                    <text
+                    {/* <text
                     transform="matrix(1 0 0 1 1989.1488 2047.3403)"
                     className="st5 st50 st51"
                     >
                     {"27"}
-                    </text>
+                    </text> */}
                 </g>
                 <g id="firepit_x5F_19_00000068634946866808204380000008886199713608300179_">
                     <g>
