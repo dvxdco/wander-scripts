@@ -2,8 +2,7 @@ import React, { createRef, useRef, useEffect, useState } from 'react'
 import { gsap } from 'gsap'
 import { Draggable } from 'gsap/Draggable' // https://greensock.com/docs/v2/Utilities/Draggable
 
-const MAP_WIDTH = 3000
-const SCALE_FACTOR = 1.5
+const SCALE = 1
 const ZOOM = 2
 const START_ON_FEATURE_ID = 'clubhouse'
 const TARGET_CLASSNAME = '.target'
@@ -27,12 +26,17 @@ function Map({ features, activeId, setActiveId }) {
 
         if (activeId) {
             const index = getFeatureIndex(activeId)
+            // gsap.to(mapRef.current, { duration: 0.3, scale: ZOOM, onComplete: () => { panTo(index)}})
             panTo(index)
-            const el = refs.current[index]?.current?.querySelector(TARGET_CLASSNAME)
-            if (el) gsap.from(el, { opacity: 0.5, scale: 1.5, yoyo: true, repeat: -1, duration: 1, transformOrigin: 'center' })
-        } else {
-            // gsap.to(mapRef.current, { scale: SCALE_FACTOR, duration: 0.3 })
+
+            const target = refs.current[index]?.current?.querySelector(TARGET_CLASSNAME)
+            if (target) {
+                gsap.from(target, { opacity: 0.5, scale: 1.5, yoyo: true, repeat: -1, duration: 1, transformOrigin: 'center' })
+            }
         }
+        // else {
+        //     gsap.to(mapRef.current, { duration: 0.3, scale: SCALE })
+        // }
     }, [hasLoaded, activeId])
 
 	useEffect(() => {
@@ -46,14 +50,13 @@ function Map({ features, activeId, setActiveId }) {
             const offsetY = containerRef.current.getBoundingClientRect().y - containerRef.current.offsetTop
             const rect = startEl.getBoundingClientRect()
             const centerX = window.innerWidth / 2
-            const centerY =(window.innerHeight / 2) + offsetY
+            const centerY = (window.innerHeight / 2) + offsetY
             const deltaX = centerX - (rect.x + rect.width / 2)
             const deltaY = centerY - (rect.y + rect.height / 2)
 
             gsap.set(mapRef.current, {
                 x: deltaX,
-                y: deltaY,
-                // scale: SCALE_FACTOR
+                y: deltaY
             })
         }
 	}, [])
@@ -64,40 +67,29 @@ function Map({ features, activeId, setActiveId }) {
             gsap.to(mapRef.current, {
 				x: '+=1',
 				y: '+=1',
-				duration: 0.3,
+				duration: 0.5,
 				onUpdate: onUpdate(el)
 			})
-            // gsap.to(mapRef.current, { scale: ZOOM })
         }
     }
 
     const onUpdate = (el) => {
-		let offsetY = containerRef.current.getBoundingClientRect().y - containerRef.current.offsetTop
-        let rect = el.getBoundingClientRect()
-		let centerX = window.innerWidth / 2
-		let centerY = (window.innerHeight / 2) + offsetY
-        let deltaX = centerX - (rect.x + rect.width / 2)
-        let deltaY = centerY - (rect.y + rect.height / 2)
+		const offsetY = containerRef.current.getBoundingClientRect().y - containerRef.current.offsetTop
+        const rect = el.getBoundingClientRect()
+		const centerX = window.innerWidth / 2
+		const centerY = (window.innerHeight / 2) + offsetY
+        const deltaX = centerX - (rect.x + rect.width / 2)
+        const deltaY = centerY - (rect.y + rect.height / 2)
         
         return function () {
             gsap.to(mapRef.current, {
                 x: '+=' + deltaX,
                 y: '+=' + deltaY,
+                // scale: ZOOM,
                 duration: gsap.utils.clamp(0, 1, this.duration() - this.time()),
                 overwrite: true
             })
         }
-    }
-
-    const zoomOut = (e) => {
-        gsap.to(mapRef.current, {
-			x: getX(),
-			y: 0,
-            // scale: SCALE_FACTOR,
-            duration: 0.5,
-            ease: 'Power1.linear'
-        })
-		setActiveId(null)
     }
 
     const getFeatureIndex = (id) => {
@@ -105,10 +97,6 @@ function Map({ features, activeId, setActiveId }) {
             return object.slug === id;
         });
     }
-
-    const getX = () => {
-		return (containerRef.current.offsetWidth>>1) - (MAP_WIDTH>>1)
-	}
 
     return (
         <div ref={containerRef} className="wrm__svg-container">
@@ -5903,7 +5891,7 @@ function Map({ features, activeId, setActiveId }) {
                 </g>
                 </g>
                 <g id="aster" ref={refs.current[getFeatureIndex('aster')]} onClick={() => setActiveId('aster')}>
-                <g id="aster">
+                <g>
                     <path
                     className="st53"
                     d="M1377.7,1572.2v40.2h51.1v-40.2l-25.5-29.5L1377.7,1572.2z"
@@ -7512,7 +7500,7 @@ function Map({ features, activeId, setActiveId }) {
                     </g>
                 </g>
                 </g>
-                <g id="waterleaf">
+                <g id="waterleaf" ref={refs.current[getFeatureIndex('waterleaf')]} onClick={() => setActiveId('waterleaf')}>
                 <path
                     id="grass_x5F_patch_00000080898235760486801500000000632852040744429482_"
                     className="st15"
@@ -8000,7 +7988,6 @@ function Map({ features, activeId, setActiveId }) {
                     x={1322.7}
                     y={1947.2}
                     transform="matrix(-1.836970e-16 1 -1 -1.836970e-16 3340.4788 614.8843)"
-                    className="target"
                     width={80.2}
                     height={60.9}
                 />
