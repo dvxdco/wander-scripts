@@ -14,6 +14,9 @@ XL - 16:9
     overflow: hidden;
     margin-top: 66px;
     aspect-ratio: 3 / 4;
+    background: red;
+
+    /* max-height: 100vh; */
 }
 
 @media screen and (min-width: 768px) {
@@ -222,12 +225,15 @@ XL - 16:9
     position: relative;
     overflow: hidden;
     background-color: #CFD6D4;
-
-    min-width: 1200px;
-    width: 150vw;
+    /* aspect-ratio: 16 / 9; */
+    height: 100%;
+    width: 100%;
 }
 
 .wrm__svg-container svg {
+    /* height: 100%; 
+    max-height: 100%; */
+    position: absolute;
     touch-action: auto !important;
     /* pointer-events: none; */
 }

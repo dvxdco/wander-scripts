@@ -1,32 +1,41 @@
-import React, { createRef, useRef, useEffect, useState } from 'react'
+import React, { createRef, useRef, useEffect, useCallback, useState } from 'react'
 import { gsap } from 'gsap'
-import { Draggable } from 'gsap/Draggable' // https://greensock.com/docs/v2/Utilities/Draggable
+import PanZ from '@thesoulfresh/pan-z'
 
-const SCALE = 1
-const ZOOM = 2
-const START_ON_FEATURE_ID = 'clubhouse'
 const TARGET_CLASSNAME = '.target'
 
-gsap.registerPlugin(Draggable)
-
 function Map({ features, activeId, setActiveId }) {
-    const [hasLoaded, setHasLoaded] = useState(false)
+    const [pz] = useState(() => new PanZ())
+    const [loc, setLoc] = useState({
+        x: 0.5,
+        y: 0.5,
+        z: 1
+    })
 
     const containerRef = useRef()
     const mapRef = useRef()
 	const refs = useRef(features.map(() => createRef()))
 
     useEffect(() => {
-        if (!hasLoaded) setHasLoaded(true)
-    })
+        if (mapRef.current && containerRef.current) {
+            pz.init(mapRef.current, {
+                boundingElement: containerRef.current,
+                minZoom: 0.5,
+                maxZoom: 1.9,
+                bounds: 0.8,
+                initialFit: 'center' 
+            })
+            pz.centerOn(loc.x, loc.y, loc.z)
+            return () => pz.destroy()
+        }
+    }, [])
 
-	useEffect(() => {        
+    useEffect(() => {        
         gsap.set(TARGET_CLASSNAME, { opacity: 1, scale: 1 })
         gsap.globalTimeline.killTweensOf(TARGET_CLASSNAME)
 
         if (activeId) {
             const index = getFeatureIndex(activeId)
-            // gsap.to(mapRef.current, { duration: 0.3, scale: ZOOM, onComplete: () => { panTo(index)}})
             panTo(index)
 
             const target = refs.current[index]?.current?.querySelector(TARGET_CLASSNAME)
@@ -34,74 +43,25 @@ function Map({ features, activeId, setActiveId }) {
                 gsap.from(target, { opacity: 0.5, scale: 1.5, yoyo: true, repeat: -1, duration: 1, transformOrigin: 'center' })
             }
         }
-        // else {
-        //     gsap.to(mapRef.current, { duration: 0.3, scale: SCALE })
-        // }
-    }, [hasLoaded, activeId])
+    }, [activeId])
 
-	useEffect(() => {
-		Draggable.create(mapRef.current, {
-            dragClickables: false
-		})
-
-        // center svg in container on first load
-        const startEl = refs.current[getFeatureIndex(START_ON_FEATURE_ID)]?.current
-        if (startEl) {
-            const offsetY = containerRef.current.getBoundingClientRect().y - containerRef.current.offsetTop
-            const rect = startEl.getBoundingClientRect()
-            const centerX = window.innerWidth / 2
-            const centerY = (window.innerHeight / 2) + offsetY
-            const deltaX = centerX - (rect.x + rect.width / 2)
-            const deltaY = centerY - (rect.y + rect.height / 2)
-
-            gsap.set(mapRef.current, {
-                x: deltaX,
-                y: deltaY
-            })
-        }
-	}, [])
-
-	const panTo = (i) => {
-        const ref = refs.current[i]?.current
+    const panTo = useCallback((index) => {
+        const ref = refs.current[index]?.current
         if (ref) {
             const el = ref.querySelector(TARGET_CLASSNAME)
             if (el) {
-                gsap.to(mapRef.current, {
-                    x: '+=1',
-                    y: '+=1',
-                    duration: 0.5,
-                    onUpdate: onUpdate(el)
-                })
+                const deltaX = el.cx.baseVal.value / mapRef.current.clientWidth
+                const deltaY = el.cy.baseVal.value / mapRef.current.clientHeight
+                setLoc({ x: deltaX, y: deltaY, z: 1 }) 
             }
         }
-    }
+    })
 
-    const onUpdate = (el) => {
-        console.log(containerRef.current.clientWidth, containerRef.current.offsetLeft, containerRef.current.clientHeight, containerRef.current.offsetTop)
-		// const offsetY = containerRef.current.getBoundingClientRect().y - containerRef.current.offsetTop
-        const offsetY = containerRef.current.getBoundingClientRect().y
-
-        const rect = el.getBoundingClientRect()
-
-		// const centerX = window.innerWidth / 2
-        // const centerY = (window.innerHeight / 2) + offsetY
-
-        const centerX = (containerRef.current.clientWidth / 2) - containerRef.current.offsetLeft
-        const centerY = (containerRef.current.clientHeight / 2) - containerRef.current.offsetTop
-
-        const deltaX = centerX - (rect.x + rect.width / 2)
-        const deltaY = centerY - (rect.y + rect.height / 2)
-        
-        return function () {
-            gsap.to(mapRef.current, {
-                x: '+=' + deltaX,
-                y: '+=' + deltaY,
-                // scale: ZOOM,
-                duration: gsap.utils.clamp(0, 1, this.duration() - this.time()),
-                overwrite: true
-            })
-        }
-    }
+    useEffect(() => {
+        // console.log('loc:', loc.x, loc.y)
+        // Pan to a specific point on the element without changing the scale. The x/y location specified will be centered within the boundingElement. X/Y should be specified as a number between 0-1 that is the percentage of the dimensions of the element.
+        pz.panTo(loc.x, loc.y)
+    }, [loc])
 
     const getFeatureIndex = (id) => {
         return features.findIndex(object => {
@@ -110,7 +70,7 @@ function Map({ features, activeId, setActiveId }) {
     }
 
     return (
-        <div ref={containerRef} className="wrm__svg-container">
+        <div ref={containerRef} className="wrm__svg-container" x={loc.x} y={loc.y} z={loc.z}>
             <svg
                 ref={mapRef}
                 className="wrm__map"
@@ -118,6 +78,8 @@ function Map({ features, activeId, setActiveId }) {
                 xmlnsXlink="http://www.w3.org/1999/xlink"
                 x="0px"
                 y="0px"
+                width="2761"
+                height="2917"
                 viewBox="0 0 2761 2917"
                 style={{
                     enableBackground: "new 0 0 2761 2917",
@@ -4048,10 +4010,10 @@ function Map({ features, activeId, setActiveId }) {
                     />
                     <path d="M1830.4,1022.1v30.9c-2.9,1.3-6.1,2-9.5,2c-2.3,0-4.4-0.3-6.5-0.9v-32H1830.4z" />
                 </g>
-                <g id="number_x5F_21">
+                {/* <g id="number_x5F_21">
                     <circle className="target" cx={1810.2} cy={971.2} r={16.4} />
                     <rect x={1793.8} y={963.1} className="st0" width={32.7} height={24.5} />
-                </g>
+                </g> */}
                 </g>
                 <g id="avens" ref={refs.current[getFeatureIndex('avens')]} onClick={() => setActiveId('avens')}>
                 <g id="avens_00000181055015135456625990000009150274319553716642_">
@@ -12404,7 +12366,6 @@ function Map({ features, activeId, setActiveId }) {
                 </g>
                 </g>
             </svg>
-
         </div>
     )
 }
