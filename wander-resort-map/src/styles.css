@@ -223,8 +223,8 @@ XL - 16:9
     overflow: hidden;
     background-color: #CFD6D4;
 
-    /* min-width: 1000px;
-    width: 150vw; */
+    min-width: 1200px;
+    width: 150vw;
 }
 
 .wrm__svg-container svg {

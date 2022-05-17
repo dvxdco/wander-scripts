@@ -31,7 +31,7 @@ function Map({ features, activeId, setActiveId }) {
             const el = refs.current[index]?.current?.querySelector(TARGET_CLASSNAME)
             if (el) gsap.from(el, { opacity: 0.5, scale: 1.5, yoyo: true, repeat: -1, duration: 1, transformOrigin: 'center' })
         } else {
-            gsap.to(mapRef.current, { scale: SCALE_FACTOR, duration: 0.3 })
+            // gsap.to(mapRef.current, { scale: SCALE_FACTOR, duration: 0.3 })
         }
     }, [hasLoaded, activeId])
 
@@ -43,10 +43,10 @@ function Map({ features, activeId, setActiveId }) {
         // center svg in container on first load
         const startEl = refs.current[getFeatureIndex(START_ON_FEATURE_ID)]?.current
         if (startEl) {
-            const offsetY = containerRef.current.getBoundingClientRect().y
+            const offsetY = containerRef.current.getBoundingClientRect().y - containerRef.current.offsetTop
             const rect = startEl.getBoundingClientRect()
             const centerX = window.innerWidth / 2
-            const centerY =(window.innerHeight / 2) // + offsetY // containerRef.current.clientHeight
+            const centerY =(window.innerHeight / 2) + offsetY
             const deltaX = centerX - (rect.x + rect.width / 2)
             const deltaY = centerY - (rect.y + rect.height / 2)
 
@@ -57,31 +57,6 @@ function Map({ features, activeId, setActiveId }) {
             })
         }
 	}, [])
-
-    /*
-    const panTo = (i) => {
-		const el = refs.current[i]?.current.querySelector(TARGET_CLASSNAME)
-        console.log('panTo', refs.current[i]?.current, el)
-
-        if (el) {
-            const offsetY = containerRef.current.getBoundingClientRect().y
-            const rect = el.getBoundingClientRect()
-            const centerX = window.innerWidth / 2
-            const centerY = (window.innerHeight / 2)// + offsetY
-            const deltaX = centerX - (rect.x + rect.width / 2)
-            const deltaY = centerY - (rect.y + rect.height / 2)
-
-            gsap.to(mapRef.current, {
-                x: deltaX,
-                y: deltaY,
-				duration: 0.5,
-                // onComplete: () => {
-                //     gsap.to(mapRef.current, {scale: ZOOM, duration: 0.3})
-                // }
-			})
-        }
-    }
-    */
 
 	const panTo = (i) => {
 		const el = refs.current[i]?.current.querySelector(TARGET_CLASSNAME)
@@ -97,10 +72,10 @@ function Map({ features, activeId, setActiveId }) {
     }
 
     const onUpdate = (el) => {
-		let offsetY = containerRef.current.getBoundingClientRect().y
+		let offsetY = containerRef.current.getBoundingClientRect().y - containerRef.current.offsetTop
         let rect = el.getBoundingClientRect()
 		let centerX = window.innerWidth / 2
-		let centerY = (window.innerHeight / 2)// + offsetY
+		let centerY = (window.innerHeight / 2) + offsetY
         let deltaX = centerX - (rect.x + rect.width / 2)
         let deltaY = centerY - (rect.y + rect.height / 2)
         
@@ -9399,7 +9374,7 @@ function Map({ features, activeId, setActiveId }) {
                     />
                 </g>
                 </g>
-                <g id="cabana_x5F_1">
+                <g id="cabana" ref={refs.current[getFeatureIndex('cabana')]} onClick={() => setActiveId('cabana')}>
                 <g>
                     <defs>
                     <path
