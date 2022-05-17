@@ -3,7 +3,7 @@ import { gsap } from 'gsap'
 import { Draggable } from 'gsap/Draggable' // https://greensock.com/docs/v2/Utilities/Draggable
 
 const MAP_WIDTH = 3000
-const SCALE_FACTOR = 1
+const SCALE_FACTOR = 1.5
 const ZOOM = 2
 const START_ON_FEATURE_ID = 'clubhouse'
 const TARGET_CLASSNAME = '.target'
@@ -18,9 +18,7 @@ function Map({ features, activeId, setActiveId }) {
 	const refs = useRef(features.map(() => createRef()))
 
     useEffect(() => {
-        if (!hasLoaded) {
-            setHasLoaded(true)
-        }
+        if (!hasLoaded) setHasLoaded(true)
     })
 
 	useEffect(() => {        
@@ -53,8 +51,8 @@ function Map({ features, activeId, setActiveId }) {
             const deltaY = centerY - (rect.y + rect.height / 2)
 
             gsap.set(mapRef.current, {
-                x: '+=' + deltaX,
-                y: '+=' + deltaY,
+                x: deltaX,
+                y: deltaY,
                 scale: SCALE_FACTOR
             })
         }
@@ -62,7 +60,9 @@ function Map({ features, activeId, setActiveId }) {
 
     /*
     const panTo = (i) => {
-		const el = refs.current[i]?.current
+		const el = refs.current[i]?.current.querySelector(TARGET_CLASSNAME)
+        console.log('panTo', refs.current[i]?.current, el)
+
         if (el) {
             const offsetY = containerRef.current.getBoundingClientRect().y
             const rect = el.getBoundingClientRect()
@@ -71,38 +71,20 @@ function Map({ features, activeId, setActiveId }) {
             const deltaX = centerX - (rect.x + rect.width / 2)
             const deltaY = centerY - (rect.y + rect.height / 2)
 
-            // const tl = gsap.timeline()
-            // tl.to(mapRef.current, {
-            //     // x: '+=' + deltaX,
-            //     // y: '+=' + deltaY,
-            //     x: deltaX,
-            //     y: deltaY,
-            //     scale: ZOOM,
-			// 	duration: 0.5,
-            // })
-            // tl.to(mapRef.current, {
-			// 	duration: 0.5,
-            // })
-            // tl.to(mapRef.current, {
-            //     scale: ZOOM,
-            //     transformOrigin: `{deltaX} {deltaY}`,
-            //     duration: 0.5,
-            // })
-
             gsap.to(mapRef.current, {
-                x: '+=' + deltaX,
-                y: '+=' + deltaY,
+                x: deltaX,
+                y: deltaY,
 				duration: 0.5,
-                onComplete: () => {
-                    gsap.to(mapRef.current, {scale: ZOOM, duration: 0.3})
-                }
+                // onComplete: () => {
+                //     gsap.to(mapRef.current, {scale: ZOOM, duration: 0.3})
+                // }
 			})
         }
     }
     */
 
 	const panTo = (i) => {
-		const el = refs.current[i]?.current
+		const el = refs.current[i]?.current.querySelector(TARGET_CLASSNAME)
         if (el) {
             gsap.to(mapRef.current, {
 				x: '+=1',
