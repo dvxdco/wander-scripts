@@ -26,6 +26,7 @@ function Map({ features, activeId, setActiveId }) {
                 initialFit: 'center' 
             })
             pz.centerOn(loc.x, loc.y, loc.z)
+            pz.disableZoom()
             return () => pz.destroy()
         }
     }, [])
@@ -42,6 +43,8 @@ function Map({ features, activeId, setActiveId }) {
             if (target) {
                 gsap.from(target, { opacity: 0.5, scale: 1.5, yoyo: true, repeat: -1, duration: 1, transformOrigin: 'center' })
             }
+        } else {
+            setLoc({ x: loc.x, y: loc.y, z: 0.8 }) 
         }
     }, [activeId])
 
@@ -52,7 +55,7 @@ function Map({ features, activeId, setActiveId }) {
             if (el) {
                 const deltaX = el.cx.baseVal.value / mapRef.current.clientWidth
                 const deltaY = el.cy.baseVal.value / mapRef.current.clientHeight
-                setLoc({ x: deltaX, y: deltaY, z: 1 }) 
+                setLoc({ x: deltaX, y: deltaY, z: 1.5 }) 
             }
         }
     })
@@ -60,7 +63,7 @@ function Map({ features, activeId, setActiveId }) {
     useEffect(() => {
         // console.log('loc:', loc.x, loc.y)
         // Pan to a specific point on the element without changing the scale. The x/y location specified will be centered within the boundingElement. X/Y should be specified as a number between 0-1 that is the percentage of the dimensions of the element.
-        pz.panTo(loc.x, loc.y)
+        pz.centerOn(loc.x, loc.y, loc.z)
     }, [loc])
 
     const getFeatureIndex = (id) => {
