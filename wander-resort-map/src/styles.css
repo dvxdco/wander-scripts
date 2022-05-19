@@ -253,7 +253,7 @@ svg.wrm__map circle {
     left: 0;
     right: 0;
     min-width: 300px;
-    max-width: 420px;
+    /* max-width: 420px; */
     background-color: var(--color-allseason);
 
     margin: 2rem 1rem 1rem 1rem;

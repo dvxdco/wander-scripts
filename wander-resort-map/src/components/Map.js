@@ -4,11 +4,18 @@ import PanZ from '@thesoulfresh/pan-z'
 
 const TARGET_CLASSNAME = '.target'
 
+const breakpoints = {
+    xs: 478, 
+    sm: 767,
+    md: 991,
+    lg: 1280
+}
+
 function Map({ features, activeId, setActiveId }) {
     const [pz] = useState(() => new PanZ())
     const [loc, setLoc] = useState({
-        x: 0.5,
-        y: 0.5,
+        x: 0.475,
+        y: 0.45,
         z: 1
     })
 
@@ -53,8 +60,12 @@ function Map({ features, activeId, setActiveId }) {
         if (ref) {
             const el = ref.querySelector(TARGET_CLASSNAME)
             if (el) {
-                const deltaX = el.cx.baseVal.value / mapRef.current.clientWidth
+                const xOffsetFactor = (window.innerWidth > breakpoints.sm && window.innerWidth < breakpoints.lg) ? 0.95 : 1;
+                const deltaX = el.cx.baseVal.value / (mapRef.current.clientWidth * xOffsetFactor)
                 const deltaY = el.cy.baseVal.value / mapRef.current.clientHeight
+
+                console.log(window.innerWidth, (window.innerWidth > breakpoints.sm), (window.innerWidth < breakpoints.lg))
+
                 setLoc({ x: deltaX, y: deltaY, z: 1.5 }) 
             }
         }
