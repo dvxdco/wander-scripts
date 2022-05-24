@@ -3,15 +3,17 @@ import React, { createRef,  useRef, useEffect } from 'react'
 import Close from './Close'
 import Glide, { Slide } from 'react-glidejs'
 import 'react-glidejs/dist/index.css'
+import useLockBodyScroll from './../useLockBodyScroll';
 
 function Modal({ features, activeId, isModalOpen, onClose }) {
 	const gliderRefs = useRef(features.map(() => createRef()))
+	
+	useLockBodyScroll();
 
 	useEffect(() => {
 		const index = getFeatureIndex(activeId)
 		const ref = gliderRefs.current[index]?.current
 		ref.update()
-		console.log(activeId, ref)
 	}, [isModalOpen])
 
     const getFeatureIndex = (id) => {
