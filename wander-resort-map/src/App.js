@@ -41,7 +41,7 @@ function App({ data }) {
             </div>
             {
                 isModalOpen &&
-                    <Modal features={features} activeId={activeId} onClose={() => {
+                    <Modal features={features} activeId={activeId} isModalOpen={isModalOpen} onClose={() => {
                         setActiveId(null)
                         setIsModalOpen(false)
                     }}/>

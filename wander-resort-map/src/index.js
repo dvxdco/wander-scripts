@@ -7,18 +7,28 @@ const resortMapData = {
     features: []
 }
 
-const resortMapFeatureEls = document.querySelectorAll('.resort-map-feature')
-resortMapFeatureEls.forEach(feature => {
-    const images = feature.parentNode.parentNode.getElementsByTagName('img')
-    resortMapData.features.push({
-        slug: feature.getAttribute('data-slug').toLowerCase(),
-        name: feature.getAttribute('data-name'),
-        desc: feature.getAttribute('data-desc'),
-        link: feature.getAttribute('data-link'),
-        hero: feature.getAttribute('data-hero'),
-        gallery: feature.getAttribute('data-gallery'),
-        images: Array.from(images).map(el => el.src )
-    })
+const mapData = document.getElementById('map-data')
+const listItems = mapData.querySelectorAll('[role="listitem"]')
+listItems.forEach(el => {
+    const feature = el.querySelector('.resort-map-feature')
+    const slides = el.querySelectorAll('.resort-map-feature-slide')
+    if (feature) {
+        resortMapData.features.push({
+            slug: feature.getAttribute('data-slug').toLowerCase(),
+            name: feature.getAttribute('data-name'),
+            desc: feature.getAttribute('data-desc'),
+            link: feature.getAttribute('data-link') || '',
+            hero: feature.getAttribute('data-hero'),
+            gallery: feature.getAttribute('data-gallery'),
+            slides: Array.from(slides).map((slide) => {
+                return {
+                    slug: slide.getAttribute('data-slug').toLowerCase(),
+                    caption: slide.getAttribute('data-caption'),
+                    src: slide.getAttribute('data-src')
+                }
+            })
+        })
+    }
 })
 
 // sort alphabetically by slug (slug is the key of the object) 

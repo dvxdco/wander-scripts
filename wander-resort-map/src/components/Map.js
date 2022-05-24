@@ -63,9 +63,6 @@ function Map({ features, activeId, setActiveId }) {
                 const xOffsetFactor = (window.innerWidth > breakpoints.sm && window.innerWidth < breakpoints.lg) ? 0.95 : 1;
                 const deltaX = el.cx.baseVal.value / (mapRef.current.clientWidth * xOffsetFactor)
                 const deltaY = el.cy.baseVal.value / mapRef.current.clientHeight
-
-                console.log(window.innerWidth, (window.innerWidth > breakpoints.sm), (window.innerWidth < breakpoints.lg))
-
                 setLoc({ x: deltaX, y: deltaY, z: 1.5 }) 
             }
         }
@@ -80,7 +77,7 @@ function Map({ features, activeId, setActiveId }) {
     const getFeatureIndex = (id) => {
         return features.findIndex(object => {
             return object.slug === id;
-        });
+        })
     }
 
     return (

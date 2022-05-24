@@ -4,13 +4,12 @@ import Close from './Close'
 function Card({ index, active, feature, onClose, onModal }) {
 	const { slug, name, desc, link, hero, gallery } = feature; // these are grabbed in index.js from data attributes in html
 
-	const onLinkOut = () => {
-		// document.dispatchEvent(new CustomEvent('eModalShow', { detail: { id: slug, index: index } }))
-		onModal()
-	}
+	// const onLinkOut = () => {
+	// 	document.dispatchEvent(new CustomEvent('eModalShow', { detail: { id: slug, index: index } }))
+	// }
 
     return (
-		<div className={'wrm__card ' + (active ? 'active' : '')}>
+		<div className={'wrm__card' + (active ? ' active' : '')}>
 			<Close onClick={onClose} />
 			<div className='wrm__card-content'>
 				<h3>{name}</h3>
@@ -25,7 +24,7 @@ function Card({ index, active, feature, onClose, onModal }) {
 							{
 								hero &&
 									<div className="wrm__card-hero">
-										<a onClick={onLinkOut}>
+										<a onClick={onModal}>
 											<img src={hero} alt={name}/>
 											<span>View</span>
 										</a>

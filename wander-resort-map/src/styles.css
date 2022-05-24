@@ -12,10 +12,21 @@
     align-items: center;
 }
 
-.wrm__modal-content img {
-   display: inline-block;
-   width: 33%;
+.wrm__modal-content {
+    overflow: hidden;
 }
+
+.wrm__modal-content .glide__slide-content {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-items: center;
+   text-align: center;
+}
+.wrm__modal-content .glide__slide-content p {
+    padding: 20px 8%;
+}
+
 
 
 /* MAP */
