@@ -1,11 +1,12 @@
 import React from 'react'
 import Close from './Close'
 
-function Card({ index, active, feature, onClose }) {
+function Card({ index, active, feature, onClose, onModal }) {
 	const { slug, name, desc, link, hero, gallery } = feature; // these are grabbed in index.js from data attributes in html
 
 	const onLinkOut = () => {
-		document.dispatchEvent(new CustomEvent('eModalShow', { detail: { id: slug, index: index } }))
+		// document.dispatchEvent(new CustomEvent('eModalShow', { detail: { id: slug, index: index } }))
+		onModal()
 	}
 
     return (

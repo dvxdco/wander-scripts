@@ -1,3 +1,25 @@
+.wrm__modal {
+    z-index: 3;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: white;
+
+    display: flex;
+    vertical-align: center;
+    align-items: center;
+}
+
+.wrm__modal-content img {
+   display: inline-block;
+   width: 33%;
+}
+
+
+/* MAP */
+
 #wander-resort-map {
     overflow: hidden;
     display: flex;

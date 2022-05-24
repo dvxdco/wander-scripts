@@ -3,9 +3,11 @@ import './styles.css'
 import Map from './components/Map'
 import Nav from './components/Nav'
 import Card from './components/Card'
+import Modal from './components/Modal'
 
 function App({ data }) {
     const [ activeId, setActiveId ] = useState()
+    const [ isModalOpen, setIsModalOpen ] = useState()
     const { features, navLabel } = data
 
     return (
@@ -24,6 +26,7 @@ function App({ data }) {
                                 active={(feature.slug === activeId ? 'active' : '')} 
                                 feature={feature}
                                 onClose={() => setActiveId(null)}
+                                onModal={() => setIsModalOpen(true)}
                                 key={index} />
                         )
                     })
@@ -36,6 +39,13 @@ function App({ data }) {
                     />
                 </div>
             </div>
+            {
+                isModalOpen &&
+                    <Modal features={features} activeId={activeId} onClose={() => {
+                        setActiveId(null)
+                        setIsModalOpen(false)
+                    }}/>
+            }
         </div>
     )
 }

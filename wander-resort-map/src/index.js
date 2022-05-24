@@ -8,14 +8,16 @@ const resortMapData = {
 }
 
 const resortMapFeatureEls = document.querySelectorAll('.resort-map-feature')
-resortMapFeatureEls.forEach((feature) => {
+resortMapFeatureEls.forEach(feature => {
+    const images = feature.parentNode.parentNode.getElementsByTagName('img')
     resortMapData.features.push({
         slug: feature.getAttribute('data-slug').toLowerCase(),
         name: feature.getAttribute('data-name'),
         desc: feature.getAttribute('data-desc'),
         link: feature.getAttribute('data-link'),
         hero: feature.getAttribute('data-hero'),
-        gallery: feature.getAttribute('data-gallery')
+        gallery: feature.getAttribute('data-gallery'),
+        images: Array.from(images).map(el => el.src )
     })
 })
 
@@ -34,4 +36,4 @@ ReactDOM.render(
         <App data={resortMapData} />
     </React.StrictMode>,
     document.getElementById('wander-resort-map')
-);
+)
