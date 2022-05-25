@@ -26,6 +26,7 @@
 
 .wrm__modal-content {
     overflow: hidden;
+    display: flex;
 }
 
 .wrm__modal-content .glide__slide-content {
