@@ -13,12 +13,12 @@ function Modal({ features, activeId, isModalOpen, onClose }) {
 	useEffect(() => {
 		const index = getFeatureIndex(activeId)
 		const ref = gliderRefs.current[index]?.current
-		// ref.update()
+		ref.update()
 
-		setTimeout(() => {
-			console.log('updated:', ref)
-			ref.update()
-		}, [1000])
+		// setTimeout(() => {
+		// 	console.log('updated:', ref)
+		// 	ref.update()
+		// }, [1000])
 	}, [isModalOpen])
 
     const getFeatureIndex = (id) => {
@@ -29,7 +29,7 @@ function Modal({ features, activeId, isModalOpen, onClose }) {
 
     return (
 		<div className="wrm__modal">
-			<Close onClick={onClose} />			
+			<Close onClick={onClose} size={24} />			
 			{
 				features.map((feature, index) => {
 					const { slug, slides } = feature

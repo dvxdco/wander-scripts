@@ -1,3 +1,13 @@
+@keyframes fadeInFromNone {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
 .wrm__modal {
     z-index: 3;
     position: fixed;
@@ -10,6 +20,8 @@
     display: flex;
     vertical-align: center;
     align-items: center;
+
+    animation: fadeInFromNone 0.5s ease-out;
 }
 
 .wrm__modal-content {
@@ -27,7 +39,29 @@
     padding: 20px 8%;
 }
 
+.wrm__modal-content .glide--carousel, .wrm__modal-content .glide__track {
+    max-width: 100vw;
+}
 
+.wrm__modal-content .glide--carousel button {
+    background-color: transparent;
+    height: 100%;
+    width: 10%;
+    top: 0;
+    bottom: 0;
+    border-radius: 0;
+    padding: 0;
+    margin: 0;
+}
+.wrm__modal-content .glide--carousel button svg {
+    display: none;
+}
+.wrm__modal-content .glide--carousel .Glide-leftArrow {
+    left: 0;
+}
+.wrm__modal-content .glide--carousel .Glide-rightArrow {
+    right: 0;
+}
 
 /* MAP */
 
@@ -347,6 +381,9 @@ svg.wrm__map circle {
 }
 .wrm__card-hero a {
     text-align: center;
+}
+.wrm__card-hero img {
+    width: 100%;
 }
 
 .wrm__card-hero span {
