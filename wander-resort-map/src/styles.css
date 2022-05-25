@@ -27,6 +27,7 @@
 .wrm__modal-content {
     overflow: hidden;
     display: flex;
+    max-width: 100vw;
 }
 
 .wrm__modal-content .glide__slide-content {
@@ -37,7 +38,7 @@
    text-align: center;
 }
 .wrm__modal-content .glide__slide-content p {
-    padding: 20px 10%;
+    padding: 20px 12%;
 }
 
 .wrm__modal-content .glide--carousel, .wrm__modal-content .glide__track {
