@@ -72,6 +72,9 @@
 	opacity: 0;
     transition: opacity 0.2s ease-in;
 }
+.wrm__modal-content .glide__slide img {
+	width: 100%;
+}
 .wrm__modal-content .glide__slide--active p {
 	opacity: 1;
 }
