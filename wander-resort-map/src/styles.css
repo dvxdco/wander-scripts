@@ -345,6 +345,10 @@ svg.wrm__map circle {
 .wrm__card-hero {
     position: relative;
 }
+.wrm__card-hero a {
+    text-align: center;
+}
+
 .wrm__card-hero span {
     pointer-events: none;
 
