@@ -14,11 +14,6 @@ function Modal({ features, activeId, isModalOpen, onClose }) {
 		const index = getFeatureIndex(activeId)
 		const ref = gliderRefs.current[index]?.current
 		ref.update()
-
-		// setTimeout(() => {
-		// 	console.log('updated:', ref)
-		// 	ref.update()
-		// }, [1000])
 	}, [isModalOpen])
 
     const getFeatureIndex = (id) => {
@@ -34,7 +29,7 @@ function Modal({ features, activeId, isModalOpen, onClose }) {
 				features.map((feature, index) => {
 					const { slug, slides } = feature
 					return (
-						<div key={feature.slug} className="wrm__modal-content" style={{ 'display': (activeId == feature.slug) ? 'block' : 'none' }}>
+						<div key={feature.slug} className="wrm__modal-content" style={{ 'display': (activeId == feature.slug) ? 'flex' : 'none' }}>
 							<Glide
 								ref={gliderRefs.current[index]}
 								type="carousel"
