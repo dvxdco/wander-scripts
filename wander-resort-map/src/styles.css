@@ -9,7 +9,7 @@
 }
 
 .wrm__modal {
-    z-index: 3;
+    z-index: 101;
     position: fixed;
     top: 0;
     left: 0;
