@@ -37,7 +37,7 @@
    text-align: center;
 }
 .wrm__modal-content .glide__slide-content p {
-    padding: 20px 8%;
+    padding: 20px 10%;
 }
 
 .wrm__modal-content .glide--carousel, .wrm__modal-content .glide__track {
@@ -63,8 +63,22 @@
 .wrm__modal-content .glide--carousel .Glide-rightArrow {
     right: 0;
 }
+.wrm__modal-content .glide__slide p {
+	opacity: 0;
+    transition: opacity 0.2s ease-in;
+}
+.wrm__modal-content .glide__slide--active p {
+	opacity: 1;
+}
 
-/* MAP */
+
+/* 
+
+
+MAP 
+
+
+*/
 
 #wander-resort-map {
     overflow: hidden;
