@@ -13,9 +13,12 @@ function Modal({ features, activeId, isModalOpen, onClose }) {
 	useEffect(() => {
 		const index = getFeatureIndex(activeId)
 		const ref = gliderRefs.current[index]?.current
-		ref.update()
+		// ref.update()
 
-		console.log('updated:', ref)
+		setTimeout(() => {
+			console.log('updated:', ref)
+			ref.update()
+		}, [1000])
 	}, [isModalOpen])
 
     const getFeatureIndex = (id) => {
