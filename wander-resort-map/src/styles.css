@@ -45,7 +45,7 @@
     max-width: 100vw;
 }
 
-.wrm__modal-content .glide-slide {
+.wrm__modal-content .glide--carousel .glide__slide {
     align-self: flex-start;
 }
 
