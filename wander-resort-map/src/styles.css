@@ -50,6 +50,7 @@
 }
 
 .wrm__modal-content .glide--carousel button {
+    /* background-color: rgba(0, 100, 0, 0.5); */
     background-color: transparent;
     height: 100%;
     width: 10%;
@@ -59,6 +60,17 @@
     padding: 0;
     margin: 0;
 }
+@media screen and (min-width: 768px) {
+    .wrm__modal-content .glide--carousel button {
+        width: 20%;
+    }
+}
+@media screen and (min-width: 1280px) {
+    .wrm__modal-content .glide--carousel button {
+        width: 22%;
+    }
+}
+
 .wrm__modal-content .glide--carousel button svg {
     display: none;
 }
@@ -321,11 +333,9 @@ XL - 16:9
 }
 
 .wrm__svg-container svg {
-    /* height: 100%; 
-    max-height: 100%; */
     position: absolute;
     touch-action: auto !important;
-    /* pointer-events: none; */
+    cursor: pointer;
 }
 
 svg.wrm__map circle {
@@ -343,7 +353,6 @@ svg.wrm__map circle {
     left: 0;
     right: 0;
     min-width: 300px;
-    /* max-width: 420px; */
     background-color: var(--color-allseason);
 
     margin: 2rem 1rem 1rem 1rem;

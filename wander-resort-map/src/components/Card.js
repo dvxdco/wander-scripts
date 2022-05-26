@@ -37,7 +37,6 @@ function Card({ index, active, feature, onClose, onModal }) {
 						hero &&
 							<div className="wrm__card-hero">
 								<img src={hero} alt={name}/>
-								<span>View</span>
 							</div>
 				}
 			</div>
