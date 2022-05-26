@@ -45,8 +45,8 @@
     max-width: 100vw;
 }
 
-.wrm__modal-content .glide-slides {
-    align-items: stretch !important;
+.wrm__modal-content .glide-slide {
+    align-self: flex-start;
 }
 
 .wrm__modal-content .glide--carousel button {
