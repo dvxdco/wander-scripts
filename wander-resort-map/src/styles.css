@@ -46,7 +46,7 @@
 }
 
 .wrm__modal-content .glide-slides {
-    align-items: flex-start !important;
+    align-items: flex-start !important !important;
 }
 
 .wrm__modal-content .glide--carousel button {
