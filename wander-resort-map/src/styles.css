@@ -118,7 +118,8 @@ XL - 16:9
     aspect-ratio: 3 / 4;
     background: red;
 
-    /* max-height: 100vh; */
+    user-select: none;
+    tap-highlight-color: transparent;
 }
 
 @media screen and (min-width: 768px) {
@@ -330,12 +331,18 @@ XL - 16:9
     /* aspect-ratio: 16 / 9; */
     height: 100%;
     width: 100%;
+
+    user-select: none;
+    tap-highlight-color: transparent;
 }
 
 .wrm__svg-container svg {
     position: absolute;
     touch-action: auto !important;
     cursor: pointer;
+
+    user-select: none;
+    tap-highlight-color: transparent;
 }
 
 svg.wrm__map circle {

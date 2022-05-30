@@ -3,6 +3,7 @@ import { gsap } from 'gsap'
 import PanZ from '@thesoulfresh/pan-z'
 
 const TARGET_CLASSNAME = '.target'
+const Z_DEFAULT = 0.6
 
 const breakpoints = {
     xs: 478, 
@@ -12,11 +13,12 @@ const breakpoints = {
 }
 
 function Map({ features, activeId, setActiveId }) {
+    const [isLoaded, setIsLoaded] = useState(false)
     const [pz] = useState(() => new PanZ())
     const [loc, setLoc] = useState({
-        x: 0.475,
-        y: 0.45,
-        z: 1
+        x: null, // 0.5,
+        y: null, // 0.5,
+        z: null // (window.innerWidth < breakpoints.sm) ? Z_START_MOBILE : Z_START_DESKTOP
     })
 
     const containerRef = useRef()
@@ -24,16 +26,19 @@ function Map({ features, activeId, setActiveId }) {
 	const refs = useRef(features.map(() => createRef()))
 
     useEffect(() => {
-        if (mapRef.current && containerRef.current) {
+        if (!isLoaded && mapRef.current && containerRef.current) {
             pz.init(mapRef.current, {
                 boundingElement: containerRef.current,
-                minZoom: 0.5,
+                minZoom: 0.1,
                 maxZoom: 1.9,
                 bounds: 0.8,
-                initialFit: 'center' 
+                initialFit: 'contain' 
             })
-            pz.centerOn(loc.x, loc.y, loc.z)
             pz.disableZoom()
+
+            setLoc({ x: pz.x, y: pz.y, z: pz.scale }) 
+            setIsLoaded(true)
+
             return () => pz.destroy()
         }
     }, [])
@@ -50,8 +55,9 @@ function Map({ features, activeId, setActiveId }) {
             if (target) {
                 gsap.from(target, { opacity: 0.5, scale: 1.5, yoyo: true, repeat: -1, duration: 1, transformOrigin: 'center' })
             }
-        } else {
-            setLoc({ x: loc.x, y: loc.y, z: 0.8 }) 
+        } 
+        else {
+            setLoc({ x: loc.x, y: loc.y, z: Z_DEFAULT })
         }
     }, [activeId])
 
@@ -68,10 +74,28 @@ function Map({ features, activeId, setActiveId }) {
         }
     })
 
+    const shallowEqual = (object1, object2) => {
+        const keys1 = Object.keys(object1);
+        const keys2 = Object.keys(object2);
+        if (keys1.length !== keys2.length) {
+            return false;
+        }
+        for (let key of keys1) {
+            if (object1[key] !== object2[key]) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     useEffect(() => {
-        // console.log('loc:', loc.x, loc.y)
-        // Pan to a specific point on the element without changing the scale. The x/y location specified will be centered within the boundingElement. X/Y should be specified as a number between 0-1 that is the percentage of the dimensions of the element.
-        pz.centerOn(loc.x, loc.y, loc.z)
+        // console.log('loc', loc, isLoaded)
+        // Pan to a specific point on the element without changing the scale. 
+        // The x/y location specified will be centered within the boundingElement. 
+        // X/Y should be specified as a number between 0-1 that is the percentage of the dimensions of the element.
+        if (loc.x && loc.y && loc.z) {
+            pz.centerOn(loc.x, loc.y, loc.z)
+        }
     }, [loc])
 
     const getFeatureIndex = (id) => {
