@@ -122,7 +122,7 @@ function Map({ features, activeId, setActiveId }) {
                 viewBox="0 0 2361 2517"
                 style={{
                     enableBackground: "new 0 0 2361 2517",
-                    backgroundColor: "#99A7A2"
+                    // backgroundColor: "#CFD6D4"
                 }}
                 xmlSpace="preserve"
 
