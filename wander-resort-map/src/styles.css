@@ -393,7 +393,7 @@ svg.wrm__map circle {
 }
 
 .wrm__modal {
-    z-index: 101;
+    z-index: 70000; /* header nav on webflow site is 60000 for some reason */
     position: fixed;
     top: 0;
     left: 0;
