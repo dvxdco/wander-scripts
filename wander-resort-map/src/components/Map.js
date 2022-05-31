@@ -67,7 +67,8 @@ function Map({ features, activeId, setActiveId }) {
             const index = getFeatureIndex(activeId)
             panTo(index)
 
-            const target = refs.current[index]?.current?.querySelector(TARGET_CLASSNAME)
+            // const target = refs.current[index]?.current?.querySelector(TARGET_CLASSNAME)
+            const target = refs.current[index]?.current
             if (target) {
                 gsap.from(target, { opacity: 0.5, scale: 1.5, yoyo: true, repeat: -1, duration: 1, transformOrigin: 'center' })
             }
@@ -84,7 +85,8 @@ function Map({ features, activeId, setActiveId }) {
     const panTo = useCallback((index) => {
         const ref = refs.current[index]?.current
         if (ref) {
-            const el = ref.querySelector(TARGET_CLASSNAME)
+            // const el = ref.querySelector(TARGET_CLASSNAME)
+            const el = ref
             if (el) {
                 const xOffsetFocus = (window.innerWidth > breakpoints.sm && window.innerWidth < breakpoints.lg) ? 0.95 : 1;
                 const deltaX = (el.cx.baseVal.value + SVG_POS_OFFSET) / (mapRef.current.clientWidth * xOffsetFocus)
@@ -3543,7 +3545,7 @@ function Map({ features, activeId, setActiveId }) {
                     </g>
                 </g>
                 </g>
-                <g id="sauna" ref={refs.current[getFeatureIndex('sauna')]} onClick={e => handleLocClick(e, 'sauna')}>
+                <g id="sauna">
                 <g id="sauna_x5F_2_00000083070415539101867620000005280314765136308103_">
                     <path
                     className="st19"
@@ -3796,7 +3798,7 @@ function Map({ features, activeId, setActiveId }) {
                     <path d="M848.3,1639.3v30.9c-2.9,1.3-6.1,2-9.5,2c-2.3,0-4.4-0.3-6.5-0.9v-32H848.3z" />
                 </g>
                 <g id="number_x5F_22_00000023252391697160742780000004388577723385950881_">
-                    <circle className="target" cx={763.7} cy={1639.3} r={16.4} />
+                    <circle ref={refs.current[getFeatureIndex('sauna')]} onClick={e => handleLocClick(e, 'sauna')} className="target" cx={763.7} cy={1639.3} r={16.4} />
                     <rect x={747.3} y={1631.2} className="st0" width={32.7} height={24.5} />
                     {/* <text
                     transform="matrix(1 0 0 1 753.0553 1644.8027)"
@@ -4063,7 +4065,7 @@ function Map({ features, activeId, setActiveId }) {
                     <rect x={1793.8} y={963.1} className="st0" width={32.7} height={24.5} />
                 </g> */}
                 </g>
-                <g id="avens" ref={refs.current[getFeatureIndex('avens')]} onClick={e => handleLocClick(e, 'avens')}>
+                <g id="avens">
                 <g id="avens_00000181055015135456625990000009150274319553716642_">
                     <path
                     className="st53"
@@ -4427,7 +4429,7 @@ function Map({ features, activeId, setActiveId }) {
                     />
                 </g>
                 <g id="number_x5F_4_00000064330515042447884340000014860808642960202409_">
-                    <circle className="target" cx={1782.7} cy={1361.9} r={16.4} />
+                    <circle ref={refs.current[getFeatureIndex('avens')]} onClick={e => handleLocClick(e, 'avens')} className="target" cx={1782.7} cy={1361.9} r={16.4} />
                     <rect
                     x={1766.3}
                     y={1353.8}
@@ -4443,7 +4445,7 @@ function Map({ features, activeId, setActiveId }) {
                     </text> */}
                 </g>
                 </g>
-                <g id="honeysuckle" ref={refs.current[getFeatureIndex('honeysuckle')]} onClick={e => handleLocClick(e, 'honeysuckle')}>
+                <g id="honeysuckle">
                 <g id="honeysuckle_00000137119991893416817190000001651659658016626597_">
                     <path
                     className="st53"
@@ -4807,7 +4809,7 @@ function Map({ features, activeId, setActiveId }) {
                     />
                 </g>
                 <g id="number_x5F_5">
-                    <circle className="target" cx={1782.7} cy={1450} r={16.4} />
+                    <circle ref={refs.current[getFeatureIndex('honeysuckle')]} onClick={e => handleLocClick(e, 'honeysuckle')} className="target" cx={1782.7} cy={1450} r={16.4} />
                     <rect
                     x={1766.3}
                     y={1441.9}
@@ -4823,9 +4825,9 @@ function Map({ features, activeId, setActiveId }) {
                     </text> */}
                 </g>
                 </g>
-                <g id="marigold" ref={refs.current[getFeatureIndex('marigold')]} onClick={e => handleLocClick(e, 'marigold')}>
+                <g id="marigold">
                 <g id="number_x5F_6_00000150815969213562362460000016754990297357757349_">
-                    <circle className="target" cx={1841.3} cy={1516.9} r={16.4} />
+                    <circle ref={refs.current[getFeatureIndex('marigold')]} onClick={e => handleLocClick(e, 'marigold')} className="target" cx={1841.3} cy={1516.9} r={16.4} />
                     <rect x={1825} y={1508.8} className="st0" width={32.7} height={24.5} />
                     {/* <text
                     transform="matrix(1 0 0 1 1835.6976 1522.4166)"
@@ -5177,9 +5179,9 @@ function Map({ features, activeId, setActiveId }) {
                     />
                 </g>
                 </g>
-                <g id="hawthorn" ref={refs.current[getFeatureIndex('hawthorn')]} onClick={e => handleLocClick(e, 'hawthorn')}>
+                <g id="hawthorn">
                 <g id="number_x5F_7">
-                    <circle className="target" cx={1710.2} cy={1516.9} r={16.4} />
+                    <circle ref={refs.current[getFeatureIndex('hawthorn')]} onClick={e => handleLocClick(e, 'hawthorn')} className="target" cx={1710.2} cy={1516.9} r={16.4} />
                     <rect
                     x={1693.9}
                     y={1508.8}
@@ -5187,12 +5189,6 @@ function Map({ features, activeId, setActiveId }) {
                     width={32.7}
                     height={24.5}
                     />
-                    {/* <text
-                    transform="matrix(1 0 0 1 1705.2102 1522.4166)"
-                    className="st5 st50 st51"
-                    >
-                    {"7"}
-                    </text> */}
                 </g>
                 <g id="hawthorn_00000147209868741360233540000010867577642252616083_">
                     <path
@@ -5541,7 +5537,7 @@ function Map({ features, activeId, setActiveId }) {
                     />
                 </g>
                 </g>
-                <g id="burdock" ref={refs.current[getFeatureIndex('burdock')]} onClick={e => handleLocClick(e, 'burdock')}>
+                <g id="burdock">
                 <g id="burdock_00000031197789946332027180000012639391321289743504_">
                     <path
                     className="st53"
@@ -5889,7 +5885,7 @@ function Map({ features, activeId, setActiveId }) {
                     />
                 </g>
                 <g id="number_x5F_8_00000062903357229076888600000005977772675014731940_">
-                    <circle className="target" cx={1573.7} cy={1516.9} r={16.4} />
+                    <circle ref={refs.current[getFeatureIndex('burdock')]} onClick={e => handleLocClick(e, 'burdock')} className="target" cx={1573.7} cy={1516.9} r={16.4} />
                     <rect
                     x={1557.4}
                     y={1508.8}
@@ -5905,7 +5901,7 @@ function Map({ features, activeId, setActiveId }) {
                     </text> */}
                 </g>
                 </g>
-                <g id="aster" ref={refs.current[getFeatureIndex('aster')]} onClick={e => handleLocClick(e, 'aster')}>
+                <g id="aster">
                 <g>
                     <path
                     className="st53"
@@ -6333,7 +6329,7 @@ function Map({ features, activeId, setActiveId }) {
                     </g>
                 </g>
                 <g id="number_x5F_9">
-                    <circle className="target" cx={1427.8} cy={1516.9} r={16.4} />
+                    <circle ref={refs.current[getFeatureIndex('aster')]} onClick={e => handleLocClick(e, 'aster')} className="target" cx={1427.8} cy={1516.9} r={16.4} />
                     <rect
                     x={1411.4}
                     y={1508.8}
@@ -6349,7 +6345,7 @@ function Map({ features, activeId, setActiveId }) {
                     </text> */}
                 </g>
                 </g>
-                <g id="bellflower" ref={refs.current[getFeatureIndex('bellflower')]} onClick={e => handleLocClick(e, 'bellflower')}>
+                <g id="bellflower">
                 <path
                     id="grass_x5F_patch_00000170989598902757674180000005184264912895068325_"
                     className="st15"
@@ -6711,7 +6707,7 @@ function Map({ features, activeId, setActiveId }) {
                     />
                 </g>
                 <g id="number_x5F_13_00000139262215047453471340000000794600045570747540_">
-                    <circle className="target" cx={1078.5} cy={1503.4} r={16.4} />
+                    <circle ref={refs.current[getFeatureIndex('bellflower')]} onClick={e => handleLocClick(e, 'bellflower')} className="target" cx={1078.5} cy={1503.4} r={16.4} />
                     <rect
                     x={1062.2}
                     y={1495.3}
@@ -6719,12 +6715,6 @@ function Map({ features, activeId, setActiveId }) {
                     width={32.7}
                     height={24.5}
                     />
-                    {/* <text
-                    transform="matrix(1 0 0 1 1068.9113 1508.8696)"
-                    className="st5 st50 st51"
-                    >
-                    {"13"}
-                    </text> */}
                 </g>
                 <g id="shrub_00000144338293893672249060000000200775527038586019_">
                     <g>
@@ -6743,7 +6733,7 @@ function Map({ features, activeId, setActiveId }) {
                     </g>
                 </g>
                 </g>
-                <g id="juneberry" ref={refs.current[getFeatureIndex('juneberry')]} onClick={e => handleLocClick(e, 'juneberry')}>
+                <g id="juneberry">
                 <path
                     id="grass_x5F_patch_00000154390654084850589950000007585338423918136971_"
                     className="st15"
@@ -7097,7 +7087,7 @@ function Map({ features, activeId, setActiveId }) {
                     />
                 </g>
                 <g id="number_x5F_14_00000091734451674143204760000013355995576274224826_">
-                    <circle className="target" cx={1059.6} cy={1655.3} r={16.4} />
+                    <circle ref={refs.current[getFeatureIndex('juneberry')]} onClick={e => handleLocClick(e, 'juneberry')} className="target" cx={1059.6} cy={1655.3} r={16.4} />
                     <rect
                     x={1043.2}
                     y={1647.2}
@@ -7105,12 +7095,6 @@ function Map({ features, activeId, setActiveId }) {
                     width={32.7}
                     height={24.5}
                     />
-                    {/* <text
-                    transform="matrix(1 0 0 1 1049.8468 1660.7538)"
-                    className="st5 st50 st51"
-                    >
-                    {"14"}
-                    </text> */}
                 </g>
                 <g id="shrub_00000108281476003010835220000008275602911932561058_">
                     <g>
@@ -7129,14 +7113,14 @@ function Map({ features, activeId, setActiveId }) {
                     </g>
                 </g>
                 </g>
-                <g id="meadowrue" ref={refs.current[getFeatureIndex('meadowrue')]} onClick={e => handleLocClick(e, 'meadowrue')}>
+                <g id="meadowrue">
                 <path
                     id="grass_x5F_patch_00000095297469953212453680000015019152172432392083_"
                     className="st15"
                     d="M1124.2,1821.9 c-2.8,3-7.3,9.3-28.3,9.4l-71.5,0.3c-26.2,0.1-32.4-4.8-37.5-7.9c-10.5-6.3-20.6-18.2-16.2-25.3c0.1-0.2,0.3-0.4,0.4-0.6h155.2 C1131.2,1804.9,1130.3,1815.3,1124.2,1821.9z"
                 />
                 <g id="number_x5F_15_00000120522781592085135030000006738843611185145486_">
-                    <circle className="target" cx={1041} cy={1825.1} r={16.4} />
+                    <circle ref={refs.current[getFeatureIndex('meadowrue')]} onClick={e => handleLocClick(e, 'meadowrue')} className="target" cx={1041} cy={1825.1} r={16.4} />
                     <rect
                     x={1024.7}
                     y={1817.1}
@@ -7515,14 +7499,14 @@ function Map({ features, activeId, setActiveId }) {
                     </g>
                 </g>
                 </g>
-                <g id="waterleaf" ref={refs.current[getFeatureIndex('waterleaf')]} onClick={e => handleLocClick(e, 'waterleaf')}>
+                <g id="waterleaf">
                 <path
                     id="grass_x5F_patch_00000080898235760486801500000000632852040744429482_"
                     className="st15"
                     d="M1107.7,1957.1 c1.3-0.7,2.1-1.7,2.4-2.9c0.3-1.2,0-2.6-1-3.4c-0.9-0.7-2-0.7-3.1-0.7c-42-0.5-84-2.1-126-2.3c-2.3,0-4.7,0-6.9,0.7 s-4.2,2.4-4.8,4.6c-0.8,3.1,1.3,6.3,4.1,7.7s6.1,1.6,9.2,1.8c7,0.3,13.9,0.6,20.9,0.9c12.8,0.5,26.2,2.6,38.8,1.6 c8.4-0.7,16.7-1.5,25-2.3c7.2-0.7,14.3-1.8,21.4-2.6C1091.9,1959.6,1102.7,1960,1107.7,1957.1z"
                 />
                 <g id="number_x5F_16_00000124874604501900005600000011631396578026578337_">
-                    <circle className="target" cx={1026.3} cy={1982.2} r={16.4} />
+                    <circle ref={refs.current[getFeatureIndex('waterleaf')]} onClick={e => handleLocClick(e, 'waterleaf')} className="target" cx={1026.3} cy={1982.2} r={16.4} />
                     <rect
                     x={1009.9}
                     y={1974.1}
@@ -7530,12 +7514,6 @@ function Map({ features, activeId, setActiveId }) {
                     width={32.7}
                     height={24.5}
                     />
-                    {/* <text
-                    transform="matrix(1 0 0 1 1016.5392 1987.7219)"
-                    className="st5 st50 st51"
-                    >
-                    {"16"}
-                    </text> */}
                 </g>
                 <g id="waterleaf_00000006709054661497754800000001314452808555582891_">
                     <path
@@ -7926,7 +7904,7 @@ function Map({ features, activeId, setActiveId }) {
                     />
                 </g>
                 </g>
-                <g id="parking" ref={refs.current[getFeatureIndex('parking')]} onClick={e => handleLocClick(e, 'parking')}>
+                <g id="parking">
                 <g id="parking_00000044857144899949137610000000768858757820799156_">
                     <line className="st78" x1={976.8} y1={945} x2={968.2} y2={988} />
                     <line className="st78" x1={1000.7} y1={949.8} x2={992.1} y2={992.8} />
@@ -7964,19 +7942,13 @@ function Map({ features, activeId, setActiveId }) {
                     />
                 </g>
                 <g id="number_x5F_18_00000101783241007786316930000017940509475484058514_">
-                    <circle className="target" cx={1222.5} cy={955.1} r={16.4} />
+                    <circle ref={refs.current[getFeatureIndex('waterleaf')]} onClick={e => handleLocClick(e, 'waterleaf')} className="target" cx={1222.5} cy={955.1} r={16.4} />
                     <rect x={1206.1} y={947} className="st0" width={32.7} height={24.5} />
-                    {/* <text
-                    transform="matrix(1 0 0 1 1212.6923 960.5858)"
-                    className="st5 st50 st51"
-                    >
-                    {"18"}
-                    </text> */}
                 </g>
                 </g>
-                <g id="firepit" ref={refs.current[getFeatureIndex('firepit')]} onClick={e => handleLocClick(e, 'firepit')}>
+                <g id="firepit">
                 <g id="number_x5F_10">
-                    <circle className="target" cx={1272.7} cy={2160.7} r={16.4} />
+                    <circle ref={refs.current[getFeatureIndex('firepit')]} onClick={e => handleLocClick(e, 'firepit')} className="target" cx={1272.7} cy={2160.7} r={16.4} />
                     <rect
                     x={1256.4}
                     y={2152.6}
@@ -7984,12 +7956,6 @@ function Map({ features, activeId, setActiveId }) {
                     width={32.7}
                     height={24.5}
                     />
-                    {/* <text
-                    transform="matrix(1 0 0 1 1263.0299 2166.1721)"
-                    className="st5 st50 st51"
-                    >
-                    {"10"}
-                    </text> */}
                 </g>
                 <g id="firepit_x5F_10">
                     <g>
@@ -7997,7 +7963,7 @@ function Map({ features, activeId, setActiveId }) {
                     </g>
                 </g>
                 </g>
-                <g id="watersport-shed" ref={refs.current[getFeatureIndex('watersport-shed')]} onClick={e => handleLocClick(e, 'watersport-shed')}>
+                <g id="watersport-shed">
                 <rect
                     id="watersport_x5F_shed_00000027585563623525416420000011249384869865142931_"
                     x={1322.7}
@@ -8239,7 +8205,7 @@ function Map({ features, activeId, setActiveId }) {
                     </g>
                 </g>
                 <g id="number_x5F_23_00000089572521622399127980000002103943075686610355_">
-                    <circle className="target" cx={1362.2} cy={1979} r={16.4} />
+                    <circle ref={refs.current[getFeatureIndex('watersport-shed')]} onClick={e => handleLocClick(e, 'watersport-shed')} className="target" cx={1362.2} cy={1979} r={16.4} />
                     <rect
                     x={1345.9}
                     y={1970.9}
@@ -8255,9 +8221,9 @@ function Map({ features, activeId, setActiveId }) {
                     </text> */}
                 </g>
                 </g>
-                <g id="poolside-firepit" ref={refs.current[getFeatureIndex('poolside-firepit')]} onClick={e => handleLocClick(e, 'poolside-firepit')}>
+                <g id="poolside-firepit">
                 <g id="number_x5F_19">
-                    <circle className="target" cx={1621.5} cy={1373.9} r={16.4} />
+                    <circle ref={refs.current[getFeatureIndex('poolside-firepit')]} onClick={e => handleLocClick(e, 'poolside-firepit')} className="target" cx={1621.5} cy={1373.9} r={16.4} />
                     <rect
                     x={1605.1}
                     y={1365.8}
@@ -8265,16 +8231,10 @@ function Map({ features, activeId, setActiveId }) {
                     width={32.7}
                     height={24.5}
                     />
-                    {/* <text
-                    transform="matrix(1 0 0 1 1611.7335 1379.3612)"
-                    className="st5 st50 st51"
-                    >
-                    {"19"}
-                    </text> */}
                 </g>
                 <g id="firepit_x5F_19">
                     <g>
-                    <path d="M1645.8,1394.7c0.3-1.1,0.6-2.1,0.9-3.2c0.8-2.9,3.1-4.6,6-4.6c0.6,0,1.2,0,1.8,0c-0.1-0.2-0.2-0.3-0.2-0.4 c-1.7-2.8-2.3-5.9-2-9.2c0.4-4.5,2-8.7,4.2-12.6c0.3-0.5,0.6-0.6,0.9-0.5c0.4,0.1,0.5,0.4,0.5,0.9c-0.1,0.8-0.1,1.6,0.2,2.4 c0.3,1,0.9,1.6,1.9,1.7c1,0.2,1.8-0.2,2.4-1c0.8-1.1,1.3-2.5,1.5-3.8c0.5-3.2,0.3-6.4-1.1-9.4c-0.3-0.6-0.6-1.1-0.9-1.7 c-0.2-0.3-0.3-0.6-0.1-0.9c0.2-0.3,0.5-0.4,0.9-0.3c5,1.1,8.4,4.1,10.3,8.9c0,0.1,0.1,0.2,0.1,0.3c0.2-0.2,0.4-0.4,0.5-0.6 c0.3-0.6,0.5-1.2,0.8-1.8c0.1-0.3,0.2-0.7,0.6-0.8c0.4-0.1,0.6,0.2,0.9,0.4c2,2.4,3.5,5.1,4.7,8c1.5,3.8,2.2,7.7,2.1,11.7 c0,2.9-0.7,5.6-2.1,8.2c-0.1,0.1-0.1,0.2-0.2,0.4c0.3,0,0.6,0,0.8,0c0.7,0,1.4-0.1,2.1,0.1c2.4,0.5,4.1,1.9,4.9,4.3 c0.3,1.1,0.6,2.1,0.9,3.2c0.2,0.6,0.1,0.8-0.4,1.1c-14.4,0-28.7,0-43.1,0C1645.8,1395.3,1645.8,1395,1645.8,1394.7z  M1656.8,1367.7c-0.1,0.1-0.1,0.2-0.1,0.2c-1.4,3.1-2.5,6.4-2.8,9.8c-0.2,3.2,0.5,6.2,2.4,8.9c0.1,0.2,0.3,0.3,0.5,0.4 c1,0.2,1.9,0.6,2.7,1.2c0.3,0.2,0.6,0.4,0.8,0.6c0.5-0.4,0.4-0.7,0.1-1.2c-1.5-2.4-1.9-5-1.3-7.8c0.1-0.6,0.4-0.8,1-0.7 c0.6,0.1,1.3,0.2,1.9,0.1c1.2-0.1,1.9-0.7,2.2-1.9c0.2-1,0-2-0.2-3c-0.2-0.9,0.2-1.3,1.1-1c2.1,0.6,3.8,1.7,5.2,3.3 c0.5,0.6,1,1.4,1.5,2.1c0.4-0.3,0.7-0.8,0.8-1.3c0-0.1,0.1-0.3,0.1-0.4c0-0.4,0.2-0.7,0.6-0.7c0.4-0.1,0.6,0.1,0.8,0.5 c0.8,1.5,1.4,3.1,1.8,4.8c0.4,1.5,0.6,3.1,0.2,4.6c-0.1,0.6,0,1,0.4,1.4c0.2,0.2,0.3,0.2,0.5,0.1c0.5-0.2,1-0.3,1.5-0.5 c0.2-0.1,0.4-0.2,0.5-0.3c0.8-1.2,1.4-2.5,1.8-3.9c0.8-2.7,0.8-5.4,0.5-8.1c-0.6-5.1-2.4-9.7-5.3-13.9c-0.1-0.1-0.2-0.2-0.3-0.3 c-0.1,0.3-0.3,0.5-0.4,0.8c-0.4,0.7-1,1.4-1.8,1.7c-0.8,0.3-1.2,0.1-1.5-0.7c-1.3-3.8-3.6-6.6-7.4-8.1c-0.1-0.1-0.3-0.1-0.5-0.2 c0,0.1,0.1,0.2,0.1,0.2c1.7,3.7,2,7.6,1.1,11.5c-0.3,1.5-0.9,2.9-2,4c-1.3,1.3-3.2,1.5-4.7,0.6 C1657.6,1369.7,1657.1,1368.8,1656.8,1367.7z M1676.9,1394.2c0-0.4-0.1-0.8-0.1-1.2c-0.5-3.6-0.2-3.3-2.4-5.9 c-0.9-1.1-2.1-1.6-3.5-1.6c-0.8,0-1.7,0-2.5,0c-0.9,0-1.8,0.2-2.5,0.7c-0.9,0.6-1.8,1.2-2.8,1.7c-1,0.6-1.6,1.4-2,2.5 c-0.4,1.1-0.7,2.2-1.1,3.3c0,0.1-0.1,0.3-0.1,0.4C1665.6,1394.2,1671.3,1394.2,1676.9,1394.2z M1673.6,1378.9 c-0.5,0.5-1,0.9-1.5,1.3c-0.6,0.5-1,0.3-1.4-0.4c-0.5-0.9-1-1.7-1.6-2.5c-0.9-1.1-2.1-1.9-3.4-2.4c0,0.7,0,1.4,0,2 c-0.1,1.9-1.3,3.3-3.2,3.6c-0.7,0.1-1.4,0.1-2.1,0.1c-0.3,2.3,0.1,4.4,1.3,6.4c1.2-0.7,2.3-1.4,3.4-2.1c0.9-0.6,1.9-0.9,2.9-0.9 c1,0,2,0,3,0c1.3,0,2.4,0.4,3.5,1.2c0.1,0,0.1,0.1,0.2,0.1C1675.1,1383.1,1674.4,1381,1673.6,1378.9z M1647.5,1394.2 c0.1,0,0.2,0,0.2,0c3.5,0,6.9,0,10.4,0c0.2,0,0.3-0.1,0.4-0.3c0.3-0.8,0.5-1.6,0.8-2.5c0.1-0.4,0.5-0.9,0.3-1.3 c-0.1-0.4-0.7-0.6-1-0.8c-0.8-0.6-1.7-1-2.8-1c-1.1,0-2.2,0-3.4,0c-2,0.1-3.3,1.1-4.1,2.9 C1648,1392.2,1647.8,1393.2,1647.5,1394.2z M1687.7,1394.2c-0.3-0.9-0.5-1.7-0.7-2.6c-0.6-1.7-1.7-2.9-3.5-3.1 c-1.7-0.2-3.4,0-5,0c-0.3,0-0.6,0.2-0.9,0.3c0.7,1.8,0.6,3.6,1,5.4C1681.5,1394.2,1684.6,1394.2,1687.7,1394.2z" />
+                        <path d="M1645.8,1394.7c0.3-1.1,0.6-2.1,0.9-3.2c0.8-2.9,3.1-4.6,6-4.6c0.6,0,1.2,0,1.8,0c-0.1-0.2-0.2-0.3-0.2-0.4 c-1.7-2.8-2.3-5.9-2-9.2c0.4-4.5,2-8.7,4.2-12.6c0.3-0.5,0.6-0.6,0.9-0.5c0.4,0.1,0.5,0.4,0.5,0.9c-0.1,0.8-0.1,1.6,0.2,2.4 c0.3,1,0.9,1.6,1.9,1.7c1,0.2,1.8-0.2,2.4-1c0.8-1.1,1.3-2.5,1.5-3.8c0.5-3.2,0.3-6.4-1.1-9.4c-0.3-0.6-0.6-1.1-0.9-1.7 c-0.2-0.3-0.3-0.6-0.1-0.9c0.2-0.3,0.5-0.4,0.9-0.3c5,1.1,8.4,4.1,10.3,8.9c0,0.1,0.1,0.2,0.1,0.3c0.2-0.2,0.4-0.4,0.5-0.6 c0.3-0.6,0.5-1.2,0.8-1.8c0.1-0.3,0.2-0.7,0.6-0.8c0.4-0.1,0.6,0.2,0.9,0.4c2,2.4,3.5,5.1,4.7,8c1.5,3.8,2.2,7.7,2.1,11.7 c0,2.9-0.7,5.6-2.1,8.2c-0.1,0.1-0.1,0.2-0.2,0.4c0.3,0,0.6,0,0.8,0c0.7,0,1.4-0.1,2.1,0.1c2.4,0.5,4.1,1.9,4.9,4.3 c0.3,1.1,0.6,2.1,0.9,3.2c0.2,0.6,0.1,0.8-0.4,1.1c-14.4,0-28.7,0-43.1,0C1645.8,1395.3,1645.8,1395,1645.8,1394.7z  M1656.8,1367.7c-0.1,0.1-0.1,0.2-0.1,0.2c-1.4,3.1-2.5,6.4-2.8,9.8c-0.2,3.2,0.5,6.2,2.4,8.9c0.1,0.2,0.3,0.3,0.5,0.4 c1,0.2,1.9,0.6,2.7,1.2c0.3,0.2,0.6,0.4,0.8,0.6c0.5-0.4,0.4-0.7,0.1-1.2c-1.5-2.4-1.9-5-1.3-7.8c0.1-0.6,0.4-0.8,1-0.7 c0.6,0.1,1.3,0.2,1.9,0.1c1.2-0.1,1.9-0.7,2.2-1.9c0.2-1,0-2-0.2-3c-0.2-0.9,0.2-1.3,1.1-1c2.1,0.6,3.8,1.7,5.2,3.3 c0.5,0.6,1,1.4,1.5,2.1c0.4-0.3,0.7-0.8,0.8-1.3c0-0.1,0.1-0.3,0.1-0.4c0-0.4,0.2-0.7,0.6-0.7c0.4-0.1,0.6,0.1,0.8,0.5 c0.8,1.5,1.4,3.1,1.8,4.8c0.4,1.5,0.6,3.1,0.2,4.6c-0.1,0.6,0,1,0.4,1.4c0.2,0.2,0.3,0.2,0.5,0.1c0.5-0.2,1-0.3,1.5-0.5 c0.2-0.1,0.4-0.2,0.5-0.3c0.8-1.2,1.4-2.5,1.8-3.9c0.8-2.7,0.8-5.4,0.5-8.1c-0.6-5.1-2.4-9.7-5.3-13.9c-0.1-0.1-0.2-0.2-0.3-0.3 c-0.1,0.3-0.3,0.5-0.4,0.8c-0.4,0.7-1,1.4-1.8,1.7c-0.8,0.3-1.2,0.1-1.5-0.7c-1.3-3.8-3.6-6.6-7.4-8.1c-0.1-0.1-0.3-0.1-0.5-0.2 c0,0.1,0.1,0.2,0.1,0.2c1.7,3.7,2,7.6,1.1,11.5c-0.3,1.5-0.9,2.9-2,4c-1.3,1.3-3.2,1.5-4.7,0.6 C1657.6,1369.7,1657.1,1368.8,1656.8,1367.7z M1676.9,1394.2c0-0.4-0.1-0.8-0.1-1.2c-0.5-3.6-0.2-3.3-2.4-5.9 c-0.9-1.1-2.1-1.6-3.5-1.6c-0.8,0-1.7,0-2.5,0c-0.9,0-1.8,0.2-2.5,0.7c-0.9,0.6-1.8,1.2-2.8,1.7c-1,0.6-1.6,1.4-2,2.5 c-0.4,1.1-0.7,2.2-1.1,3.3c0,0.1-0.1,0.3-0.1,0.4C1665.6,1394.2,1671.3,1394.2,1676.9,1394.2z M1673.6,1378.9 c-0.5,0.5-1,0.9-1.5,1.3c-0.6,0.5-1,0.3-1.4-0.4c-0.5-0.9-1-1.7-1.6-2.5c-0.9-1.1-2.1-1.9-3.4-2.4c0,0.7,0,1.4,0,2 c-0.1,1.9-1.3,3.3-3.2,3.6c-0.7,0.1-1.4,0.1-2.1,0.1c-0.3,2.3,0.1,4.4,1.3,6.4c1.2-0.7,2.3-1.4,3.4-2.1c0.9-0.6,1.9-0.9,2.9-0.9 c1,0,2,0,3,0c1.3,0,2.4,0.4,3.5,1.2c0.1,0,0.1,0.1,0.2,0.1C1675.1,1383.1,1674.4,1381,1673.6,1378.9z M1647.5,1394.2 c0.1,0,0.2,0,0.2,0c3.5,0,6.9,0,10.4,0c0.2,0,0.3-0.1,0.4-0.3c0.3-0.8,0.5-1.6,0.8-2.5c0.1-0.4,0.5-0.9,0.3-1.3 c-0.1-0.4-0.7-0.6-1-0.8c-0.8-0.6-1.7-1-2.8-1c-1.1,0-2.2,0-3.4,0c-2,0.1-3.3,1.1-4.1,2.9 C1648,1392.2,1647.8,1393.2,1647.5,1394.2z M1687.7,1394.2c-0.3-0.9-0.5-1.7-0.7-2.6c-0.6-1.7-1.7-2.9-3.5-3.1 c-1.7-0.2-3.4,0-5,0c-0.3,0-0.6,0.2-0.9,0.3c0.7,1.8,0.6,3.6,1,5.4C1681.5,1394.2,1684.6,1394.2,1687.7,1394.2z" />
                     </g>
                 </g>
                 </g>
@@ -8302,16 +8262,10 @@ function Map({ features, activeId, setActiveId }) {
                     </g>
                 </g>
                 </g>
-                <g id="hygge-huts" ref={refs.current[getFeatureIndex('hygge-huts')]} onClick={e => handleLocClick(e, 'hygge-huts')}>
+                <g id="hygge-huts">
                 <g id="number_x5F_17_00000132800195734320634840000012355709242346427790_">
-                    <circle className="target" cx={883.5} cy={1783.9} r={16.4} />
+                    <circle ref={refs.current[getFeatureIndex('hygge-huts')]} onClick={e => handleLocClick(e, 'hygge-huts')} className="target" cx={883.5} cy={1783.9} r={16.4} />
                     <rect x={867.2} y={1775.8} className="st0" width={32.7} height={24.5} />
-                    {/* <text
-                    transform="matrix(1 0 0 1 874.3705 1789.3589)"
-                    className="st5 st50 st51"
-                    >
-                    {"17"}
-                    </text> */}
                 </g>
                 <g id="hygge_x5F_hut_00000034790574001023948490000012337954484938666648_">
                     <g>
@@ -9206,16 +9160,10 @@ function Map({ features, activeId, setActiveId }) {
                     />
                 </g>
                 </g>
-                <g id="beach" ref={refs.current[getFeatureIndex('west-beach')]} onClick={e => handleLocClick(e, 'west-beach')}>
+                <g id="beach">
                 <g id="number_x5F_11_00000106109651198747998170000016811581086795586981_">
-                    <circle className="target" cx={702.1} cy={2020.7} r={16.4} />
+                    <circle ref={refs.current[getFeatureIndex('west-beach')]} onClick={e => handleLocClick(e, 'west-beach')} className="target" cx={702.1} cy={2020.7} r={16.4} />
                     <rect x={685.7} y={2012.6} className="st0" width={32.7} height={24.5} />
-                    {/* <text
-                    transform="matrix(1 0 0 1 693.826 2026.1423)"
-                    className="st5 st50 st51"
-                    >
-                    {"11"}
-                    </text> */}
                 </g>
                 <g id="beach_x5F_11_00000127008888012012947670000011419874992290797716_">
                     <g>
@@ -9223,9 +9171,9 @@ function Map({ features, activeId, setActiveId }) {
                     </g>
                 </g>
                 </g>
-                <g id="beach-bar" ref={refs.current[getFeatureIndex('beach-bar')]} onClick={e => handleLocClick(e, 'beach-bar')}>
+                <g id="beach-bar">
                 <g id="number_x5F_24_00000057111866810192317760000004095276210524419750_">
-                    <circle className="target" cx={1362.2} cy={1831.9} r={16.4} />
+                    <circle ref={refs.current[getFeatureIndex('beach-bar')]} onClick={e => handleLocClick(e, 'beach-bar')} className="target" cx={1362.2} cy={1831.9} r={16.4} />
                     <rect
                     x={1345.9}
                     y={1823.8}
@@ -9233,12 +9181,6 @@ function Map({ features, activeId, setActiveId }) {
                     width={32.7}
                     height={24.5}
                     />
-                    {/* <text
-                    transform="matrix(1 0 0 1 1351.3409 1837.3934)"
-                    className="st5 st50 st51"
-                    >
-                    {"24"}
-                    </text> */}
                 </g>
                 <g id="beach_x5F_nar">
                     <rect
@@ -9378,7 +9320,7 @@ function Map({ features, activeId, setActiveId }) {
                     />
                 </g>
                 </g>
-                <g id="cabana" ref={refs.current[getFeatureIndex('cabana')]} onClick={e => handleLocClick(e, 'cabana')}>
+                <g id="cabana">
                 <g>
                     <defs>
                     <path
@@ -9483,7 +9425,7 @@ function Map({ features, activeId, setActiveId }) {
                     </g>
                 </g>
                 <g id="number_x5F_24_00000127025335423797010600000009454707687699474319_">
-                    <circle className="target" cx={945} cy={2050.3} r={16.4} />
+                    <circle ref={refs.current[getFeatureIndex('cabana')]} onClick={e => handleLocClick(e, 'cabana')} className="target" cx={945} cy={2050.3} r={16.4} />
                     <rect x={928.6} y={2042.2} className="st0" width={32.7} height={24.5} />
                     {/* <text
                     transform="matrix(1 0 0 1 934.2507 2055.8098)"
@@ -9997,7 +9939,7 @@ function Map({ features, activeId, setActiveId }) {
                     </g>
                 </g>
                 </g>
-                <g id="volleyball-court" ref={refs.current[getFeatureIndex('volleyball-court')]} onClick={e => handleLocClick(e, 'volleyball-court')}>
+                <g id="volleyball-court">
                 <rect
                     id="volleyball_x5F_land"
                     x={555.2}
@@ -10007,14 +9949,8 @@ function Map({ features, activeId, setActiveId }) {
                     height={103.9}
                 />
                 <g id="number_x5F_24_00000043459659730181824270000007982033173238552200_">
-                    <circle className="target" cx={638.7} cy={1805.6} r={16.4} />
+                    <circle ref={refs.current[getFeatureIndex('volleyball-court')]} onClick={e => handleLocClick(e, 'volleyball-court')} className="target" cx={638.7} cy={1805.6} r={16.4} />
                     <rect x={622.3} y={1797.5} className="st0" width={32.7} height={24.5} />
-                    {/* <text
-                    transform="matrix(1 0 0 1 627.9017 1811.0358)"
-                    className="st5 st50 st51"
-                    >
-                    {"25"}
-                    </text> */}
                 </g>
                 </g>
                 <g id="lake">
@@ -10051,16 +9987,10 @@ function Map({ features, activeId, setActiveId }) {
                     </g>
                 </g>
                 </g>
-                <g id="clubhouse" ref={refs.current[getFeatureIndex('clubhouse')]} onClick={e => handleLocClick(e, 'clubhouse')}>
+                <g id="clubhouse">
                 <g id="number_x5F_2_00000034800061137457630840000016091598400730321803_">
-                    <circle className="target" cx={1322.3} cy={1358.1} r={16.4} />
+                    <circle ref={refs.current[getFeatureIndex('clubhouse')]} onClick={e => handleLocClick(e, 'clubhouse')} className="target" cx={1322.3} cy={1358.1} r={16.4} />
                     <rect x={1305.9} y={1350} className="st0" width={32.7} height={24.5} />
-                    {/* <text
-                    transform="matrix(1 0 0 1 1316.9548 1363.5712)"
-                    className="st5 st50 st51"
-                    >
-                    {"2"}
-                    </text> */}
                 </g>
                 <g id="clubhouse_00000165923118226393720310000005097905579075260856_">
                     <path
@@ -10493,16 +10423,10 @@ function Map({ features, activeId, setActiveId }) {
                     />
                 </g>
                 </g>
-                <g id="entrance" ref={refs.current[getFeatureIndex('entrance')]} onClick={e => handleLocClick(e, 'entrance')}>
+                <g id="entrance">
                 <g id="number_x5F_1_00000016756895272965621550000009197502897046271889_">
-                    <circle className="target" cx={1377} cy={500.5} r={16.4} />
+                    <circle ref={refs.current[getFeatureIndex('entrance')]} onClick={e => handleLocClick(e, 'entrance')} className="target" cx={1377} cy={500.5} r={16.4} />
                     <rect x={1360.6} y={492.4} className="st0" width={32.7} height={24.5} />
-                    {/* <text
-                    transform="matrix(1 0 0 1 1372.853 505.9636)"
-                    className="st5 st50 st51"
-                    >
-                    {"1"}
-                    </text> */}
                 </g>
                 <g id="entrance_x5F_sign_00000088110092180898347320000005697762295219413909_">
                     <g>
@@ -10593,7 +10517,7 @@ function Map({ features, activeId, setActiveId }) {
                     </g>
                 </g>
                 </g>
-                <g id="pool" ref={refs.current[getFeatureIndex('pool')]} onClick={e => handleLocClick(e, 'pool')}>
+                <g id="pool">
                 <g id="pool_x5F_house_00000061430521809163919210000014528149155098831490_">
                     <rect
                     x={1486.2}
@@ -10638,7 +10562,7 @@ function Map({ features, activeId, setActiveId }) {
                     </g>
                 </g>
                 <g id="number_x5F_3_00000057851775433297583300000009085901277445126057_">
-                    <circle className="target" cx={1627.1} cy={1078.9} r={16.4} />
+                    <circle ref={refs.current[getFeatureIndex('pool')]} onClick={e => handleLocClick(e, 'pool')} className="target" cx={1627.1} cy={1078.9} r={16.4} />
                     <rect
                     x={1610.8}
                     y={1070.8}
@@ -10646,12 +10570,6 @@ function Map({ features, activeId, setActiveId }) {
                     width={32.7}
                     height={24.5}
                     />
-                    {/* <text
-                    transform="matrix(1 0 0 1 1621.6447 1084.4196)"
-                    className="st5 st50 st51"
-                    >
-                    {"3"}
-                    </text> */}
                 </g>
                 <rect
                     id="pool_x5F_chairs_00000053542493719023740440000005444811138751070867_"
@@ -10750,7 +10668,7 @@ function Map({ features, activeId, setActiveId }) {
                     height={36.5}
                 />
                 </g>
-                <g id="bicycles" ref={refs.current[getFeatureIndex('bicycles')]} onClick={e => handleLocClick(e, 'bicycles')}>
+                <g id="bicycles">
                 <g id="bicycles_x5F_icon_00000050637357575458598390000004125527355851868545_">
                     <g>
                     <path
@@ -10777,15 +10695,7 @@ function Map({ features, activeId, setActiveId }) {
                     </g>
                 </g>
                 <g id="number_x5F_26_00000053527557432891037280000016113692664807930769_">
-                    <circle className="target" cx={816.8} cy={941} r={16.4} />
-                    <g>
-                    {/* <text
-                        transform="matrix(1 0 0 1 805.8747 946.3911)"
-                        className="st5 st50 st51"
-                    >
-                        {"26"}
-                    </text> */}
-                    </g>
+                    <circle ref={refs.current[getFeatureIndex('bicycles')]} onClick={e => handleLocClick(e, 'bicycles')} className="target" cx={816.8} cy={941} r={16.4} />
                 </g>
                 </g>
                 <g id="dock">
@@ -11297,7 +11207,7 @@ function Map({ features, activeId, setActiveId }) {
                 />
                 <path className="st16" d="M-1489.4,1064.6" />
                 </g>
-                <g id="garden" ref={refs.current[getFeatureIndex('garden')]} onClick={e => handleLocClick(e, 'garden')}>
+                <g id="garden">
                 <g id="garden_x5F_1_00000034802556566463890830000001840919954038566552_">
                     <path
                     id="garden_00000020358397139906613510000003151715362680924596_"
@@ -11472,14 +11382,8 @@ function Map({ features, activeId, setActiveId }) {
                     </g>
                 </g>
                 <g id="number_x5F_20_00000127013362760541884350000001840059536724303763_">
-                    <circle className="target" cx={890.1} cy={1078.9} r={16.4} />
+                    <circle ref={refs.current[getFeatureIndex('garden')]} onClick={e => handleLocClick(e, 'garden')} className="target" cx={890.1} cy={1078.9} r={16.4} />
                     <rect x={873.8} y={1070.8} className="st0" width={32.7} height={24.5} />
-                    {/* <text
-                    transform="matrix(1 0 0 1 879.2437 1084.4188)"
-                    className="st5 st50 st51"
-                    >
-                    {"20"}
-                    </text> */}
                 </g>
                 </g>
                 <g id="foliage">
