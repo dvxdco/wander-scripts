@@ -1,110 +1,3 @@
-@keyframes fadeInFromNone {
-    0% {
-        opacity: 0;
-    }
-
-    100% {
-        opacity: 1;
-    }
-}
-
-.wrm__modal {
-    z-index: 101;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: white;
-
-    display: flex;
-    vertical-align: center;
-    align-items: center;
-
-    animation: fadeInFromNone 0.5s ease-out;
-}
-
-.wrm__modal-content {
-    overflow: hidden;
-    display: flex;
-    max-width: 100vw;
-}
-
-.wrm__modal-content .glide__slide-content {
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   justify-items: center;
-   text-align: center;
-}
-.wrm__modal-content .glide__slide-content p {
-    padding: 20px 12%;
-}
-
-.wrm__modal-content .glide--carousel, .wrm__modal-content .glide__track {
-    max-width: 100vw;
-}
-
-.wrm__modal-content .glide--carousel .glide__slide {
-    align-self: flex-start;
-}
-
-.wrm__modal-content .glide--carousel button {
-    /* background-color: rgba(0, 100, 0, 0.5); */
-    background-color: transparent;
-    height: 100%;
-    width: 10%;
-    top: 0;
-    bottom: 0;
-    border-radius: 0;
-    padding: 0;
-    margin: 0;
-}
-@media screen and (min-width: 768px) {
-    .wrm__modal-content .glide--carousel button {
-        width: 20%;
-    }
-}
-@media screen and (min-width: 1280px) {
-    .wrm__modal-content .glide--carousel button {
-        width: 22%;
-    }
-}
-
-.wrm__modal-content .glide--carousel button svg {
-    display: none;
-}
-.wrm__modal-content .glide--carousel .Glide-leftArrow {
-    left: 0;
-}
-.wrm__modal-content .glide--carousel .Glide-rightArrow {
-    right: 0;
-}
-.wrm__modal-content .glide__slide p {
-	opacity: 0;
-    transition: opacity 0.2s ease-in;
-}
-.wrm__modal-content .glide__slide img {
-	width: 100%;
-}
-.wrm__modal-content .glide__slide--active p {
-	opacity: 1;
-}
-
-
-/* 
-
-
-MAP 
-
-
-*/
-
-#wander-resort-map {
-    overflow: hidden;
-    display: flex;
-}
-
 /*
 XS, S - 3:4 (portrait)
 M - 4:3 (landscape)
@@ -117,9 +10,19 @@ XL - 16:9
     margin-top: 66px;
     aspect-ratio: 3 / 4;
     background: red;
+}
 
-    user-select: none;
-    tap-highlight-color: transparent;
+/* 
+
+
+MAP 
+
+
+*/
+
+#wander-resort-map {
+    overflow: hidden;
+    display: flex;
 }
 
 @media screen and (min-width: 768px) {
@@ -142,6 +45,7 @@ XL - 16:9
 .wrm {
     --color-winter: #35363B;
     --color-allseason: #efedea;
+    --color-grass: #99A7A2;
     
     font-family: Silka, Tahoma, sans-serif, Arial;
     font-weight: 100;
@@ -327,22 +231,19 @@ XL - 16:9
     z-index: 1;
     position: relative;
     overflow: hidden;
-    background-color: #CFD6D4;
-    /* aspect-ratio: 16 / 9; */
+    background-color: var(--color-grass);
     height: 100%;
     width: 100%;
 
+    touch-action: none;
     user-select: none;
-    tap-highlight-color: transparent;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-highlight: none;
 }
 
 .wrm__svg-container svg {
     position: absolute;
-    touch-action: auto !important;
     cursor: pointer;
-
-    user-select: none;
-    tap-highlight-color: transparent;
 }
 
 svg.wrm__map circle {
@@ -477,4 +378,98 @@ svg.wrm__map circle {
 .wrm__close:hover svg line {
     transition: all 0.75s ease-out;
     stroke: #000;
+}
+
+/* MODAL */
+@keyframes fadeInFromNone {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.wrm__modal {
+    z-index: 101;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: white;
+
+    display: flex;
+    vertical-align: center;
+    align-items: center;
+
+    animation: fadeInFromNone 0.5s ease-out;
+}
+
+.wrm__modal-content {
+    overflow: hidden;
+    display: flex;
+    max-width: 100vw;
+}
+
+.wrm__modal-content .glide__slide-content {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-items: center;
+   text-align: center;
+}
+.wrm__modal-content .glide__slide-content p {
+    padding: 20px 12%;
+}
+
+.wrm__modal-content .glide--carousel, .wrm__modal-content .glide__track {
+    max-width: 100vw;
+}
+
+.wrm__modal-content .glide--carousel .glide__slide {
+    align-self: flex-start;
+}
+
+.wrm__modal-content .glide--carousel button {
+    /* background-color: rgba(0, 100, 0, 0.5); */
+    background-color: transparent;
+    height: 100%;
+    width: 10%;
+    top: 0;
+    bottom: 0;
+    border-radius: 0;
+    padding: 0;
+    margin: 0;
+}
+@media screen and (min-width: 768px) {
+    .wrm__modal-content .glide--carousel button {
+        width: 20%;
+    }
+}
+@media screen and (min-width: 1280px) {
+    .wrm__modal-content .glide--carousel button {
+        width: 22%;
+    }
+}
+
+.wrm__modal-content .glide--carousel button svg {
+    display: none;
+}
+.wrm__modal-content .glide--carousel .Glide-leftArrow {
+    left: 0;
+}
+.wrm__modal-content .glide--carousel .Glide-rightArrow {
+    right: 0;
+}
+.wrm__modal-content .glide__slide p {
+	opacity: 0;
+    transition: opacity 0.2s ease-in;
+}
+.wrm__modal-content .glide__slide img {
+	width: 100%;
+}
+.wrm__modal-content .glide__slide--active p {
+	opacity: 1;
 }

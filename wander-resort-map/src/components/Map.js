@@ -5,6 +5,10 @@ import PanZ from '@thesoulfresh/pan-z'
 const TARGET_CLASSNAME = '.target'
 const Z_DEFAULT = 0.6
 
+// Note: unfortunate work around for SVG initialFit:'contain' positioning (to avoid editing the SVG in illustrator again)
+// reduced the dimensions on the main SVG, and translated an inner SVG to compensate
+const SVG_POS_OFFSET = -200; 
+
 const breakpoints = {
     xs: 478, 
     sm: 767,
@@ -14,6 +18,7 @@ const breakpoints = {
 
 function Map({ features, activeId, setActiveId }) {
     const [isLoaded, setIsLoaded] = useState(false)
+    const [hasZoomed, setHasZoomed] = useState(false)
     const [pz] = useState(() => new PanZ())
     const [loc, setLoc] = useState({
         x: null, // 0.5,
@@ -26,6 +31,7 @@ function Map({ features, activeId, setActiveId }) {
 	const refs = useRef(features.map(() => createRef()))
 
     useEffect(() => {
+        // console.log('init');
         if (!isLoaded && mapRef.current && containerRef.current) {
             pz.init(mapRef.current, {
                 boundingElement: containerRef.current,
@@ -43,6 +49,16 @@ function Map({ features, activeId, setActiveId }) {
         }
     }, [])
 
+    useEffect(() => {
+        // console.log('loc changed:', loc)
+        // Pan to a specific point on the element without changing the scale. 
+        // The x/y location specified will be centered within the boundingElement. 
+        // X/Y should be specified as a number between 0-1 that is the percentage of the dimensions of the element.
+        if (loc.x && loc.y && loc.z) {
+            pz.centerOn(loc.x, loc.y, loc.z)
+        }
+    }, [loc])
+
     useEffect(() => {        
         gsap.set(TARGET_CLASSNAME, { opacity: 1, scale: 1 })
         gsap.globalTimeline.killTweensOf(TARGET_CLASSNAME)
@@ -55,6 +71,10 @@ function Map({ features, activeId, setActiveId }) {
             if (target) {
                 gsap.from(target, { opacity: 0.5, scale: 1.5, yoyo: true, repeat: -1, duration: 1, transformOrigin: 'center' })
             }
+
+            if (!hasZoomed) {
+                setHasZoomed(true)
+            }
         } 
         else {
             setLoc({ x: loc.x, y: loc.y, z: Z_DEFAULT })
@@ -66,37 +86,19 @@ function Map({ features, activeId, setActiveId }) {
         if (ref) {
             const el = ref.querySelector(TARGET_CLASSNAME)
             if (el) {
-                const xOffsetFactor = (window.innerWidth > breakpoints.sm && window.innerWidth < breakpoints.lg) ? 0.95 : 1;
-                const deltaX = el.cx.baseVal.value / (mapRef.current.clientWidth * xOffsetFactor)
-                const deltaY = el.cy.baseVal.value / mapRef.current.clientHeight
+                const xOffsetFocus = (window.innerWidth > breakpoints.sm && window.innerWidth < breakpoints.lg) ? 0.95 : 1;
+                const deltaX = (el.cx.baseVal.value + SVG_POS_OFFSET) / (mapRef.current.clientWidth * xOffsetFocus)
+                const deltaY = (el.cy.baseVal.value + SVG_POS_OFFSET) / mapRef.current.clientHeight
                 setLoc({ x: deltaX, y: deltaY, z: 1.5 }) 
             }
         }
     })
 
-    const shallowEqual = (object1, object2) => {
-        const keys1 = Object.keys(object1);
-        const keys2 = Object.keys(object2);
-        if (keys1.length !== keys2.length) {
-            return false;
-        }
-        for (let key of keys1) {
-            if (object1[key] !== object2[key]) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    useEffect(() => {
-        // console.log('loc', loc, isLoaded)
-        // Pan to a specific point on the element without changing the scale. 
-        // The x/y location specified will be centered within the boundingElement. 
-        // X/Y should be specified as a number between 0-1 that is the percentage of the dimensions of the element.
-        if (loc.x && loc.y && loc.z) {
-            pz.centerOn(loc.x, loc.y, loc.z)
-        }
-    }, [loc])
+    const handleLocClick = useCallback((e, id) => {
+        // console.log('handleLocClick', e, id)
+        e.stopPropagation()
+        setActiveId(id)
+    })
 
     const getFeatureIndex = (id) => {
         return features.findIndex(object => {
@@ -113,31 +115,34 @@ function Map({ features, activeId, setActiveId }) {
                 xmlnsXlink="http://www.w3.org/1999/xlink"
                 x="0px"
                 y="0px"
-                width="2761"
-                height="2917"
-                viewBox="0 0 2761 2917"
+                // width="2761"
+                // height="2917"
+                width="2361"
+                height="2517"
+                viewBox="0 0 2361 2517"
                 style={{
-                    enableBackground: "new 0 0 2761 2917",
-                    backgroundColor: "#CFD6D4"
+                    enableBackground: "new 0 0 2361 2517",
+                    backgroundColor: "#99A7A2"
                 }}
                 xmlSpace="preserve"
+
             >
                 <style type="text/css">
-                {
-                    "\n\t.st0{fill:none;}\n\t.st1{fill:#221F20;}\n\t.st2{fill:#FBFAF9;}\n\t.st3{fill:#DAE2E5;stroke:#231F20;stroke-width:1.1261;stroke-miterlimit:10;stroke-dasharray:13.5134;}\n\t.st4{display:none;fill:#F2ECE6;}\n\t.st5{fill:#F2ECE6;}\n\t.st6{fill:#DAE2E5;}\n\t.st7{fill:#31353A;}\n\t.st8{fill:none;stroke:#231F20;stroke-width:1.0493;stroke-miterlimit:10;stroke-dasharray:12.5912;}\n\t.st9{fill:#C0C0C0;}\n\t.st10{fill:#EEECED;}\n\t.st11{opacity:0.2;fill:url(#concrete_x5F_1_00000085213518244244080910000009988571009399695499_);}\n\t.st12{clip-path:url(#SVGID_00000132069906965085226870000004703197977924415408_);}\n\t.st13{fill:#DEC28C;}\n\t.st14{fill:#DEC18C;}\n\t.st15{fill:#CFD6D4;}\n\t.st16{fill:#99A7A2;}\n\t.st17{fill:none;stroke:#231F20;stroke-miterlimit:10;}\n\t.st18{clip-path:url(#SVGID_00000085251401515031376360000002182462674667573944_);}\n\t.st19{fill:#88725B;}\n\t.st20{clip-path:url(#SVGID_00000086658943508733942080000005922489004772239518_);}\n\t.st21{fill:#775B40;}\n\t.st22{fill:#765A40;}\n\t.st23{fill:#765A3F;}\n\t.st24{fill:#75593F;}\n\t.st25{fill:#74593F;}\n\t.st26{fill:#74583E;}\n\t.st27{fill:#73583E;}\n\t.st28{fill:#73573E;}\n\t.st29{fill:#72573E;}\n\t.st30{fill:#71563D;}\n\t.st31{fill:#70553D;}\n\t.st32{fill:#6F553C;}\n\t.st33{fill:#6F543C;}\n\t.st34{fill:#6E543C;}\n\t.st35{fill:#6D533B;}\n\t.st36{fill:#6C533B;}\n\t.st37{fill:#6C523B;}\n\t.st38{fill:#6B523A;}\n\t.st39{fill:#6A513A;}\n\t.st40{fill:#695039;}\n\t.st41{fill:#685039;}\n\t.st42{fill:#684F39;}\n\t.st43{fill:#674F39;}\n\t.st44{fill:#674E38;}\n\t.st45{fill:#664E38;}\n\t.st46{fill:#654D38;}\n\t.st47{fill:#654D37;}\n\t.st48{fill:#644C37;}\n\t.st49{fill:#232020;}\n\t.st50{font-family:'Silka-Medium';}\n\t.st51{font-size:18.107px;}\n\t.st52{clip-path:url(#SVGID_00000018229171097058197930000017234958881185818027_);}\n\t.st53{fill:#FFFFFF;}\n\t.st54{clip-path:url(#SVGID_00000150784892795702132800000012938752339348821660_);}\n\t.st55{fill:#413D39;}\n\t.st56{fill:#413C38;}\n\t.st57{fill:#403D38;}\n\t.st58{fill:none;stroke:#000000;stroke-width:0.3739;stroke-miterlimit:10;}\n\t.st59{clip-path:url(#SVGID_00000026849305938803839000000006838211352470987164_);}\n\t.st60{clip-path:url(#SVGID_00000054944264640651082640000013373952098937903793_);}\n\t.st61{clip-path:url(#SVGID_00000109749723541867965930000011368692800534843024_);}\n\t.st62{clip-path:url(#SVGID_00000142163618380720300180000017582792667613356166_);}\n\t.st63{clip-path:url(#SVGID_00000140716698234481245310000012466305643813233308_);}\n\t.st64{fill:#D0D7D5;stroke:#000000;stroke-width:0.3523;stroke-miterlimit:10;}\n\t.st65{clip-path:url(#SVGID_00000105426538403694950200000013075770052839792516_);}\n\t.st66{fill:none;stroke:#000000;stroke-width:0.2491;stroke-miterlimit:10;}\n\t.st67{fill:#D0D7D5;stroke:#000000;stroke-width:0.4706;stroke-miterlimit:10;}\n\t.st68{fill:#D0D7D5;stroke:#000000;stroke-width:0.343;stroke-miterlimit:10;}\n\t.st69{clip-path:url(#SVGID_00000137097911475138837290000004242461656251938482_);}\n\t.st70{clip-path:url(#SVGID_00000132056197046033272350000008916852281675480476_);}\n\t.st71{fill:#D0D7D5;stroke:#000000;stroke-width:0.3281;stroke-miterlimit:10;}\n\t.st72{clip-path:url(#SVGID_00000181790452178779135770000014199955941406921397_);}\n\t.st73{fill:#D0D7D5;stroke:#000000;stroke-width:0.4562;stroke-miterlimit:10;}\n\t.st74{fill:#D0D7D5;stroke:#000000;stroke-width:0.2467;stroke-miterlimit:10;}\n\t.st75{fill:#221E20;}\n\t.st76{font-size:21px;}\n\t.st77{fill:#EDE3D4;}\n\t.st78{fill:none;stroke:#231F20;stroke-width:1.0049;stroke-miterlimit:10;}\n\t.st79{clip-path:url(#watersport_x5F_shed_00000121959843121205252760000008765238809500887428_);}\n\t.st80{opacity:0.5;fill:#FFFFFF;}\n\t.st81{clip-path:url(#SVGID_00000086661815445832164750000003982411661604437411_);}\n\t.st82{fill:none;stroke:#7F6752;stroke-width:1.3571;stroke-linecap:round;stroke-miterlimit:10;}\n\t.st83{clip-path:url(#SVGID_00000106149789437401092830000000896962233592587690_);}\n\t.st84{clip-path:url(#SVGID_00000036968206835826829160000011692884760391980696_);}\n\t.st85{clip-path:url(#SVGID_00000105398556495591359230000006501481526462053819_);}\n\t.st86{clip-path:url(#SVGID_00000145738143598796023910000010503430660059462811_);}\n\t.st87{clip-path:url(#SVGID_00000016045564778350066180000004536931100050783164_);}\n\t.st88{fill:#E7DBD0;}\n\t.st89{clip-path:url(#SVGID_00000013182600381889495620000018186128403834340019_);}\n\t.st90{fill:#01060C;}\n\t.st91{fill:#DAE2E5;stroke:#C2D2D7;stroke-miterlimit:10;}\n\t.st92{fill:#DAE2E5;stroke:#C2D2D7;stroke-width:0.9126;stroke-miterlimit:10;}\n\t.st93{fill:#E4CFAD;}\n\t.st94{clip-path:url(#SVGID_00000153694046541498163140000001747588859452615091_);}\n\t.st95{fill:#7F6752;}\n\t.st96{clip-path:url(#SVGID_00000031906440808799943750000009697687151179611035_);}\n\t.st97{fill:#926B71;}\n\t.st98{fill:#CB9677;}\n\t.st99{fill:#687E77;}\n\t.st100{fill:#DDD3CB;}\n\t.st101{fill:#CABBB0;}\n\t.st102{fill:#D0D7D5;stroke:#000000;stroke-width:0.5;stroke-miterlimit:10;}\n\t.st103{fill:#D0D7D5;stroke:#000000;stroke-width:0.4139;stroke-miterlimit:10;}\n\t.st104{fill:none;stroke:#231F20;stroke-width:0.7431;stroke-miterlimit:10;}\n\t.st105{fill:#D0D7D5;stroke:#000000;stroke-width:0.3171;stroke-miterlimit:10;}\n\t.st106{fill:#D0D7D5;stroke:#000000;stroke-width:0.5099;stroke-miterlimit:10;}\n\t.st107{fill:#D0D7D5;stroke:#000000;stroke-width:0.2673;stroke-miterlimit:10;}\n\t.st108{fill:#D0D7D5;stroke:#000000;stroke-width:0.2763;stroke-miterlimit:10;}\n"
-                }
+                    {
+                        "\n\t.st0{fill:none;}\n\t.st1{fill:#221F20;}\n\t.st2{fill:#FBFAF9;}\n\t.st3{fill:#DAE2E5;stroke:#231F20;stroke-width:1.1261;stroke-miterlimit:10;stroke-dasharray:13.5134;}\n\t.st4{display:none;fill:#F2ECE6;}\n\t.st5{fill:#F2ECE6;}\n\t.st6{fill:#DAE2E5;}\n\t.st7{fill:#31353A;}\n\t.st8{fill:none;stroke:#231F20;stroke-width:1.0493;stroke-miterlimit:10;stroke-dasharray:12.5912;}\n\t.st9{fill:#C0C0C0;}\n\t.st10{fill:#EEECED;}\n\t.st11{opacity:0.2;fill:url(#concrete_x5F_1_00000085213518244244080910000009988571009399695499_);}\n\t.st12{clip-path:url(#SVGID_00000132069906965085226870000004703197977924415408_);}\n\t.st13{fill:#DEC28C;}\n\t.st14{fill:#DEC18C;}\n\t.st15{fill:#CFD6D4;}\n\t.st16{fill:#99A7A2;}\n\t.st17{fill:none;stroke:#231F20;stroke-miterlimit:10;}\n\t.st18{clip-path:url(#SVGID_00000085251401515031376360000002182462674667573944_);}\n\t.st19{fill:#88725B;}\n\t.st20{clip-path:url(#SVGID_00000086658943508733942080000005922489004772239518_);}\n\t.st21{fill:#775B40;}\n\t.st22{fill:#765A40;}\n\t.st23{fill:#765A3F;}\n\t.st24{fill:#75593F;}\n\t.st25{fill:#74593F;}\n\t.st26{fill:#74583E;}\n\t.st27{fill:#73583E;}\n\t.st28{fill:#73573E;}\n\t.st29{fill:#72573E;}\n\t.st30{fill:#71563D;}\n\t.st31{fill:#70553D;}\n\t.st32{fill:#6F553C;}\n\t.st33{fill:#6F543C;}\n\t.st34{fill:#6E543C;}\n\t.st35{fill:#6D533B;}\n\t.st36{fill:#6C533B;}\n\t.st37{fill:#6C523B;}\n\t.st38{fill:#6B523A;}\n\t.st39{fill:#6A513A;}\n\t.st40{fill:#695039;}\n\t.st41{fill:#685039;}\n\t.st42{fill:#684F39;}\n\t.st43{fill:#674F39;}\n\t.st44{fill:#674E38;}\n\t.st45{fill:#664E38;}\n\t.st46{fill:#654D38;}\n\t.st47{fill:#654D37;}\n\t.st48{fill:#644C37;}\n\t.st49{fill:#232020;}\n\t.st50{font-family:'Silka-Medium';}\n\t.st51{font-size:18.107px;}\n\t.st52{clip-path:url(#SVGID_00000018229171097058197930000017234958881185818027_);}\n\t.st53{fill:#FFFFFF;}\n\t.st54{clip-path:url(#SVGID_00000150784892795702132800000012938752339348821660_);}\n\t.st55{fill:#413D39;}\n\t.st56{fill:#413C38;}\n\t.st57{fill:#403D38;}\n\t.st58{fill:none;stroke:#000000;stroke-width:0.3739;stroke-miterlimit:10;}\n\t.st59{clip-path:url(#SVGID_00000026849305938803839000000006838211352470987164_);}\n\t.st60{clip-path:url(#SVGID_00000054944264640651082640000013373952098937903793_);}\n\t.st61{clip-path:url(#SVGID_00000109749723541867965930000011368692800534843024_);}\n\t.st62{clip-path:url(#SVGID_00000142163618380720300180000017582792667613356166_);}\n\t.st63{clip-path:url(#SVGID_00000140716698234481245310000012466305643813233308_);}\n\t.st64{fill:#D0D7D5;stroke:#000000;stroke-width:0.3523;stroke-miterlimit:10;}\n\t.st65{clip-path:url(#SVGID_00000105426538403694950200000013075770052839792516_);}\n\t.st66{fill:none;stroke:#000000;stroke-width:0.2491;stroke-miterlimit:10;}\n\t.st67{fill:#D0D7D5;stroke:#000000;stroke-width:0.4706;stroke-miterlimit:10;}\n\t.st68{fill:#D0D7D5;stroke:#000000;stroke-width:0.343;stroke-miterlimit:10;}\n\t.st69{clip-path:url(#SVGID_00000137097911475138837290000004242461656251938482_);}\n\t.st70{clip-path:url(#SVGID_00000132056197046033272350000008916852281675480476_);}\n\t.st71{fill:#D0D7D5;stroke:#000000;stroke-width:0.3281;stroke-miterlimit:10;}\n\t.st72{clip-path:url(#SVGID_00000181790452178779135770000014199955941406921397_);}\n\t.st73{fill:#D0D7D5;stroke:#000000;stroke-width:0.4562;stroke-miterlimit:10;}\n\t.st74{fill:#D0D7D5;stroke:#000000;stroke-width:0.2467;stroke-miterlimit:10;}\n\t.st75{fill:#221E20;}\n\t.st76{font-size:21px;}\n\t.st77{fill:#EDE3D4;}\n\t.st78{fill:none;stroke:#231F20;stroke-width:1.0049;stroke-miterlimit:10;}\n\t.st79{clip-path:url(#watersport_x5F_shed_00000121959843121205252760000008765238809500887428_);}\n\t.st80{opacity:0.5;fill:#FFFFFF;}\n\t.st81{clip-path:url(#SVGID_00000086661815445832164750000003982411661604437411_);}\n\t.st82{fill:none;stroke:#7F6752;stroke-width:1.3571;stroke-linecap:round;stroke-miterlimit:10;}\n\t.st83{clip-path:url(#SVGID_00000106149789437401092830000000896962233592587690_);}\n\t.st84{clip-path:url(#SVGID_00000036968206835826829160000011692884760391980696_);}\n\t.st85{clip-path:url(#SVGID_00000105398556495591359230000006501481526462053819_);}\n\t.st86{clip-path:url(#SVGID_00000145738143598796023910000010503430660059462811_);}\n\t.st87{clip-path:url(#SVGID_00000016045564778350066180000004536931100050783164_);}\n\t.st88{fill:#E7DBD0;}\n\t.st89{clip-path:url(#SVGID_00000013182600381889495620000018186128403834340019_);}\n\t.st90{fill:#01060C;}\n\t.st91{fill:#DAE2E5;stroke:#C2D2D7;stroke-miterlimit:10;}\n\t.st92{fill:#DAE2E5;stroke:#C2D2D7;stroke-width:0.9126;stroke-miterlimit:10;}\n\t.st93{fill:#E4CFAD;}\n\t.st94{clip-path:url(#SVGID_00000153694046541498163140000001747588859452615091_);}\n\t.st95{fill:#7F6752;}\n\t.st96{clip-path:url(#SVGID_00000031906440808799943750000009697687151179611035_);}\n\t.st97{fill:#926B71;}\n\t.st98{fill:#CB9677;}\n\t.st99{fill:#687E77;}\n\t.st100{fill:#DDD3CB;}\n\t.st101{fill:#CABBB0;}\n\t.st102{fill:#D0D7D5;stroke:#000000;stroke-width:0.5;stroke-miterlimit:10;}\n\t.st103{fill:#D0D7D5;stroke:#000000;stroke-width:0.4139;stroke-miterlimit:10;}\n\t.st104{fill:none;stroke:#231F20;stroke-width:0.7431;stroke-miterlimit:10;}\n\t.st105{fill:#D0D7D5;stroke:#000000;stroke-width:0.3171;stroke-miterlimit:10;}\n\t.st106{fill:#D0D7D5;stroke:#000000;stroke-width:0.5099;stroke-miterlimit:10;}\n\t.st107{fill:#D0D7D5;stroke:#000000;stroke-width:0.2673;stroke-miterlimit:10;}\n\t.st108{fill:#D0D7D5;stroke:#000000;stroke-width:0.2763;stroke-miterlimit:10;}\n"
+                    }
                 </style>
                 <pattern
-                x={-106.5}
-                y={895.1}
-                width={72}
-                height={72}
-                patternUnits="userSpaceOnUse"
-                id="USGS_17_Sandy_Dry_Lake"
-                viewBox="0 -72 72 72"
-                style={{
-                    overflow: "visible",
-                }}
+                    x={-106.5}
+                    y={895.1}
+                    width={72}
+                    height={72}
+                    patternUnits="userSpaceOnUse"
+                    id="USGS_17_Sandy_Dry_Lake"
+                    viewBox="0 -72 72 72"
+                    style={{
+                        overflow: "visible",
+                    }}
                 >
                 <g>
                     <rect y={-72} className="st0" width={72} height={72} />
@@ -1315,9 +1320,17 @@ function Map({ features, activeId, setActiveId }) {
                     />
                 </g>
                 </pattern>
-                <g id="background">
-                <rect fill="#CFD6D4" width={2764} height={2917} />
-                </g>
+                <svg id="main" 
+                    onClick={() => { 
+                        if (!hasZoomed) {  
+                            pz.zoomTo(Z_DEFAULT)
+                        }
+                    }}
+                    x={SVG_POS_OFFSET}
+                    y={SVG_POS_OFFSET}>
+                {/* <g id="background">
+                    <rect fill="#CFD6D4" width={2361} height={2917} />
+                </g> */}
                 <g id="left_x5F_water">
                 <path
                     className="st3"
@@ -3530,7 +3543,7 @@ function Map({ features, activeId, setActiveId }) {
                     </g>
                 </g>
                 </g>
-                <g id="sauna" ref={refs.current[getFeatureIndex('sauna')]} onClick={() => setActiveId('sauna')}>
+                <g id="sauna" ref={refs.current[getFeatureIndex('sauna')]} onClick={e => handleLocClick(e, 'sauna')}>
                 <g id="sauna_x5F_2_00000083070415539101867620000005280314765136308103_">
                     <path
                     className="st19"
@@ -4050,7 +4063,7 @@ function Map({ features, activeId, setActiveId }) {
                     <rect x={1793.8} y={963.1} className="st0" width={32.7} height={24.5} />
                 </g> */}
                 </g>
-                <g id="avens" ref={refs.current[getFeatureIndex('avens')]} onClick={() => setActiveId('avens')}>
+                <g id="avens" ref={refs.current[getFeatureIndex('avens')]} onClick={e => handleLocClick(e, 'avens')}>
                 <g id="avens_00000181055015135456625990000009150274319553716642_">
                     <path
                     className="st53"
@@ -4430,7 +4443,7 @@ function Map({ features, activeId, setActiveId }) {
                     </text> */}
                 </g>
                 </g>
-                <g id="honeysuckle" ref={refs.current[getFeatureIndex('honeysuckle')]} onClick={() => setActiveId('honeysuckle')}>
+                <g id="honeysuckle" ref={refs.current[getFeatureIndex('honeysuckle')]} onClick={e => handleLocClick(e, 'honeysuckle')}>
                 <g id="honeysuckle_00000137119991893416817190000001651659658016626597_">
                     <path
                     className="st53"
@@ -4810,7 +4823,7 @@ function Map({ features, activeId, setActiveId }) {
                     </text> */}
                 </g>
                 </g>
-                <g id="marigold" ref={refs.current[getFeatureIndex('marigold')]} onClick={() => setActiveId('marigold')}>
+                <g id="marigold" ref={refs.current[getFeatureIndex('marigold')]} onClick={e => handleLocClick(e, 'marigold')}>
                 <g id="number_x5F_6_00000150815969213562362460000016754990297357757349_">
                     <circle className="target" cx={1841.3} cy={1516.9} r={16.4} />
                     <rect x={1825} y={1508.8} className="st0" width={32.7} height={24.5} />
@@ -5164,7 +5177,7 @@ function Map({ features, activeId, setActiveId }) {
                     />
                 </g>
                 </g>
-                <g id="hawthorn" ref={refs.current[getFeatureIndex('hawthorn')]} onClick={() => setActiveId('hawthorn')}>
+                <g id="hawthorn" ref={refs.current[getFeatureIndex('hawthorn')]} onClick={e => handleLocClick(e, 'hawthorn')}>
                 <g id="number_x5F_7">
                     <circle className="target" cx={1710.2} cy={1516.9} r={16.4} />
                     <rect
@@ -5528,7 +5541,7 @@ function Map({ features, activeId, setActiveId }) {
                     />
                 </g>
                 </g>
-                <g id="burdock" ref={refs.current[getFeatureIndex('burdock')]} onClick={() => setActiveId('burdock')}>
+                <g id="burdock" ref={refs.current[getFeatureIndex('burdock')]} onClick={e => handleLocClick(e, 'burdock')}>
                 <g id="burdock_00000031197789946332027180000012639391321289743504_">
                     <path
                     className="st53"
@@ -5892,7 +5905,7 @@ function Map({ features, activeId, setActiveId }) {
                     </text> */}
                 </g>
                 </g>
-                <g id="aster" ref={refs.current[getFeatureIndex('aster')]} onClick={() => setActiveId('aster')}>
+                <g id="aster" ref={refs.current[getFeatureIndex('aster')]} onClick={e => handleLocClick(e, 'aster')}>
                 <g>
                     <path
                     className="st53"
@@ -6336,7 +6349,7 @@ function Map({ features, activeId, setActiveId }) {
                     </text> */}
                 </g>
                 </g>
-                <g id="bellflower" ref={refs.current[getFeatureIndex('bellflower')]} onClick={() => setActiveId('bellflower')}>
+                <g id="bellflower" ref={refs.current[getFeatureIndex('bellflower')]} onClick={e => handleLocClick(e, 'bellflower')}>
                 <path
                     id="grass_x5F_patch_00000170989598902757674180000005184264912895068325_"
                     className="st15"
@@ -6730,7 +6743,7 @@ function Map({ features, activeId, setActiveId }) {
                     </g>
                 </g>
                 </g>
-                <g id="juneberry" ref={refs.current[getFeatureIndex('juneberry')]} onClick={() => setActiveId('juneberry')}>
+                <g id="juneberry" ref={refs.current[getFeatureIndex('juneberry')]} onClick={e => handleLocClick(e, 'juneberry')}>
                 <path
                     id="grass_x5F_patch_00000154390654084850589950000007585338423918136971_"
                     className="st15"
@@ -7116,7 +7129,7 @@ function Map({ features, activeId, setActiveId }) {
                     </g>
                 </g>
                 </g>
-                <g id="meadowrue" ref={refs.current[getFeatureIndex('meadowrue')]} onClick={() => setActiveId('meadowrue')}>
+                <g id="meadowrue" ref={refs.current[getFeatureIndex('meadowrue')]} onClick={e => handleLocClick(e, 'meadowrue')}>
                 <path
                     id="grass_x5F_patch_00000095297469953212453680000015019152172432392083_"
                     className="st15"
@@ -7502,7 +7515,7 @@ function Map({ features, activeId, setActiveId }) {
                     </g>
                 </g>
                 </g>
-                <g id="waterleaf" ref={refs.current[getFeatureIndex('waterleaf')]} onClick={() => setActiveId('waterleaf')}>
+                <g id="waterleaf" ref={refs.current[getFeatureIndex('waterleaf')]} onClick={e => handleLocClick(e, 'waterleaf')}>
                 <path
                     id="grass_x5F_patch_00000080898235760486801500000000632852040744429482_"
                     className="st15"
@@ -7898,9 +7911,9 @@ function Map({ features, activeId, setActiveId }) {
                     {"Loyalist Parkway"}
                 </text>
                 </g>
-                <g id="direction_x5F_sign_00000031201554951121862200000011097329147039634325_">
+                <g id="direction_x5F_sign_00000031201554951121862200000011097329147039634325_" transform="translate(48,80)">
                 <g id="direction_x5F_sign">
-                    <circle className="target" cx={2173.2} cy={309.6} r={56.6} />
+                    <circle className="target" cx={2173} cy={309} r={56.6} />
                     <g>
                     <path
                         className="st77"
@@ -7913,7 +7926,7 @@ function Map({ features, activeId, setActiveId }) {
                     />
                 </g>
                 </g>
-                <g id="parking" ref={refs.current[getFeatureIndex('parking')]} onClick={() => setActiveId('parking')}>
+                <g id="parking" ref={refs.current[getFeatureIndex('parking')]} onClick={e => handleLocClick(e, 'parking')}>
                 <g id="parking_00000044857144899949137610000000768858757820799156_">
                     <line className="st78" x1={976.8} y1={945} x2={968.2} y2={988} />
                     <line className="st78" x1={1000.7} y1={949.8} x2={992.1} y2={992.8} />
@@ -7961,7 +7974,7 @@ function Map({ features, activeId, setActiveId }) {
                     </text> */}
                 </g>
                 </g>
-                <g id="firepit" ref={refs.current[getFeatureIndex('firepit')]} onClick={() => setActiveId('firepit')}>
+                <g id="firepit" ref={refs.current[getFeatureIndex('firepit')]} onClick={e => handleLocClick(e, 'firepit')}>
                 <g id="number_x5F_10">
                     <circle className="target" cx={1272.7} cy={2160.7} r={16.4} />
                     <rect
@@ -7984,7 +7997,7 @@ function Map({ features, activeId, setActiveId }) {
                     </g>
                 </g>
                 </g>
-                <g id="watersport-shed" ref={refs.current[getFeatureIndex('watersport-shed')]} onClick={() => setActiveId('watersport-shed')}>
+                <g id="watersport-shed" ref={refs.current[getFeatureIndex('watersport-shed')]} onClick={e => handleLocClick(e, 'watersport-shed')}>
                 <rect
                     id="watersport_x5F_shed_00000027585563623525416420000011249384869865142931_"
                     x={1322.7}
@@ -8242,7 +8255,7 @@ function Map({ features, activeId, setActiveId }) {
                     </text> */}
                 </g>
                 </g>
-                <g id="poolside-firepit" ref={refs.current[getFeatureIndex('poolside-firepit')]} onClick={() => setActiveId('poolside-firepit')}>
+                <g id="poolside-firepit" ref={refs.current[getFeatureIndex('poolside-firepit')]} onClick={e => handleLocClick(e, 'poolside-firepit')}>
                 <g id="number_x5F_19">
                     <circle className="target" cx={1621.5} cy={1373.9} r={16.4} />
                     <rect
@@ -8265,7 +8278,7 @@ function Map({ features, activeId, setActiveId }) {
                     </g>
                 </g>
                 </g>
-                {/* <g id="wander-haus-firepit" ref={refs.current[getFeatureIndex('wander-haus-firepit')]} onClick={() => setActiveId('wander-haus-firepit')}> */}
+                {/* <g id="wander-haus-firepit" ref={refs.current[getFeatureIndex('wander-haus-firepit')]} onClick={e => handleLocClick(e, 'wander-haus-firepit')}> */}
                 <g id="wander-haus-firepit">
                 <g id="number_x5F_27_00000118370965685420582400000016786498445893895323_">
                     {/* <circle className="target" cx={1999.5} cy={2041.9} r={16.4} /> */}
@@ -8289,7 +8302,7 @@ function Map({ features, activeId, setActiveId }) {
                     </g>
                 </g>
                 </g>
-                <g id="hygge-huts" ref={refs.current[getFeatureIndex('hygge-huts')]} onClick={() => setActiveId('hygge-huts')}>
+                <g id="hygge-huts" ref={refs.current[getFeatureIndex('hygge-huts')]} onClick={e => handleLocClick(e, 'hygge-huts')}>
                 <g id="number_x5F_17_00000132800195734320634840000012355709242346427790_">
                     <circle className="target" cx={883.5} cy={1783.9} r={16.4} />
                     <rect x={867.2} y={1775.8} className="st0" width={32.7} height={24.5} />
@@ -8843,7 +8856,7 @@ function Map({ features, activeId, setActiveId }) {
                     </g>
                 </g>
                 </g>
-                {/* <g id="wander_haus" ref={refs.current[getFeatureIndex('wander-haus')]} onClick={() => setActiveId('wander-haus')}> */}
+                {/* <g id="wander_haus" ref={refs.current[getFeatureIndex('wander-haus')]} onClick={e => handleLocClick(e, 'wander-haus')}> */}
                 <g id="wander_haus">
                 <g id="number_x5F_12_00000023268199903864580900000017073834424035530925_">
                     {/* <circle className="target" cx={2003.2} cy={1195.2} r={16.4} /> */}
@@ -9193,7 +9206,7 @@ function Map({ features, activeId, setActiveId }) {
                     />
                 </g>
                 </g>
-                <g id="beach" ref={refs.current[getFeatureIndex('west-beach')]} onClick={() => setActiveId('west-beach')}>
+                <g id="beach" ref={refs.current[getFeatureIndex('west-beach')]} onClick={e => handleLocClick(e, 'west-beach')}>
                 <g id="number_x5F_11_00000106109651198747998170000016811581086795586981_">
                     <circle className="target" cx={702.1} cy={2020.7} r={16.4} />
                     <rect x={685.7} y={2012.6} className="st0" width={32.7} height={24.5} />
@@ -9210,7 +9223,7 @@ function Map({ features, activeId, setActiveId }) {
                     </g>
                 </g>
                 </g>
-                <g id="beach-bar" ref={refs.current[getFeatureIndex('beach-bar')]} onClick={() => setActiveId('beach-bar')}>
+                <g id="beach-bar" ref={refs.current[getFeatureIndex('beach-bar')]} onClick={e => handleLocClick(e, 'beach-bar')}>
                 <g id="number_x5F_24_00000057111866810192317760000004095276210524419750_">
                     <circle className="target" cx={1362.2} cy={1831.9} r={16.4} />
                     <rect
@@ -9365,7 +9378,7 @@ function Map({ features, activeId, setActiveId }) {
                     />
                 </g>
                 </g>
-                <g id="cabana" ref={refs.current[getFeatureIndex('cabana')]} onClick={() => setActiveId('cabana')}>
+                <g id="cabana" ref={refs.current[getFeatureIndex('cabana')]} onClick={e => handleLocClick(e, 'cabana')}>
                 <g>
                     <defs>
                     <path
@@ -9984,7 +9997,7 @@ function Map({ features, activeId, setActiveId }) {
                     </g>
                 </g>
                 </g>
-                <g id="volleyball-court" ref={refs.current[getFeatureIndex('volleyball-court')]} onClick={() => setActiveId('volleyball-court')}>
+                <g id="volleyball-court" ref={refs.current[getFeatureIndex('volleyball-court')]} onClick={e => handleLocClick(e, 'volleyball-court')}>
                 <rect
                     id="volleyball_x5F_land"
                     x={555.2}
@@ -10038,7 +10051,7 @@ function Map({ features, activeId, setActiveId }) {
                     </g>
                 </g>
                 </g>
-                <g id="clubhouse" ref={refs.current[getFeatureIndex('clubhouse')]} onClick={() => setActiveId('clubhouse')}>
+                <g id="clubhouse" ref={refs.current[getFeatureIndex('clubhouse')]} onClick={e => handleLocClick(e, 'clubhouse')}>
                 <g id="number_x5F_2_00000034800061137457630840000016091598400730321803_">
                     <circle className="target" cx={1322.3} cy={1358.1} r={16.4} />
                     <rect x={1305.9} y={1350} className="st0" width={32.7} height={24.5} />
@@ -10480,7 +10493,7 @@ function Map({ features, activeId, setActiveId }) {
                     />
                 </g>
                 </g>
-                <g id="entrance" ref={refs.current[getFeatureIndex('entrance')]} onClick={() => setActiveId('entrance')}>
+                <g id="entrance" ref={refs.current[getFeatureIndex('entrance')]} onClick={e => handleLocClick(e, 'entrance')}>
                 <g id="number_x5F_1_00000016756895272965621550000009197502897046271889_">
                     <circle className="target" cx={1377} cy={500.5} r={16.4} />
                     <rect x={1360.6} y={492.4} className="st0" width={32.7} height={24.5} />
@@ -10580,7 +10593,7 @@ function Map({ features, activeId, setActiveId }) {
                     </g>
                 </g>
                 </g>
-                <g id="pool" ref={refs.current[getFeatureIndex('pool')]} onClick={() => setActiveId('pool')}>
+                <g id="pool" ref={refs.current[getFeatureIndex('pool')]} onClick={e => handleLocClick(e, 'pool')}>
                 <g id="pool_x5F_house_00000061430521809163919210000014528149155098831490_">
                     <rect
                     x={1486.2}
@@ -10737,7 +10750,7 @@ function Map({ features, activeId, setActiveId }) {
                     height={36.5}
                 />
                 </g>
-                <g id="bicycles" ref={refs.current[getFeatureIndex('bicycles')]} onClick={() => setActiveId('bicycles')}>
+                <g id="bicycles" ref={refs.current[getFeatureIndex('bicycles')]} onClick={e => handleLocClick(e, 'bicycles')}>
                 <g id="bicycles_x5F_icon_00000050637357575458598390000004125527355851868545_">
                     <g>
                     <path
@@ -11284,7 +11297,7 @@ function Map({ features, activeId, setActiveId }) {
                 />
                 <path className="st16" d="M-1489.4,1064.6" />
                 </g>
-                <g id="garden" ref={refs.current[getFeatureIndex('garden')]} onClick={() => setActiveId('garden')}>
+                <g id="garden" ref={refs.current[getFeatureIndex('garden')]} onClick={e => handleLocClick(e, 'garden')}>
                 <g id="garden_x5F_1_00000034802556566463890830000001840919954038566552_">
                     <path
                     id="garden_00000020358397139906613510000003151715362680924596_"
@@ -12400,27 +12413,10 @@ function Map({ features, activeId, setActiveId }) {
                     />
                 </g>
                 </g>
+                </svg>
             </svg>
         </div>
     )
 }
 
 export default Map
-
-/*
-	<svg ref={mapRef} className="wrm__map" width={MAP_WIDTH}>  
-		// width={MAP_WIDTH} height={MAP_HEIGHT}>
-		// <image href={mapAsset} width="100%" alt="map" />
-		// <image href="./map.png" width="100%" alt="map" />
-		<rect x="0" y="0" width={MAP_WIDTH} height="1000" fill="#ceffcf" />
-		<rect ref={elementsRef.current[0]} onClick={() => setActiveId(0)} id={features[0].slug} x="100" y="100" width="100" height="100" fill={getColour(0)} />
-		<rect ref={elementsRef.current[1]} onClick={() => setActiveId(1)} id={features[1].slug} x="250" y="400" width="100" height="100" fill={getColour(1)} />
-		<rect ref={elementsRef.current[2]} onClick={() => setActiveId(2)} id={features[2].slug} x="700" y="350" width="100" height="100" fill={getColour(2)} />
-		<rect ref={elementsRef.current[3]} onClick={() => setActiveId(3)} id={features[3].slug} x="1200" y="800" width="100" height="100" fill={getColour(3)} />
-		<rect ref={elementsRef.current[4]} onClick={() => setActiveId(4)} id={features[4].slug} x="1400" y="400" width="100" height="100" fill={getColour(4)} />
-	</svg>
-	<li>
-		<button onClick={()=>{}}>zoom out</button>
-	</li>
-*/
-
