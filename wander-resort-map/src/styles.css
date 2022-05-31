@@ -5,11 +5,30 @@ L - 16:9 or 4:3
 XL - 16:9
 */
 
+.wrm {
+    --color-offwhite: #EFEDEA;
+    --color-winter: #35363B;
+    --color-allseason: #efedea;
+    --color-grass: #CFD6D4;
+    
+    font-family: Silka, Tahoma, sans-serif, Arial;
+    font-weight: 100;
+
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    flex: 1;
+
+    padding-top: 2rem;
+
+    background-color: var(--color-allseason);
+}
+
 .wrm__map-wrap {
     overflow: hidden;
     margin-top: 66px;
     aspect-ratio: 3 / 4;
-    background: red;
+    border: 1px solid rgba(0,0,0,0.1);
 }
 
 /* 
@@ -41,23 +60,6 @@ MAP
     #wander-resort-map {
         aspect-ratio: 16 / 9;
     }
-}
-.wrm {
-    --color-winter: #35363B;
-    --color-allseason: #efedea;
-    --color-grass: #CFD6D4;
-    
-    font-family: Silka, Tahoma, sans-serif, Arial;
-    font-weight: 100;
-
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    flex: 1;
-
-    padding-top: 2rem;
-
-    background-color: var(--color-allseason);
 }
 
 .wrm h1, h2, h3 {
@@ -222,7 +224,6 @@ MAP
     bottom: 50px;
     left: 0;
     padding: 1rem;
-    background-color: red !important;
 }
 
 /* MAP */
@@ -231,7 +232,7 @@ MAP
     z-index: 1;
     position: relative;
     overflow: hidden;
-    background-color: var(--color-grass);
+    background-color: var(--color-offwhite);
     height: 100%;
     width: 100%;
 
