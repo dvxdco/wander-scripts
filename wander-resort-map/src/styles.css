@@ -28,7 +28,7 @@ XL - 16:9
     overflow: hidden;
     margin-top: 66px;
     aspect-ratio: 3 / 4;
-    border: 1px solid rgba(0,0,0,0.1);
+    /* border: 1px solid rgba(0,0,0,0.1); */
 }
 
 /* 
@@ -236,6 +236,8 @@ MAP
     background-color: var(--color-offwhite);
     height: 100%;
     width: 100%;
+
+    border: 1px solid rgba(0,0,0,0.1);
 
     touch-action: none;
     user-select: none;
