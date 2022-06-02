@@ -28,7 +28,7 @@ XL - 16:9
     overflow: hidden;
     margin-top: 66px;
     aspect-ratio: 3 / 4;
-    /* border: 1px solid rgba(0,0,0,0.1); */
+    border-bottom: 1px solid var(--color-offwhite);
 }
 
 /* 
