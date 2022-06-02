@@ -71,7 +71,7 @@ window.addEventListener('load', function () {
 	}
 
 	// remove unwanted option tags from select, ignores first item because empty value/decorative
-	wtr.trimSelectOptions = (select, length = 4) => {
+	wtr.trimSelectOptions = (select, length = 5) => {
 		let selectOptions = select.querySelectorAll('option');
 		let optionsLength = selectOptions.length;
 		for(let i = 1; i < optionsLength; i++) {
