@@ -10,6 +10,7 @@ XL - 16:9
     --color-winter: #35363B;
     --color-allseason: #efedea;
     --color-grass: #CFD6D4;
+    --color-border: rgba(0, 0, 0, 0.1);
     
     font-family: Silka, Tahoma, sans-serif, Arial;
     font-weight: 100;
@@ -21,14 +22,16 @@ XL - 16:9
 
     padding-top: 2rem;
 
-    background-color: var(--color-allseason);
+    border-bottom: 1px solid var(--color-border);
 }
 
 .wrm__map-wrap {
     overflow: hidden;
     margin-top: 66px;
     aspect-ratio: 3 / 4;
-    border-bottom: 1px solid var(--color-offwhite);
+
+    border: 1px solid var(--color-border);
+    border-top: none;
 }
 
 /* 
@@ -38,6 +41,7 @@ MAP
 
 
 */
+
 
 #wander-resort-map {
     overflow: hidden;
@@ -110,7 +114,11 @@ MAP
     background-color: inherit;
 }
 
-/* NAV */
+/* 
+
+NAV 
+
+*/
 
 .wrm__nav {
     z-index: 3;
@@ -120,10 +128,12 @@ MAP
     top: 0;
     left: 0;
     width: 100%;
-    background-color: inherit;
+    background-color: var(--color-allseason);
     padding: 0rem 0rem 1rem 0rem;
     
     font-size: 20px;
+
+    border-bottom: 1px solid var(--color-border);
 }
 
 .wrm__nav .dropdown-content {
@@ -148,7 +158,7 @@ MAP
     cursor: pointer;
     line-height: 140%;
     padding: 0 0 0.5rem 0;
-    border-bottom: 1px solid rgba(0,0,0,0.1);
+    border-bottom: 1px solid var(--color-border);
 
     font-family: Silka;
     font-weight: 500;
@@ -237,7 +247,7 @@ MAP
     height: 100%;
     width: 100%;
 
-    border: 1px solid rgba(0,0,0,0.1);
+    /* border: 1px solid rgba(0,0,0,0.1); */
 
     touch-action: none;
     user-select: none;
