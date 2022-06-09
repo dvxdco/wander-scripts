@@ -425,6 +425,9 @@ svg.wrm__map circle {
     overflow: hidden;
     display: flex;
     max-width: 100vw;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
 }
 
 .wrm__modal-content .glide__slide-content {
@@ -500,9 +503,18 @@ VIDEO
     overflow: hidden;
     padding-bottom: 56.25%;
     position: relative;
-    width: 100vw;
+    width: 100%;
     height: 0;
-    max-height: 66vh;
+    margin: 0 auto;
+    max-width: 853px;
+    max-height: 480px;
+}
+
+@media screen and (min-width: 768px) {
+    .video-responsive {
+        height: 480px;
+        padding-bottom: 0;
+    }
 }
 
 .video-responsive iframe {
