@@ -2,11 +2,7 @@ import React from 'react'
 import Close from './Close'
 
 function Card({ index, active, feature, onClose, onModal }) {
-	const { slug, name, desc, link, hero, gallery } = feature; // these are grabbed in index.js from data attributes in html
-
-	// const onLinkOut = () => {
-	// 	document.dispatchEvent(new CustomEvent('eModalShow', { detail: { id: slug, index: index } }))
-	// }
+	const { slug, name, desc, link, hero, gallery, videoUrl } = feature; // these are grabbed in index.js from data attributes in html
 
     return (
 		<div className={'wrm__card' + (active ? ' active' : '')}>
@@ -19,7 +15,21 @@ function Card({ index, active, feature, onClose, onModal }) {
 						<a href={link} target="_blank">{`See More >`}</a>
 				}
 				{
-					gallery == "true" &&
+					videoUrl &&
+						<>
+						{
+							hero &&
+								<div className="wrm__card-hero">
+									<a onClick={onModal}>
+										<img src={hero} alt={name}/>
+										<span>360</span>
+									</a>
+								</div>
+						}
+					</>
+				}				
+				{
+					!videoUrl && gallery &&
 						<>
 							{
 								hero &&
@@ -33,7 +43,7 @@ function Card({ index, active, feature, onClose, onModal }) {
 						</>
 				}
 				{
-					gallery == "false" &&
+					!gallery &&
 						hero &&
 							<div className="wrm__card-hero">
 								<img src={hero} alt={name}/>

@@ -19,6 +19,7 @@ listItems.forEach(el => {
             desc: feature.getAttribute('data-desc'),
             link: feature.getAttribute('data-link') || '',
             hero: feature.getAttribute('data-hero'),
+            videoUrl: feature.getAttribute('data-youtube'),
             gallery: feature.getAttribute('data-gallery'),
             slides: Array.from(slides).map((slide) => {
                 return {

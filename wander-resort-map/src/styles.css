@@ -489,3 +489,26 @@ svg.wrm__map circle {
 .wrm__modal-content .glide__slide--active p {
 	opacity: 1;
 }
+
+/*
+
+VIDEO
+
+*/
+
+.video-responsive {
+    overflow: hidden;
+    padding-bottom: 56.25%;
+    position: relative;
+    width: 100vw;
+    height: 0;
+    max-height: 66vh;
+}
+
+.video-responsive iframe {
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
