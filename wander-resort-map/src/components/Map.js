@@ -7942,7 +7942,7 @@ function Map({ features, activeId, setActiveId }) {
                     />
                 </g>
                 <g id="number_x5F_18_00000101783241007786316930000017940509475484058514_">
-                    <circle ref={refs.current[getFeatureIndex('waterleaf')]} onClick={e => handleLocClick(e, 'waterleaf')} className="target" cx={1222.5} cy={955.1} r={16.4} />
+                    <circle ref={refs.current[getFeatureIndex('parking')]} onClick={e => handleLocClick(e, 'parking')} className="target" cx={1222.5} cy={955.1} r={16.4} />
                     <rect x={1206.1} y={947} className="st0" width={32.7} height={24.5} />
                 </g>
                 </g>
