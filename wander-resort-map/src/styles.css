@@ -506,13 +506,13 @@ VIDEO
     width: 100%;
     height: 0;
     margin: 0 auto;
-    max-width: 853px;
-    max-height: 480px;
+    max-width: 1280px;
+    max-height: 720px;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 1280px) {
     .video-responsive {
-        height: 480px;
+        height: 720px;
         padding-bottom: 0;
     }
 }
