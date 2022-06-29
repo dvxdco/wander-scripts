@@ -557,9 +557,12 @@ window.addEventListener('load', function () {
     });
   });
 
+
+  // NOTE: where he says "cookies" he means localstorage
+
   let toastCopyDate = document.querySelector('.toast-copy-date')?.innerText.replaceAll('-', '');
   let toastName = 'wanderToast_'+toastCopyDate;
-  
+
   // update visibility of toast based on status cookie
   wtr.wanderToast = localStorage.getItem(toastName);
   wtr.toastEl = document.getElementsByClassName('toast-wrapper')[0];

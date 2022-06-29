@@ -431,6 +431,7 @@ svg.wrm__map circle {
 }
 
 .wrm__modal-content .glide__slide-content {
+    width: 100%;
    display: flex;
    flex-direction: column;
    align-items: center;
