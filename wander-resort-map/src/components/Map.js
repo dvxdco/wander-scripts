@@ -9742,10 +9742,10 @@ function Map({ features, activeId, setActiveId }) {
                     </g>
                 </g>
                 </g>
-                {/* <g id="wander_haus" ref={refs.current[getFeatureIndex('wander-haus')]} onClick={e => handleLocClick(e, 'wander-haus')}> */}
-                <g id="wander_haus">
+                <g id="wander-haus">
+                {/* <circle ref={refs.current[getFeatureIndex('treehouses')]} onClick={e => handleLocClick(e, 'treehouses')} className="target" /> */}
                 <g id="number_x5F_12_00000023268199903864580900000017073834424035530925_">
-                    {/* <circle className="target" cx={2003.2} cy={1195.2} r={16} /> */}
+                    <circle ref={refs.current[getFeatureIndex('wander-haus')]} onClick={e => handleLocClick(e, 'wander-haus')} className="target" cx={2003.2} cy={1195.2} r={16} />
                     <rect
                     x={1986.9}
                     y={1187.1}
