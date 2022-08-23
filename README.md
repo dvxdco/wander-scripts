@@ -59,6 +59,3 @@ npm run build
 ```
 
 To add a new location, add the following with the appropriate index to the appropriate SVG element 
-
-
-# How to Add Glide Slider
