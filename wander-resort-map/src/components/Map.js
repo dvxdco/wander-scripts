@@ -3545,16 +3545,9 @@ function Map({ features, activeId, setActiveId }) {
                     </g>
                 </g>
                 </g>
-                <g id="tree_houses">
+                <g id="tree_houses" style={{filter: "grayscale(75%)", opacity: 0.8}}>
                     <g id="tree_houses_target">
-                        <circle ref={refs.current[getFeatureIndex('treehouses')]} onClick={e => handleLocClick(e, 'treehouses')} className="target" cx={1790} cy={977} r={16}/>
-                        <rect
-                        x={1605.1}
-                        y={1365.8}
-                        className="st0"
-                        width={32.7}
-                        height={24.5}
-                        />
+                        <circle ref={refs.current[getFeatureIndex('treehouses')]} onClick={e => handleLocClick(e, 'treehouses')} className="target" cx={1910} cy={870} r={16}/>
                     </g>
                     <g>
                         <g>
@@ -9745,20 +9738,7 @@ function Map({ features, activeId, setActiveId }) {
                 <g id="wander-haus">
                 {/* <circle ref={refs.current[getFeatureIndex('treehouses')]} onClick={e => handleLocClick(e, 'treehouses')} className="target" /> */}
                 <g id="number_x5F_12_00000023268199903864580900000017073834424035530925_">
-                    <circle ref={refs.current[getFeatureIndex('wander-haus')]} onClick={e => handleLocClick(e, 'wander-haus')} className="target" cx={2003.2} cy={1195.2} r={16} />
-                    <rect
-                    x={1986.9}
-                    y={1187.1}
-                    className="st0"
-                    width={32.7}
-                    height={24.5}
-                    />
-                    {/* <text
-                    transform="matrix(1 0 0 1 1993.8123 1200.6379)"
-                    className="st5 st50 st51"
-                    >
-                    {"12"}
-                    </text> */}
+                    <circle ref={refs.current[getFeatureIndex('wander-haus')]} onClick={e => handleLocClick(e, 'wander-haus')} className="target" cx={2125} cy={1250} r={16} />
                 </g>
                 <g id="wander_x5F_haus_00000110460242330445224090000010021130675258057902_">
                     <path
