@@ -3547,7 +3547,7 @@ function Map({ features, activeId, setActiveId }) {
                 </g>
                 <g id="tree_houses" style={{filter: "grayscale(75%)", opacity: 0.8}}>
                     <g id="tree_houses_target">
-                        <circle ref={refs.current[getFeatureIndex('treehouses')]} onClick={e => handleLocClick(e, 'treehouses')} className="target" cx={1666} cy={820} r={16}/>
+                        <circle ref={refs.current[getFeatureIndex('treehouses')]} onClick={e => handleLocClick(e, 'treehouses')} className="target" cx={1664} cy={820} r={16}/>
                     </g>
                     <g>
                         <g>
