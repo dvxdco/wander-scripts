@@ -18,6 +18,7 @@ listItems.forEach(el => {
             name: feature.getAttribute('data-name'),
             desc: feature.getAttribute('data-desc'),
             link: feature.getAttribute('data-link') || '',
+            cta: feature.getAttribute('data-cta') || 'See More',
             hero: feature.getAttribute('data-hero'),
             videoUrl: feature.getAttribute('data-youtube'),
             gallery: feature.getAttribute('data-gallery'),

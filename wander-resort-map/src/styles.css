@@ -373,6 +373,8 @@ svg.wrm__map circle {
 
 .wrm__card a {
     cursor: pointer;
+    display: flex;
+    align-items: center;
 }
 
 .wrm__card img {

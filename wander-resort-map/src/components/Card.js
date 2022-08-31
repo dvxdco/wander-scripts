@@ -2,7 +2,7 @@ import React from 'react'
 import Close from './Close'
 
 function Card({ index, active, feature, onClose, onModal }) {
-	const { slug, name, desc, link, hero, gallery, videoUrl } = feature; // these are grabbed in index.js from data attributes in html
+	const { slug, name, desc, link, cta, hero, gallery, videoUrl } = feature; // these are grabbed in index.js from data attributes in html
 	
 	// console.log(slug, videoUrl, gallery, hero);
 
@@ -15,7 +15,12 @@ function Card({ index, active, feature, onClose, onModal }) {
 				{/* videoUrl: { videoUrl } | gallery: { gallery } | hero: { hero } | { String((gallery === "false")) } */}
 				{
 					link && link.length > 0 &&
-						<a href={link} target="_blank">{`See More >`}</a>
+						<a href={link} target="_blank">
+							{cta}
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="14" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+								<path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"></path>
+							</svg>
+						</a>
 				}
 				{
 					!videoUrl && gallery == "false" && hero &&
